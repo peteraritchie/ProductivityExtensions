@@ -4,3 +4,7 @@ obj
 
 # mstest test results
 TestResults
+/src/_ReSharper.geschikt
+
+*.user
+*.suo

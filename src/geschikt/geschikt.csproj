@@ -1,0 +1,470 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BDE41F54-F174-4783-9A7E-6CA6CC4A0BBE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
+    <AssemblyName>geschikt</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\..\..\..\Users\Peter Ritchie\PR fx.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionExtensions\Actionable.g.cs" />
+    <Compile Include="ActiveDesignerEventHandlerExtensions\ActiveDesignerEventHandlerable.g.cs" />
+    <Compile Include="AddingNewEventHandlerExtensions\AddingNewEventHandlerable.g.cs" />
+    <Compile Include="AnonymousPipeClientStreamExtensions\AnonymousPipeClientStreamable.g.cs" />
+    <Compile Include="AnonymousPipeServerStreamExtensions\AnonymousPipeServerStreamable.g.cs" />
+    <Compile Include="AppDomainInitializerExtensions\AppDomainInitializerable.g.cs" />
+    <Compile Include="AppSettingsReaderExtensions\AppSettingsReaderable.g.cs" />
+    <Compile Include="ArrayConverterExtensions\ArrayConverterable.g.cs" />
+    <Compile Include="AssemblyLoadEventHandlerExtensions\AssemblyLoadEventHandlerable.g.cs" />
+    <Compile Include="AsyncCallbackExtensions\AsyncCallbackable.g.cs" />
+    <Compile Include="AsyncCompletedEventHandlerExtensions\AsyncCompletedEventHandlerable.g.cs" />
+    <Compile Include="AuthenticatedStreamExtensions\AuthenticatedStreamable.g.cs" />
+    <Compile Include="AuthenticationSchemeSelectorExtensions\AuthenticationSchemeSelectorable.g.cs" />
+    <Compile Include="BaseNumberConverterExtensions\BaseNumberConverterable.g.cs" />
+    <Compile Include="BinaryReaderExtensions\BinaryReaderable.g.cs" />
+    <Compile Include="BinderExtensions\Binderable.g.cs" />
+    <Compile Include="BindingCompleteEventHandlerExtensions\BindingCompleteEventHandlerable.g.cs" />
+    <Compile Include="BindingManagerDataErrorEventHandlerExtensions\BindingManagerDataErrorEventHandlerable.g.cs" />
+    <Compile Include="BindIPEndPointExtensions\BindIPEndPointable.g.cs" />
+    <Compile Include="BooleanConverterExtensions\BooleanConverterable.g.cs" />
+    <Compile Include="BufferedStreamExtensions\BufferedStreamable.g.cs" />
+    <Compile Include="ByteConverterExtensions\ByteConverterable.g.cs" />
+    <Compile Include="CacheVirtualItemsEventHandlerExtensions\CacheVirtualItemsEventHandlerable.g.cs" />
+    <Compile Include="CancelEventHandlerExtensions\CancelEventHandlerable.g.cs" />
+    <Compile Include="CharConverterExtensions\CharConverterable.g.cs" />
+    <Compile Include="CollectionChangeEventHandlerExtensions\CollectionChangeEventHandlerable.g.cs" />
+    <Compile Include="CollectionConverterExtensions\CollectionConverterable.g.cs" />
+    <Compile Include="ColorConverterExtensions\ColorConverterable.g.cs" />
+    <Compile Include="ColumnClickEventHandlerExtensions\ColumnClickEventHandlerable.g.cs" />
+    <Compile Include="ColumnHeaderConverterExtensions\ColumnHeaderConverterable.g.cs" />
+    <Compile Include="ColumnReorderedEventHandlerExtensions\ColumnReorderedEventHandlerable.g.cs" />
+    <Compile Include="ColumnWidthChangedEventHandlerExtensions\ColumnWidthChangedEventHandlerable.g.cs" />
+    <Compile Include="ColumnWidthChangingEventHandlerExtensions\ColumnWidthChangingEventHandlerable.g.cs" />
+    <Compile Include="ComparisonExtensions\Comparisonable.g.cs" />
+    <Compile Include="ComponentChangedEventHandlerExtensions\ComponentChangedEventHandlerable.g.cs" />
+    <Compile Include="ComponentChangingEventHandlerExtensions\ComponentChangingEventHandlerable.g.cs" />
+    <Compile Include="ComponentConverterExtensions\ComponentConverterable.g.cs" />
+    <Compile Include="ComponentEventHandlerExtensions\ComponentEventHandlerable.g.cs" />
+    <Compile Include="ComponentRenameEventHandlerExtensions\ComponentRenameEventHandlerable.g.cs" />
+    <Compile Include="ConsoleCancelEventHandlerExtensions\ConsoleCancelEventHandlerable.g.cs" />
+    <Compile Include="ContentsResizedEventHandlerExtensions\ContentsResizedEventHandlerable.g.cs" />
+    <Compile Include="ContextCallbackExtensions\ContextCallbackable.g.cs" />
+    <Compile Include="ControlEventHandlerExtensions\ControlEventHandlerable.g.cs" />
+    <Compile Include="ConverterExtensions\Converterable.g.cs" />
+    <Compile Include="ConvertEventHandlerExtensions\ConvertEventHandlerable.g.cs" />
+    <Compile Include="CrossAppDomainDelegateExtensions\CrossAppDomainDelegateable.g.cs" />
+    <Compile Include="CrossContextDelegateExtensions\CrossContextDelegateable.g.cs" />
+    <Compile Include="CryptoAPITransformExtensions\CryptoAPITransformable.g.cs" />
+    <Compile Include="CryptoStreamExtensions\CryptoStreamable.g.cs" />
+    <Compile Include="CultureInfoConverterExtensions\CultureInfoConverterable.g.cs" />
+    <Compile Include="CursorConverterExtensions\CursorConverterable.g.cs" />
+    <Compile Include="DataColumnChangeEventHandlerExtensions\DataColumnChangeEventHandlerable.g.cs" />
+    <Compile Include="DataGridPreferredColumnWidthTypeConverterExtensions\DataGridPreferredColumnWidthTypeConverterable.g.cs" />
+    <Compile Include="DataGridViewAutoSizeColumnModeEventHandlerExtensions\DataGridViewAutoSizeColumnModeEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewAutoSizeColumnsModeEventHandlerExtensions\DataGridViewAutoSizeColumnsModeEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewAutoSizeModeEventHandlerExtensions\DataGridViewAutoSizeModeEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewBindingCompleteEventHandlerExtensions\DataGridViewBindingCompleteEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellCancelEventHandlerExtensions\DataGridViewCellCancelEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellContextMenuStripNeededEventHandlerExtensions\DataGridViewCellContextMenuStripNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellErrorTextNeededEventHandlerExtensions\DataGridViewCellErrorTextNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellEventHandlerExtensions\DataGridViewCellEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellFormattingEventHandlerExtensions\DataGridViewCellFormattingEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellMouseEventHandlerExtensions\DataGridViewCellMouseEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellPaintingEventHandlerExtensions\DataGridViewCellPaintingEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellParsingEventHandlerExtensions\DataGridViewCellParsingEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellStateChangedEventHandlerExtensions\DataGridViewCellStateChangedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellStyleContentChangedEventHandlerExtensions\DataGridViewCellStyleContentChangedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellStyleConverterExtensions\DataGridViewCellStyleConverterable.g.cs" />
+    <Compile Include="DataGridViewCellToolTipTextNeededEventHandlerExtensions\DataGridViewCellToolTipTextNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellValidatingEventHandlerExtensions\DataGridViewCellValidatingEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewCellValueEventHandlerExtensions\DataGridViewCellValueEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewColumnDividerDoubleClickEventHandlerExtensions\DataGridViewColumnDividerDoubleClickEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewColumnEventHandlerExtensions\DataGridViewColumnEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewColumnStateChangedEventHandlerExtensions\DataGridViewColumnStateChangedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewDataErrorEventHandlerExtensions\DataGridViewDataErrorEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewEditingControlShowingEventHandlerExtensions\DataGridViewEditingControlShowingEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowCancelEventHandlerExtensions\DataGridViewRowCancelEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowContextMenuStripNeededEventHandlerExtensions\DataGridViewRowContextMenuStripNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowDividerDoubleClickEventHandlerExtensions\DataGridViewRowDividerDoubleClickEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowErrorTextNeededEventHandlerExtensions\DataGridViewRowErrorTextNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowEventHandlerExtensions\DataGridViewRowEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowHeightInfoNeededEventHandlerExtensions\DataGridViewRowHeightInfoNeededEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowHeightInfoPushedEventHandlerExtensions\DataGridViewRowHeightInfoPushedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowPostPaintEventHandlerExtensions\DataGridViewRowPostPaintEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowPrePaintEventHandlerExtensions\DataGridViewRowPrePaintEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowsAddedEventHandlerExtensions\DataGridViewRowsAddedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowsRemovedEventHandlerExtensions\DataGridViewRowsRemovedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewRowStateChangedEventHandlerExtensions\DataGridViewRowStateChangedEventHandlerable.g.cs" />
+    <Compile Include="DataGridViewSortCompareEventHandlerExtensions\DataGridViewSortCompareEventHandlerable.g.cs" />
+    <Compile Include="DataReceivedEventHandlerExtensions\DataReceivedEventHandlerable.g.cs" />
+    <Compile Include="DataRowChangeEventHandlerExtensions\DataRowChangeEventHandlerable.g.cs" />
+    <Compile Include="DataTableClearEventHandlerExtensions\DataTableClearEventHandlerable.g.cs" />
+    <Compile Include="DataTableNewRowEventHandlerExtensions\DataTableNewRowEventHandlerable.g.cs" />
+    <Compile Include="DataColumnExcentions\DataColumable.cs" />
+    <Compile Include="DateBoldEventHandlerExtensions\DateBoldEventHandlerable.g.cs" />
+    <Compile Include="DateRangeEventHandlerExtensions\DateRangeEventHandlerable.g.cs" />
+    <Compile Include="DateTimeConverterExtensions\DateTimeConverterable.g.cs" />
+    <Compile Include="DateTimeOffsetConverterExtensions\DateTimeOffsetConverterable.g.cs" />
+    <Compile Include="DbDataReaderExtensions\DbDataReaderable.g.cs" />
+    <Compile Include="DbDataRecordExtensions\DbDataRecordable.g.cs" />
+    <Compile Include="DecimalConverterExtensions\DecimalConverterable.g.cs" />
+    <Compile Include="DecoderExtensions\Decoderable.g.cs" />
+    <Compile Include="DeflateStreamExtensions\DeflateStreamable.g.cs" />
+    <Compile Include="DesignerEventHandlerExtensions\DesignerEventHandlerable.g.cs" />
+    <Compile Include="DesignerTransactionCloseEventHandlerExtensions\DesignerTransactionCloseEventHandlerable.g.cs" />
+    <Compile Include="DoubleConverterExtensions\DoubleConverterable.g.cs" />
+    <Compile Include="DownloadDataCompletedEventHandlerExtensions\DownloadDataCompletedEventHandlerable.g.cs" />
+    <Compile Include="DownloadProgressChangedEventHandlerExtensions\DownloadProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="DownloadStringCompletedEventHandlerExtensions\DownloadStringCompletedEventHandlerable.g.cs" />
+    <Compile Include="DoWorkEventHandlerExtensions\DoWorkEventHandlerable.g.cs" />
+    <Compile Include="DragEventHandlerExtensions\DragEventHandlerable.g.cs" />
+    <Compile Include="DrawItemEventHandlerExtensions\DrawItemEventHandlerable.g.cs" />
+    <Compile Include="DrawListViewColumnHeaderEventHandlerExtensions\DrawListViewColumnHeaderEventHandlerable.g.cs" />
+    <Compile Include="DrawListViewItemEventHandlerExtensions\DrawListViewItemEventHandlerable.g.cs" />
+    <Compile Include="DrawListViewSubItemEventHandlerExtensions\DrawListViewSubItemEventHandlerable.g.cs" />
+    <Compile Include="DrawToolTipEventHandlerExtensions\DrawToolTipEventHandlerable.g.cs" />
+    <Compile Include="DrawTreeNodeEventHandlerExtensions\DrawTreeNodeEventHandlerable.g.cs" />
+    <Compile Include="ElapsedEventHandlerExtensions\ElapsedEventHandlerable.g.cs" />
+    <Compile Include="EncoderExtensions\Encoderable.g.cs" />
+    <Compile Include="EncodingExtensions\Encodingable.g.cs" />
+    <Compile Include="EntryWrittenEventHandlerExtensions\EntryWrittenEventHandlerable.g.cs" />
+    <Compile Include="EnumConverterExtensions\EnumConverterable.g.cs" />
+    <Compile Include="ErrorEventHandlerExtensions\ErrorEventHandlerable.g.cs" />
+    <Compile Include="EventHandlerExtensions\EventHandlerable.g.cs" />
+    <Compile Include="ExpandableObjectConverterExtensions\ExpandableObjectConverterable.g.cs" />
+    <Compile Include="ExtendedProtectionPolicyTypeConverterExtensions\ExtendedProtectionPolicyTypeConverterable.g.cs" />
+    <Compile Include="FileStreamExtensions\FileStreamable.g.cs" />
+    <Compile Include="FileSystemEventHandlerExtensions\FileSystemEventHandlerable.g.cs" />
+    <Compile Include="FileWebRequestExtensions\FileWebRequestable.g.cs" />
+    <Compile Include="FillErrorEventHandlerExtensions\FillErrorEventHandlerable.g.cs" />
+    <Compile Include="FontConverterExtensions\FontConverterable.g.cs" />
+    <Compile Include="FormatterConverterExtensions\FormatterConverterable.g.cs" />
+    <Compile Include="FormClosedEventHandlerExtensions\FormClosedEventHandlerable.g.cs" />
+    <Compile Include="FormClosingEventHandlerExtensions\FormClosingEventHandlerable.g.cs" />
+    <Compile Include="FromBase64TransformExtensions\FromBase64Transformable.g.cs" />
+    <Compile Include="FtpWebRequestExtensions\FtpWebRequestable.g.cs" />
+    <Compile Include="FuncExtensions\Funcable.g.cs" />
+    <Compile Include="GiveFeedbackEventHandlerExtensions\GiveFeedbackEventHandlerable.g.cs" />
+    <Compile Include="GuidConverterExtensions\GuidConverterable.g.cs" />
+    <Compile Include="GZipStreamExtensions\GZipStreamable.g.cs" />
+    <Compile Include="HandledEventHandlerExtensions\HandledEventHandlerable.g.cs" />
+    <Compile Include="HashAlgorithmExtensions\HashAlgorithmable.g.cs" />
+    <Compile Include="HeaderHandlerExtensions\HeaderHandlerable.g.cs" />
+    <Compile Include="HelpEventHandlerExtensions\HelpEventHandlerable.g.cs" />
+    <Compile Include="HtmlElementErrorEventHandlerExtensions\HtmlElementErrorEventHandlerable.g.cs" />
+    <Compile Include="HtmlElementEventHandlerExtensions\HtmlElementEventHandlerable.g.cs" />
+    <Compile Include="HttpContinueDelegateExtensions\HttpContinueDelegateable.g.cs" />
+    <Compile Include="HttpListenerExtensions\HttpListenerable.g.cs" />
+    <Compile Include="HttpListenerRequestExtensions\HttpListenerRequestable.g.cs" />
+    <Compile Include="HttpWebRequestExtensions\HttpWebRequestable.g.cs" />
+    <Compile Include="IComNativeDescriptorHandlerExtensions\IComNativeDescriptorHandlerable.g.cs" />
+    <Compile Include="IconConverterExtensions\IconConverterable.g.cs" />
+    <Compile Include="IConvertibleExtensions\IConvertibleable.g.cs" />
+    <Compile Include="ICryptoTransformExtensions\ICryptoTransformable.g.cs" />
+    <Compile Include="IDataRecordExtensions\IDataRecordable.g.cs" />
+    <Compile Include="IDesignerSerializationManagerExtensions\IDesignerSerializationManagerable.g.cs" />
+    <Compile Include="IFormatterConverterExtensions\IFormatterConverterable.g.cs" />
+    <Compile Include="ImageConverterExtensions\ImageConverterable.g.cs" />
+    <Compile Include="ImageFormatConverterExtensions\ImageFormatConverterable.g.cs" />
+    <Compile Include="ImageIndexConverterExtensions\ImageIndexConverterable.g.cs" />
+    <Compile Include="ImageKeyConverterExtensions\ImageKeyConverterable.g.cs" />
+    <Compile Include="InputLanguageChangedEventHandlerExtensions\InputLanguageChangedEventHandlerable.g.cs" />
+    <Compile Include="InputLanguageChangingEventHandlerExtensions\InputLanguageChangingEventHandlerable.g.cs" />
+    <Compile Include="InstanceCreationEditorExtensions\InstanceCreationEditorable.g.cs" />
+    <Compile Include="Int16ConverterExtensions\Int16Converterable.g.cs" />
+    <Compile Include="Int32ConverterExtensions\Int32Converterable.g.cs" />
+    <Compile Include="Int64ConverterExtensions\Int64Converterable.g.cs" />
+    <Compile Include="InvalidateEventHandlerExtensions\InvalidateEventHandlerable.g.cs" />
+    <Compile Include="IOCompletionCallbackExtensions\IOCompletionCallbackable.g.cs" />
+    <Compile Include="IPGlobalPropertiesExtensions\IPGlobalPropertiesable.g.cs" />
+    <Compile Include="IsolatedStorageFileStreamExtensions\IsolatedStorageFileStreamable.g.cs" />
+    <Compile Include="ItemChangedEventHandlerExtensions\ItemChangedEventHandlerable.g.cs" />
+    <Compile Include="ItemCheckedEventHandlerExtensions\ItemCheckedEventHandlerable.g.cs" />
+    <Compile Include="ItemCheckEventHandlerExtensions\ItemCheckEventHandlerable.g.cs" />
+    <Compile Include="ItemDragEventHandlerExtensions\ItemDragEventHandlerable.g.cs" />
+    <Compile Include="KeyEventHandlerExtensions\KeyEventHandlerable.g.cs" />
+    <Compile Include="KeyPressEventHandlerExtensions\KeyPressEventHandlerable.g.cs" />
+    <Compile Include="KeysConverterExtensions\KeysConverterable.g.cs" />
+    <Compile Include="LabelEditEventHandlerExtensions\LabelEditEventHandlerable.g.cs" />
+    <Compile Include="LayoutEventHandlerExtensions\LayoutEventHandlerable.g.cs" />
+    <Compile Include="LinkClickedEventHandlerExtensions\LinkClickedEventHandlerable.g.cs" />
+    <Compile Include="LinkConverterExtensions\LinkConverterable.g.cs" />
+    <Compile Include="LinkLabelLinkClickedEventHandlerExtensions\LinkLabelLinkClickedEventHandlerable.g.cs" />
+    <Compile Include="ListBindingConverterExtensions\ListBindingConverterable.g.cs" />
+    <Compile Include="ListChangedEventHandlerExtensions\ListChangedEventHandlerable.g.cs" />
+    <Compile Include="ListControlConvertEventHandlerExtensions\ListControlConvertEventHandlerable.g.cs" />
+    <Compile Include="ListExtensions\Listable.g.cs" />
+    <Compile Include="ListViewItemConverterExtensions\ListViewItemConverterable.g.cs" />
+    <Compile Include="ListViewItemMouseHoverEventHandlerExtensions\ListViewItemMouseHoverEventHandlerable.g.cs" />
+    <Compile Include="ListViewItemSelectionChangedEventHandlerExtensions\ListViewItemSelectionChangedEventHandlerable.g.cs" />
+    <Compile Include="ListViewVirtualItemsSelectionRangeChangedEventHandlerExtensions\ListViewVirtualItemsSelectionRangeChangedEventHandlerable.g.cs" />
+    <Compile Include="LocalCertificateSelectionCallbackExtensions\LocalCertificateSelectionCallbackable.g.cs" />
+    <Compile Include="MarginsConverterExtensions\MarginsConverterable.g.cs" />
+    <Compile Include="MaskInputRejectedEventHandlerExtensions\MaskInputRejectedEventHandlerable.g.cs" />
+    <Compile Include="MatchEvaluatorExtensions\MatchEvaluatorable.g.cs" />
+    <Compile Include="MeasureItemEventHandlerExtensions\MeasureItemEventHandlerable.g.cs" />
+    <Compile Include="MemberFilterExtensions\MemberFilterable.g.cs" />
+    <Compile Include="MemoryMappedViewStreamExtensions\MemoryMappedViewStreamable.g.cs" />
+    <Compile Include="MemoryStreamExtensions\MemoryStreamable.g.cs" />
+    <Compile Include="MergeFailedEventHandlerExtensions\MergeFailedEventHandlerable.g.cs" />
+    <Compile Include="MessageSurrogateFilterExtensions\MessageSurrogateFilterable.g.cs" />
+    <Compile Include="MethodInvokerExtensions\MethodInvokerable.g.cs" />
+    <Compile Include="ModuleResolveEventHandlerExtensions\ModuleResolveEventHandlerable.g.cs" />
+    <Compile Include="MouseEventHandlerExtensions\MouseEventHandlerable.g.cs" />
+    <Compile Include="MultilineStringConverterExtensions\MultilineStringConverterable.g.cs" />
+    <Compile Include="NamedPipeClientStreamExtensions\NamedPipeClientStreamable.g.cs" />
+    <Compile Include="NamedPipeServerStreamExtensions\NamedPipeServerStreamable.g.cs" />
+    <Compile Include="NavigateEventHandlerExtensions\NavigateEventHandlerable.g.cs" />
+    <Compile Include="NegotiateStreamExtensions\NegotiateStreamable.g.cs" />
+    <Compile Include="NetworkAddressChangedEventHandlerExtensions\NetworkAddressChangedEventHandlerable.g.cs" />
+    <Compile Include="NetworkAvailabilityChangedEventHandlerExtensions\NetworkAvailabilityChangedEventHandlerable.g.cs" />
+    <Compile Include="NetworkStreamExtensions\NetworkStreamable.g.cs" />
+    <Compile Include="NodeLabelEditEventHandlerExtensions\NodeLabelEditEventHandlerable.g.cs" />
+    <Compile Include="NotifyCollectionChangedEventHandlerExtensions\NotifyCollectionChangedEventHandlerable.g.cs" />
+    <Compile Include="NullableConverterExtensions\NullableConverterable.g.cs" />
+    <Compile Include="ObjectCreationDelegateExtensions\ObjectCreationDelegateable.g.cs" />
+    <Compile Include="OdbcInfoMessageEventHandlerExtensions\OdbcInfoMessageEventHandlerable.g.cs" />
+    <Compile Include="OdbcRowUpdatedEventHandlerExtensions\OdbcRowUpdatedEventHandlerable.g.cs" />
+    <Compile Include="OdbcRowUpdatingEventHandlerExtensions\OdbcRowUpdatingEventHandlerable.g.cs" />
+    <Compile Include="OleDbInfoMessageEventHandlerExtensions\OleDbInfoMessageEventHandlerable.g.cs" />
+    <Compile Include="OleDbRowUpdatedEventHandlerExtensions\OleDbRowUpdatedEventHandlerable.g.cs" />
+    <Compile Include="OleDbRowUpdatingEventHandlerExtensions\OleDbRowUpdatingEventHandlerable.g.cs" />
+    <Compile Include="OnChangeEventHandlerExtensions\OnChangeEventHandlerable.g.cs" />
+    <Compile Include="OpacityConverterExtensions\OpacityConverterable.g.cs" />
+    <Compile Include="OpenReadCompletedEventHandlerExtensions\OpenReadCompletedEventHandlerable.g.cs" />
+    <Compile Include="OpenWriteCompletedEventHandlerExtensions\OpenWriteCompletedEventHandlerable.g.cs" />
+    <Compile Include="PaddingConverterExtensions\PaddingConverterable.g.cs" />
+    <Compile Include="PaintEventHandlerExtensions\PaintEventHandlerable.g.cs" />
+    <Compile Include="ParameterizedThreadStartExtensions\ParameterizedThreadStartable.g.cs" />
+    <Compile Include="PingCompletedEventHandlerExtensions\PingCompletedEventHandlerable.g.cs" />
+    <Compile Include="PipeStreamExtensions\PipeStreamable.g.cs" />
+    <Compile Include="PipeStreamImpersonationWorkerExtensions\PipeStreamImpersonationWorkerable.g.cs" />
+    <Compile Include="PlayRecordCallbackExtensions\PlayRecordCallbackable.g.cs" />
+    <Compile Include="PointConverterExtensions\PointConverterable.g.cs" />
+    <Compile Include="PopupEventHandlerExtensions\PopupEventHandlerable.g.cs" />
+    <Compile Include="PowerModeChangedEventHandlerExtensions\PowerModeChangedEventHandlerable.g.cs" />
+    <Compile Include="PredicateExtensions\Predicateable.g.cs" />
+    <Compile Include="PreviewKeyDownEventHandlerExtensions\PreviewKeyDownEventHandlerable.g.cs" />
+    <Compile Include="PrintEventHandlerExtensions\PrintEventHandlerable.g.cs" />
+    <Compile Include="PrintPageEventHandlerExtensions\PrintPageEventHandlerable.g.cs" />
+    <Compile Include="ProgressChangedEventHandlerExtensions\ProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="PropertyChangedEventHandlerExtensions\PropertyChangedEventHandlerable.g.cs" />
+    <Compile Include="PropertyChangingEventHandlerExtensions\PropertyChangingEventHandlerable.g.cs" />
+    <Compile Include="PropertyTabChangedEventHandlerExtensions\PropertyTabChangedEventHandlerable.g.cs" />
+    <Compile Include="PropertyValueChangedEventHandlerExtensions\PropertyValueChangedEventHandlerable.g.cs" />
+    <Compile Include="PropertyValueUIHandlerExtensions\PropertyValueUIHandlerable.g.cs" />
+    <Compile Include="PropertyValueUIItemInvokeHandlerExtensions\PropertyValueUIItemInvokeHandlerable.g.cs" />
+    <Compile Include="QueryAccessibilityHelpEventHandlerExtensions\QueryAccessibilityHelpEventHandlerable.g.cs" />
+    <Compile Include="QueryContinueDragEventHandlerExtensions\QueryContinueDragEventHandlerable.g.cs" />
+    <Compile Include="QueryPageSettingsEventHandlerExtensions\QueryPageSettingsEventHandlerable.g.cs" />
+    <Compile Include="QuestionEventHandlerExtensions\QuestionEventHandlerable.g.cs" />
+    <Compile Include="RectangleConverterExtensions\RectangleConverterable.g.cs" />
+    <Compile Include="ReferenceConverterExtensions\ReferenceConverterable.g.cs" />
+    <Compile Include="Reflection\IlInstruction.cs" />
+    <Compile Include="Reflection\Reflectable.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\CustomAttributeProviderExtensions.cs" />
+    <Compile Include="Reflection\Typeable.cs" />
+    <Compile Include="RefreshEventHandlerExtensions\RefreshEventHandlerable.g.cs" />
+    <Compile Include="RemoteCertificateValidationCallbackExtensions\RemoteCertificateValidationCallbackable.g.cs" />
+    <Compile Include="RenamedEventHandlerExtensions\RenamedEventHandlerable.g.cs" />
+    <Compile Include="ResolveEventHandlerExtensions\ResolveEventHandlerable.g.cs" />
+    <Compile Include="ResolveNameEventHandlerExtensions\ResolveNameEventHandlerable.g.cs" />
+    <Compile Include="RetrieveVirtualItemEventHandlerExtensions\RetrieveVirtualItemEventHandlerable.g.cs" />
+    <Compile Include="RijndaelManagedTransformExtensions\RijndaelManagedTransformable.g.cs" />
+    <Compile Include="RunWorkerCompletedEventHandlerExtensions\RunWorkerCompletedEventHandlerable.g.cs" />
+    <Compile Include="SafeBufferExtensions\SafeBufferable.g.cs" />
+    <Compile Include="SByteConverterExtensions\SByteConverterable.g.cs" />
+    <Compile Include="ScrollEventHandlerExtensions\ScrollEventHandlerable.g.cs" />
+    <Compile Include="SearchForVirtualItemEventHandlerExtensions\SearchForVirtualItemEventHandlerable.g.cs" />
+    <Compile Include="SelectedGridItemChangedEventHandlerExtensions\SelectedGridItemChangedEventHandlerable.g.cs" />
+    <Compile Include="SelectionRangeConverterExtensions\SelectionRangeConverterable.g.cs" />
+    <Compile Include="SendCompletedEventHandlerExtensions\SendCompletedEventHandlerable.g.cs" />
+    <Compile Include="SendOrPostCallbackExtensions\SendOrPostCallbackable.g.cs" />
+    <Compile Include="SequenceExtensions\Sequenceable.cs" />
+    <Compile Include="SerialDataReceivedEventHandlerExtensions\SerialDataReceivedEventHandlerable.g.cs" />
+    <Compile Include="SerialErrorReceivedEventHandlerExtensions\SerialErrorReceivedEventHandlerable.g.cs" />
+    <Compile Include="SerializationInfoExtensions\SerializationInfoable.g.cs" />
+    <Compile Include="SerialPinChangedEventHandlerExtensions\SerialPinChangedEventHandlerable.g.cs" />
+    <Compile Include="SerialPortExtensions\SerialPortable.g.cs" />
+    <Compile Include="ServiceCreatorCallbackExtensions\ServiceCreatorCallbackable.g.cs" />
+    <Compile Include="SessionEndedEventHandlerExtensions\SessionEndedEventHandlerable.g.cs" />
+    <Compile Include="SessionEndingEventHandlerExtensions\SessionEndingEventHandlerable.g.cs" />
+    <Compile Include="SessionSwitchEventHandlerExtensions\SessionSwitchEventHandlerable.g.cs" />
+    <Compile Include="SettingChangingEventHandlerExtensions\SettingChangingEventHandlerable.g.cs" />
+    <Compile Include="SettingsLoadedEventHandlerExtensions\SettingsLoadedEventHandlerable.g.cs" />
+    <Compile Include="SettingsSavingEventHandlerExtensions\SettingsSavingEventHandlerable.g.cs" />
+    <Compile Include="SingleConverterExtensions\SingleConverterable.g.cs" />
+    <Compile Include="SizeConverterExtensions\SizeConverterable.g.cs" />
+    <Compile Include="SizeFConverterExtensions\SizeFConverterable.g.cs" />
+    <Compile Include="SocketAsyncEventArgsExtensions\SocketAsyncEventArgsable.g.cs" />
+    <Compile Include="SocketExtensions\Socketable.g.cs" />
+    <Compile Include="SplitterCancelEventHandlerExtensions\SplitterCancelEventHandlerable.g.cs" />
+    <Compile Include="SplitterEventHandlerExtensions\SplitterEventHandlerable.g.cs" />
+    <Compile Include="SqlBytesExtensions\SqlBytesable.g.cs" />
+    <Compile Include="SqlCharsExtensions\SqlCharsable.g.cs" />
+    <Compile Include="SqlCommandExtensions\SqlCommandable.g.cs" />
+    <Compile Include="SqlDataRecordExtensions\SqlDataRecordable.g.cs" />
+    <Compile Include="SqlFileStreamExtensions\SqlFileStreamable.g.cs" />
+    <Compile Include="SqlInfoMessageEventHandlerExtensions\SqlInfoMessageEventHandlerable.g.cs" />
+    <Compile Include="SqlRowsCopiedEventHandlerExtensions\SqlRowsCopiedEventHandlerable.g.cs" />
+    <Compile Include="SqlRowUpdatedEventHandlerExtensions\SqlRowUpdatedEventHandlerable.g.cs" />
+    <Compile Include="SqlRowUpdatingEventHandlerExtensions\SqlRowUpdatingEventHandlerable.g.cs" />
+    <Compile Include="SslStreamExtensions\SslStreamable.g.cs" />
+    <Compile Include="StateChangeEventHandlerExtensions\StateChangeEventHandlerable.g.cs" />
+    <Compile Include="StatementCompletedEventHandlerExtensions\StatementCompletedEventHandlerable.g.cs" />
+    <Compile Include="StatusBarDrawItemEventHandlerExtensions\StatusBarDrawItemEventHandlerable.g.cs" />
+    <Compile Include="StatusBarPanelClickEventHandlerExtensions\StatusBarPanelClickEventHandlerable.g.cs" />
+    <Compile Include="StreamExtensions\Streamable.cs" />
+    <Compile Include="StreamExtensions\Streamable.g.cs" />
+    <Compile Include="StringBuilderExtensions\StringBuilderable.g.cs" />
+    <Compile Include="StringConverterExtensions\StringConverterable.g.cs" />
+    <Compile Include="StringExtensions\Stringable.g.cs" />
+    <Compile Include="TabControlCancelEventHandlerExtensions\TabControlCancelEventHandlerable.g.cs" />
+    <Compile Include="TabControlEventHandlerExtensions\TabControlEventHandlerable.g.cs" />
+    <Compile Include="TableLayoutCellPaintEventHandlerExtensions\TableLayoutCellPaintEventHandlerable.g.cs" />
+    <Compile Include="TableLayoutSettingsTypeConverterExtensions\TableLayoutSettingsTypeConverterable.g.cs" />
+    <Compile Include="TcpClientExtensions\TcpClientable.g.cs" />
+    <Compile Include="TcpListenerExtensions\TcpListenerable.g.cs" />
+    <Compile Include="TemporalExtensions\Temporalable.cs" />
+    <Compile Include="TextReaderExtensions\TextReaderable.g.cs" />
+    <Compile Include="ThreadExceptionEventHandlerExtensions\ThreadExceptionEventHandlerable.g.cs" />
+    <Compile Include="ThreadStartExtensions\ThreadStartable.g.cs" />
+    <Compile Include="TimerCallbackExtensions\TimerCallbackable.g.cs" />
+    <Compile Include="TimerElapsedEventHandlerExtensions\TimerElapsedEventHandlerable.g.cs" />
+    <Compile Include="TimeSpanConverterExtensions\TimeSpanConverterable.g.cs" />
+    <Compile Include="ToBase64TransformExtensions\ToBase64Transformable.g.cs" />
+    <Compile Include="ToolBarButtonClickEventHandlerExtensions\ToolBarButtonClickEventHandlerable.g.cs" />
+    <Compile Include="ToolboxComponentsCreatedEventHandlerExtensions\ToolboxComponentsCreatedEventHandlerable.g.cs" />
+    <Compile Include="ToolboxComponentsCreatingEventHandlerExtensions\ToolboxComponentsCreatingEventHandlerable.g.cs" />
+    <Compile Include="ToolboxItemCreatorCallbackExtensions\ToolboxItemCreatorCallbackable.g.cs" />
+    <Compile Include="ToolStripArrowRenderEventHandlerExtensions\ToolStripArrowRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripContentPanelRenderEventHandlerExtensions\ToolStripContentPanelRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripDropDownClosedEventHandlerExtensions\ToolStripDropDownClosedEventHandlerable.g.cs" />
+    <Compile Include="ToolStripDropDownClosingEventHandlerExtensions\ToolStripDropDownClosingEventHandlerable.g.cs" />
+    <Compile Include="ToolStripGripRenderEventHandlerExtensions\ToolStripGripRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripItemClickedEventHandlerExtensions\ToolStripItemClickedEventHandlerable.g.cs" />
+    <Compile Include="ToolStripItemEventHandlerExtensions\ToolStripItemEventHandlerable.g.cs" />
+    <Compile Include="ToolStripItemImageRenderEventHandlerExtensions\ToolStripItemImageRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripItemRenderEventHandlerExtensions\ToolStripItemRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripItemTextRenderEventHandlerExtensions\ToolStripItemTextRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripPanelRenderEventHandlerExtensions\ToolStripPanelRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripRenderEventHandlerExtensions\ToolStripRenderEventHandlerable.g.cs" />
+    <Compile Include="ToolStripSeparatorRenderEventHandlerExtensions\ToolStripSeparatorRenderEventHandlerable.g.cs" />
+    <Compile Include="TreeNodeConverterExtensions\TreeNodeConverterable.g.cs" />
+    <Compile Include="TreeNodeMouseClickEventHandlerExtensions\TreeNodeMouseClickEventHandlerable.g.cs" />
+    <Compile Include="TreeNodeMouseHoverEventHandlerExtensions\TreeNodeMouseHoverEventHandlerable.g.cs" />
+    <Compile Include="TreeViewCancelEventHandlerExtensions\TreeViewCancelEventHandlerable.g.cs" />
+    <Compile Include="TreeViewEventHandlerExtensions\TreeViewEventHandlerable.g.cs" />
+    <Compile Include="TreeViewImageIndexConverterExtensions\TreeViewImageIndexConverterable.g.cs" />
+    <Compile Include="TreeViewImageKeyConverterExtensions\TreeViewImageKeyConverterable.g.cs" />
+    <Compile Include="TypeConverterExtensions\TypeConverterable.g.cs" />
+    <Compile Include="TypeDescriptionProviderExtensions\TypeDescriptionProviderable.g.cs" />
+    <Compile Include="TypeFilterExtensions\TypeFilterable.g.cs" />
+    <Compile Include="TypeListConverterExtensions\TypeListConverterable.g.cs" />
+    <Compile Include="TypeValidationEventHandlerExtensions\TypeValidationEventHandlerable.g.cs" />
+    <Compile Include="UdpClientExtensions\UdpClientable.g.cs" />
+    <Compile Include="UICuesEventHandlerExtensions\UICuesEventHandlerable.g.cs" />
+    <Compile Include="UInt16ConverterExtensions\UInt16Converterable.g.cs" />
+    <Compile Include="UInt32ConverterExtensions\UInt32Converterable.g.cs" />
+    <Compile Include="UInt64ConverterExtensions\UInt64Converterable.g.cs" />
+    <Compile Include="UnhandledExceptionEventHandlerExtensions\UnhandledExceptionEventHandlerable.g.cs" />
+    <Compile Include="UnmanagedMemoryAccessorExtensions\UnmanagedMemoryAccessorable.g.cs" />
+    <Compile Include="UnmanagedMemoryStreamExtensions\UnmanagedMemoryStreamable.g.cs" />
+    <Compile Include="UnreferencedObjectEventHandlerExtensions\UnreferencedObjectEventHandlerable.g.cs" />
+    <Compile Include="UpDownEventHandlerExtensions\UpDownEventHandlerable.g.cs" />
+    <Compile Include="UploadDataCompletedEventHandlerExtensions\UploadDataCompletedEventHandlerable.g.cs" />
+    <Compile Include="UploadFileCompletedEventHandlerExtensions\UploadFileCompletedEventHandlerable.g.cs" />
+    <Compile Include="UploadProgressChangedEventHandlerExtensions\UploadProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="UploadStringCompletedEventHandlerExtensions\UploadStringCompletedEventHandlerable.g.cs" />
+    <Compile Include="UploadValuesCompletedEventHandlerExtensions\UploadValuesCompletedEventHandlerable.g.cs" />
+    <Compile Include="UriTypeConverterExtensions\UriTypeConverterable.g.cs" />
+    <Compile Include="UserPreferenceChangedEventHandlerExtensions\UserPreferenceChangedEventHandlerable.g.cs" />
+    <Compile Include="UserPreferenceChangingEventHandlerExtensions\UserPreferenceChangingEventHandlerable.g.cs" />
+    <Compile Include="ValidationEventHandlerExtensions\ValidationEventHandlerable.g.cs" />
+    <Compile Include="WaitCallbackExtensions\WaitCallbackable.g.cs" />
+    <Compile Include="WaitOrTimerCallbackExtensions\WaitOrTimerCallbackable.g.cs" />
+    <Compile Include="WebBrowserDocumentCompletedEventHandlerExtensions\WebBrowserDocumentCompletedEventHandlerable.g.cs" />
+    <Compile Include="WebBrowserNavigatedEventHandlerExtensions\WebBrowserNavigatedEventHandlerable.g.cs" />
+    <Compile Include="WebBrowserNavigatingEventHandlerExtensions\WebBrowserNavigatingEventHandlerable.g.cs" />
+    <Compile Include="WebBrowserProgressChangedEventHandlerExtensions\WebBrowserProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="WebRequestExtensions\WebRequestable.g.cs" />
+    <Compile Include="XmlAtomicValueExtensions\XmlAtomicValueable.g.cs" />
+    <Compile Include="XmlAttributeEventHandlerExtensions\XmlAttributeEventHandlerable.g.cs" />
+    <Compile Include="XmlElementEventHandlerExtensions\XmlElementEventHandlerable.g.cs" />
+    <Compile Include="XmlNameTableExtensions\XmlNameTableable.g.cs" />
+    <Compile Include="XmlNodeChangedEventHandlerExtensions\XmlNodeChangedEventHandlerable.g.cs" />
+    <Compile Include="XmlNodeEventHandlerExtensions\XmlNodeEventHandlerable.g.cs" />
+    <Compile Include="XmlNodeReaderExtensions\XmlNodeReaderable.g.cs" />
+    <Compile Include="XmlPreloadedResolverExtensions\XmlPreloadedResolverable.g.cs" />
+    <Compile Include="XmlReaderExtensions\XmlReaderable.g.cs" />
+    <Compile Include="XmlResolverExtensions\XmlResolverable.g.cs" />
+    <Compile Include="XmlSchemaDatatypeExtensions\XmlSchemaDatatypeable.g.cs" />
+    <Compile Include="XmlSchemasExtensions\XmlSchemasable.g.cs" />
+    <Compile Include="XmlSecureResolverExtensions\XmlSecureResolverable.g.cs" />
+    <Compile Include="XmlSerializationCollectionFixupCallbackExtensions\XmlSerializationCollectionFixupCallbackable.g.cs" />
+    <Compile Include="XmlSerializationFixupCallbackExtensions\XmlSerializationFixupCallbackable.g.cs" />
+    <Compile Include="XmlSerializationReadCallbackExtensions\XmlSerializationReadCallbackable.g.cs" />
+    <Compile Include="XmlSerializationWriteCallbackExtensions\XmlSerializationWriteCallbackable.g.cs" />
+    <Compile Include="XmlTextReaderExtensions\XmlTextReaderable.g.cs" />
+    <Compile Include="XmlUrlResolverExtensions\XmlUrlResolverable.g.cs" />
+    <Compile Include="XmlValidatingReaderExtensions\XmlValidatingReaderable.g.cs" />
+    <Compile Include="XmlValueGetterExtensions\XmlValueGetterable.g.cs" />
+    <Compile Include="XmlWriterExtensions\XmlWriterable.g.cs" />
+    <Compile Include="XPathItemExtensions\XPathItemable.g.cs" />
+    <Compile Include="XPathNavigatorExtensions\XPathNavigatorable.g.cs" />
+    <Compile Include="XsltMessageEncounteredEventHandlerExtensions\XsltMessageEncounteredEventHandlerable.g.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDictionary Include="CustomDictionary.xml">
+      <SubType>Designer</SubType>
+    </CodeAnalysisDictionary>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
