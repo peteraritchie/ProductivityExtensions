@@ -82,4 +82,4 @@ All the extension methods in Productivity Extensions are contained in namespaces
 
 Each extension class is simply named `<ClassName>able`.  This was arbitrary and basically mirrors `System.Enumerable`.  The name of the class is never used and this provides a way to avoid a conflict with the namespace while providing a cogent namespace.
 
-Some methods may have originate from http://dotnetext.codeplex.com/license
+Some methods may have originated from http://dotnetext.codeplex.com/license
