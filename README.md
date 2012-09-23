@@ -1,8 +1,6 @@
 ProductivityExtensions
 ======================
 
-Coming Soon...
-
 Productivity Extensions is a series of extension methods for .NET 4.0 or newer (Visual Studio 2010 or newer).
 
 Currently, there over 650 methods extending over 400 classes in the .NET Framework.
