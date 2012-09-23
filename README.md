@@ -5,7 +5,7 @@ Productivity Extensions is a series of extension methods for .NET 4.0 or newer (
 
 Currently, there over 650 methods extending over 400 classes in the .NET Framework.
 
-The .NET Framework has been around since 2002.  There are many common classes and methods that have been around a long time.  The Framework and the languages used to develop on it have evolved quite a bit since many of these classes and their method came into existence.  Existing classes and methods in the base class library (BCL) could be kept up to date with these technologies, but it's time consuming and potentially destabilizing to add or change methods after a library has been released and Microsoft generally avoids this unless there's a *really good* reason.
+The .NET Framework has been around since 2002.  There are many common classes and methods that have been around a long time.  The Framework and the languages used to develop on it have evolved quite a bit since many of these classes and their methods came into existence.  Existing classes and methods in the base class library (BCL) could be kept up to date with these technologies, but it's time consuming and potentially destabilizing to add or change methods after a library has been released and Microsoft generally avoids this unless there's a *really good* reason.
 
 Generics, for example, came along in the .Net 2.0 timeframe; so, many existing Framework subsystems never had the benefit of generics to make certain methods more strongly-typed.  Many methods in the Framework take a `Type` parameter and return an `Object` of that `Type` but must be first cast in order for the object to be used as its requested type.  `Attribute.GetCustomAttribute(Assembly, Type)` gets an `Attribute`-based class that has been added at the assembly level.  For example, to get the copyright information of an assembly, you might do something like:
 
@@ -15,14 +15,14 @@ var aca = (AssemblyCopyrightAttribute)Attribute.GetCustomAttribute(Assembly.GetE
 Trace.WriteLine(aca.Copyright);
 ```
 
-Involving, an `Assembly` instance, the `Attribute` class, the `typeof` operator, and a cast.  The Productivity Extensions contains a generic extension method to `Assembly` to get this information without the `Attribute` class, the `typeof` operator or the cast.  For example:
+Involving an `Assembly` instance, the `Attribute` class, the `typeof` operator, and a cast.  The Productivity Extensions contains a generic extension method to `Assembly` to get this information without the `Attribute` class, the `typeof` operator or the cast.  For example:
 
 ```C#
 var aca = Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyCopyrightAttribute>();
 Trace.WriteLine(aca.Copyright);
 ```
 
-Other Framework methods came into existence before anonymous methods so their use could not have used anonymous method and captured variables and tended to require passing along state information.  Asynchronous patterns like the Asynchronous Programming Model (APM) introduced methods starting with `Begin` that asynchronously performed a task and invoked a callback when done that would execute a matching `End` method.  The callback delegate passed to these methods, prior to anonymous methods, had to be instance or class methods and thus had to store the state required to perform the callback explicitly.  This could be done with instance or class members but often this required passing an opaque state object instance into the `Begin` method that was passed along to the callback via the `IAsyncResult.AsyncState` property.  The callback would cast the object to whatever type it passed in and thus have its state.  For example:
+Anonymous methods was another addition to several .NET programming languages.  Other Framework methods came into existence before anonymous methods so their use could not have used anonymous method  (and thus use captured variables) and tended to require passing along state information.  Asynchronous patterns like the Asynchronous Programming Model (APM) introduced methods starting with `Begin` that asynchronously performed a task and invoked a callback when done that would execute a matching `End` method.  The callback delegate passed to these methods, prior to anonymous methods, had to be instance or class methods and thus had to store the state required to perform the callback explicitly.  This could be done with instance or class members, but often this required passing an opaque state object instance into the `Begin` method that was passed along to the callback via the `IAsyncResult.AsyncState` property.  Almost all `Begin`-pattern methods have a mandatory state parameter.  The callback would cast the object to whatever type it passed in and thus have its state.  For example:
 
 ```C#
   //...
@@ -37,6 +37,7 @@ private static void ReadCompleted(IAsyncResult ar)
 	//...
 }
 ```
+In this example we're re-using the stream for our state and passing as the state object in the last argument to `BeginRead`.
 
 With anonymous methods passing this state in often became unnecessary as the compiler would generate a state machine to manage any variables used within the anonymous method that were declared outside of the anonymous method.  For example:
 
@@ -59,7 +60,7 @@ fileStream.BeginRead(buffer, 0, buffer.Length,
   		            ar => fileStream.EndRead(ar));
 ```
 
-`FileStream` points out another area of potential productivity increase, the needless passing of `0, buffer.Length`.  If I always want to just fill a buffer with data, why is there no method that simply does the `0, buffer.Length` for me?  Well, now there is--in Productivity Extensions.  You can no write:
+`FileStream` points out another area of potential productivity increases, the needless passing of `0, buffer.Length`.  Many methods in the BCL that read data into an array require that you pass the initial index and the quantity of bytes (or data) that you want to read--despite there being a `Length` property or `Array` classes.  If I always want to just fill a buffer with data, why is there no method that simply does the `0, buffer.Length` for me?  Well, now there is--in Productivity Extensions.  You can no write:
 
 ```C#
 fileStream.BeginRead(buffer, ar => fileStream.EndRead(ar));
