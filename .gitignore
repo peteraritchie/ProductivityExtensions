@@ -8,3 +8,4 @@ TestResults
 
 *.user
 *.suo
+/nuget/lib
