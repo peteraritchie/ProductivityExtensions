@@ -169,6 +169,7 @@
     <Compile Include="EntryWrittenEventHandlerExtensions\EntryWrittenEventHandlerable.g.cs" />
     <Compile Include="EnumConverterExtensions\EnumConverterable.g.cs" />
     <Compile Include="ErrorEventHandlerExtensions\ErrorEventHandlerable.g.cs" />
+    <Compile Include="EventHandlerExtensions\EventHandlerable.cs" />
     <Compile Include="EventHandlerExtensions\EventHandlerable.g.cs" />
     <Compile Include="ExpandableObjectConverterExtensions\ExpandableObjectConverterable.g.cs" />
     <Compile Include="ExtendedProtectionPolicyTypeConverterExtensions\ExtendedProtectionPolicyTypeConverterable.g.cs" />
@@ -196,13 +197,18 @@
     <Compile Include="HttpListenerExtensions\HttpListenerable.g.cs" />
     <Compile Include="HttpListenerRequestExtensions\HttpListenerRequestable.g.cs" />
     <Compile Include="HttpWebRequestExtensions\HttpWebRequestable.g.cs" />
+    <Compile Include="ICollectionableExtensions\ICollectionable.cs" />
     <Compile Include="IComNativeDescriptorHandlerExtensions\IComNativeDescriptorHandlerable.g.cs" />
     <Compile Include="IconConverterExtensions\IconConverterable.g.cs" />
     <Compile Include="IConvertibleExtensions\IConvertibleable.g.cs" />
     <Compile Include="ICryptoTransformExtensions\ICryptoTransformable.g.cs" />
     <Compile Include="IDataRecordExtensions\IDataRecordable.g.cs" />
+    <Compile Include="IDbConnectionExtensions\IDbConnectionable.cs" />
     <Compile Include="IDesignerSerializationManagerExtensions\IDesignerSerializationManagerable.g.cs" />
+    <Compile Include="IDictionaryExtensions\IDictionaryable.cs" />
+    <Compile Include="IEnumerableExtensions\IEnumerableable.cs" />
     <Compile Include="IFormatterConverterExtensions\IFormatterConverterable.g.cs" />
+    <Compile Include="IListExtensions\IListable.cs" />
     <Compile Include="ImageConverterExtensions\ImageConverterable.g.cs" />
     <Compile Include="ImageFormatConverterExtensions\ImageFormatConverterable.g.cs" />
     <Compile Include="ImageIndexConverterExtensions\ImageIndexConverterable.g.cs" />
@@ -304,6 +310,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\CustomAttributeProviderExtensions.cs" />
     <Compile Include="Reflection\Typeable.cs" />
+    <Compile Include="Reflection\Typeable.bcl.cs" />
     <Compile Include="RefreshEventHandlerExtensions\RefreshEventHandlerable.g.cs" />
     <Compile Include="RemoteCertificateValidationCallbackExtensions\RemoteCertificateValidationCallbackable.g.cs" />
     <Compile Include="RenamedEventHandlerExtensions\RenamedEventHandlerable.g.cs" />

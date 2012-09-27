@@ -2,7 +2,7 @@ using System;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
-	public static class Typeable
+	public static partial class Typeable
 	{
 		public static bool IsStatic(this Type type)
 		{

@@ -24,11 +24,19 @@ namespace Tests
 		}
 		#endregion // stubs
 
+		private int n = 0;
 		[Test]
 		public void IsStaticOnNonStaticTypeReturnsFalse()
 		{
+			object o = GetValue();
+			TypeableTests t = (TypeableTests) o;
 			var actual = typeof (InstanceClass).IsStatic();
 			Assert.IsFalse(actual);
+		}
+
+		private object GetValue()
+		{
+			return null;
 		}
 
 		[Test]
