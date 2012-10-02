@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C0780165-D455-4644-8747-907EDCED518F}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
+    <AssemblyName>geschikt.wp7</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone" />
+    <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Phone.Interop" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="mscorlib.extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionExtensions\Actionable.g.cs" />
+    <Compile Include="AsyncCompletedEventHandlerExtensions\AsyncCompletedEventHandlerable.g.cs" />
+    <Compile Include="CleanUpVirtualizedItemEventHandlerExtensions\CleanUpVirtualizedItemEventHandlerable.g.cs" />
+    <Compile Include="ContentChangedEventHandlerExtensions\ContentChangedEventHandlerable.g.cs" />
+    <Compile Include="CurrentChangingEventHandlerExtensions\CurrentChangingEventHandlerable.g.cs" />
+    <Compile Include="DependencyPropertyChangedEventHandlerExtensions\DependencyPropertyChangedEventHandlerable.g.cs" />
+    <Compile Include="DownloadProgressChangedEventHandlerExtensions\DownloadProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="DownloadStringCompletedEventHandlerExtensions\DownloadStringCompletedEventHandlerable.g.cs" />
+    <Compile Include="DoWorkEventHandlerExtensions\DoWorkEventHandlerable.g.cs" />
+    <Compile Include="DragCompletedEventHandlerExtensions\DragCompletedEventHandlerable.g.cs" />
+    <Compile Include="DragDeltaEventHandlerExtensions\DragDeltaEventHandlerable.g.cs" />
+    <Compile Include="DragStartedEventHandlerExtensions\DragStartedEventHandlerable.g.cs" />
+    <Compile Include="ExceptionRoutedEventHandlerExtensions\ExceptionRoutedEventHandlerable.g.cs" />
+    <Compile Include="FilterEventHandlerExtensions\FilterEventHandlerable.g.cs" />
+    <Compile Include="FragmentNavigationEventHandlerExtensions\FragmentNavigationEventHandlerable.g.cs" />
+    <Compile Include="FuncExtensions\Funcable.g.cs" />
+    <Compile Include="HttpWebRequestExtensions\HttpWebRequestable.g.cs" />
+    <Compile Include="InputScopeConverterExtensions\InputScopeConverterable.g.cs" />
+    <Compile Include="InputScopeNameConverterExtensions\InputScopeNameConverterable.g.cs" />
+    <Compile Include="ItemsChangedEventHandlerExtensions\ItemsChangedEventHandlerable.g.cs" />
+    <Compile Include="KeyEventHandlerExtensions\KeyEventHandlerable.g.cs" />
+    <Compile Include="LoadCompletedEventHandlerExtensions\LoadCompletedEventHandlerable.g.cs" />
+    <Compile Include="LogReadyRoutedEventHandlerExtensions\LogReadyRoutedEventHandlerable.g.cs" />
+    <Compile Include="MatchEvaluatorExtensions\MatchEvaluatorable.g.cs" />
+    <Compile Include="MediaFailedRoutedEventHandlerExtensions\MediaFailedRoutedEventHandlerable.g.cs" />
+    <Compile Include="MouseButtonEventHandlerExtensions\MouseButtonEventHandlerable.g.cs" />
+    <Compile Include="MouseEventHandlerExtensions\MouseEventHandlerable.g.cs" />
+    <Compile Include="MouseWheelEventHandlerExtensions\MouseWheelEventHandlerable.g.cs" />
+    <Compile Include="NameResolutionCallbackExtensions\NameResolutionCallbackable.g.cs" />
+    <Compile Include="NavigatedEventHandlerExtensions\NavigatedEventHandlerable.g.cs" />
+    <Compile Include="NavigatingCancelEventHandlerExtensions\NavigatingCancelEventHandlerable.g.cs" />
+    <Compile Include="NavigationFailedEventHandlerExtensions\NavigationFailedEventHandlerable.g.cs" />
+    <Compile Include="NavigationStoppedEventHandlerExtensions\NavigationStoppedEventHandlerable.g.cs" />
+    <Compile Include="NetworkAddressChangedEventHandlerExtensions\NetworkAddressChangedEventHandlerable.g.cs" />
+    <Compile Include="NotifyCollectionChangedEventHandlerExtensions\NotifyCollectionChangedEventHandlerable.g.cs" />
+    <Compile Include="OpenReadCompletedEventHandlerExtensions\OpenReadCompletedEventHandlerable.g.cs" />
+    <Compile Include="OpenWriteCompletedEventHandlerExtensions\OpenWriteCompletedEventHandlerable.g.cs" />
+    <Compile Include="ProgressChangedEventHandlerExtensions\ProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyChangedCallbackExtensions\PropertyChangedCallbackable.g.cs" />
+    <Compile Include="PropertyChangedEventHandlerExtensions\PropertyChangedEventHandlerable.g.cs" />
+    <Compile Include="PropertyChangingEventHandlerExtensions\PropertyChangingEventHandlerable.g.cs" />
+    <Compile Include="RoutedEventHandlerExtensions\RoutedEventHandlerable.g.cs" />
+    <Compile Include="RoutedPropertyChangedEventHandlerExtensions\RoutedPropertyChangedEventHandlerable.g.cs" />
+    <Compile Include="RunWorkerCompletedEventHandlerExtensions\RunWorkerCompletedEventHandlerable.g.cs" />
+    <Compile Include="ScrollEventHandlerExtensions\ScrollEventHandlerable.g.cs" />
+    <Compile Include="SelectionChangedEventHandlerExtensions\SelectionChangedEventHandlerable.g.cs" />
+    <Compile Include="SizeChangedEventHandlerExtensions\SizeChangedEventHandlerable.g.cs" />
+    <Compile Include="SocketAsyncEventArgsExtensions\SocketAsyncEventArgsable.g.cs" />
+    <Compile Include="StartupEventHandlerExtensions\StartupEventHandlerable.g.cs" />
+    <Compile Include="TextChangedEventHandlerExtensions\TextChangedEventHandlerable.g.cs" />
+    <Compile Include="TextCompositionEventHandlerExtensions\TextCompositionEventHandlerable.g.cs" />
+    <Compile Include="TimelineMarkerRoutedEventHandlerExtensions\TimelineMarkerRoutedEventHandlerable.g.cs" />
+    <Compile Include="TouchFrameEventHandlerExtensions\TouchFrameEventHandlerable.g.cs" />
+    <Compile Include="TypeConverterExtensions\TypeConverterable.g.cs" />
+    <Compile Include="UdpAnySourceMulticastClientExtensions\UdpAnySourceMulticastClientable.g.cs" />
+    <Compile Include="UdpSingleSourceMulticastClientExtensions\UdpSingleSourceMulticastClientable.g.cs" />
+    <Compile Include="UploadProgressChangedEventHandlerExtensions\UploadProgressChangedEventHandlerable.g.cs" />
+    <Compile Include="UploadStringCompletedEventHandlerExtensions\UploadStringCompletedEventHandlerable.g.cs" />
+    <Compile Include="UriTypeConverterExtensions\UriTypeConverterable.g.cs" />
+    <Compile Include="WebRequestExtensions\WebRequestable.g.cs" />
+    <Compile Include="WriteStreamClosedEventHandlerExtensions\WriteStreamClosedEventHandlerable.g.cs" />
+    <Compile Include="XmlNameTableExtensions\XmlNameTableable.g.cs" />
+    <Compile Include="XmlReaderExtensions\XmlReaderable.g.cs" />
+    <Compile Include="XmlResolverExtensions\XmlResolverable.g.cs" />
+    <Compile Include="XmlWriterExtensions\XmlWriterable.g.cs" />
+    <Compile Include="XmlXapResolverExtensions\XmlXapResolverable.g.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
