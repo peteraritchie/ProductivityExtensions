@@ -24,6 +24,8 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>..\..\..\..\Users\Peter Ritchie\PR fx.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\ProductivityExtensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -206,6 +209,7 @@
     <Compile Include="IDbConnectionExtensions\IDbConnectionable.cs" />
     <Compile Include="IDesignerSerializationManagerExtensions\IDesignerSerializationManagerable.g.cs" />
     <Compile Include="IDictionaryExtensions\IDictionaryable.cs" />
+    <Compile Include="IEnumerableExtensions\IEnumerableable.bcl.cs" />
     <Compile Include="IEnumerableExtensions\IEnumerableable.cs" />
     <Compile Include="IFormatterConverterExtensions\IFormatterConverterable.g.cs" />
     <Compile Include="IListExtensions\IListable.cs" />
@@ -365,6 +369,7 @@
     <Compile Include="StreamExtensions\Streamable.g.cs" />
     <Compile Include="StringBuilderExtensions\StringBuilderable.g.cs" />
     <Compile Include="StringConverterExtensions\StringConverterable.g.cs" />
+    <Compile Include="StringExtensions\Stringable.cs" />
     <Compile Include="StringExtensions\Stringable.g.cs" />
     <Compile Include="TabControlCancelEventHandlerExtensions\TabControlCancelEventHandlerable.g.cs" />
     <Compile Include="TabControlEventHandlerExtensions\TabControlEventHandlerable.g.cs" />
