@@ -116,7 +116,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				state.Stream.BeginRead(state.Result.TempBuffer, 0, state.Result.Result.Length - state.Result.Length, OnRead, state);
 				return;
 			}
-			state.Result.Complete(true);
+			state.Result.Complete(false);
 		}
 
 		private sealed class ByteArrayAsyncResult : IAsyncResult, IDisposable
