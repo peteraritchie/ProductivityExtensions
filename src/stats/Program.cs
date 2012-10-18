@@ -28,6 +28,19 @@ namespace stats
 			}
 
 			Console.WriteLine("{0} classes, {1} methods.", cTally, mTally);
+
+			mTally = 0;
+			cTally = 0;
+			foreach (var extensionMethodCount in from type in Assembly.LoadFrom(@"..\..\..\geschikt.wp7\bin\release\geschikt.wp7.dll").GetTypes()
+												 where type.IsPublic && type.IsStatic()
+												 select type.GetMethods(BindingFlags.Static | BindingFlags.Public).Count(
+													 method => method.ContainsAttribute("ExtensionAttribute")))
+			{
+				if (extensionMethodCount > 0) cTally++;
+				mTally += extensionMethodCount;
+			}
+
+			Console.WriteLine("{0} classes, {1} methods.", cTally, mTally);
 			Console.ReadLine();
 		}
 
