@@ -62,7 +62,7 @@ fileStream.BeginRead(buffer, 0, buffer.Length,
   		            ar => fileStream.EndRead(ar));
 ```
 
-`FileStream` points out another area of potential productivity increases, the needless passing of `0, buffer.Length`.  Many methods in the BCL that read data into an array require that you pass the initial index and the quantity of bytes (or data) that you want to read--despite there being a `Length` property or `Array` classes.  If I always want to just fill a buffer with data, why is there no method that simply does the `0, buffer.Length` for me?  Well, now there is--in Productivity Extensions.  You can no write:
+`FileStream` points out another area of potential productivity increases, the needless passing of `0, buffer.Length`.  Many methods in the BCL that read data into an array require that you pass the initial index and the quantity of bytes (or data) that you want to read--despite there being a `Length` property or `Array` classes.  If I always want to just fill a buffer with data, why is there no method that simply does the `0, buffer.Length` for me?  Well, now there is--in Productivity Extensions.  You can now write:
 
 ```C#
 fileStream.BeginRead(buffer, ar => fileStream.EndRead(ar));
