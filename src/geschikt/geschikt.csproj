@@ -26,6 +26,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>
     </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,6 +37,7 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DocumentationFile>bin\Release\ProductivityExtensions.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -225,6 +227,7 @@
     <Compile Include="Int64ConverterExtensions\Int64Converterable.g.cs" />
     <Compile Include="InvalidateEventHandlerExtensions\InvalidateEventHandlerable.g.cs" />
     <Compile Include="IOCompletionCallbackExtensions\IOCompletionCallbackable.g.cs" />
+    <Compile Include="IpAddressExtensions\IpAddressable.cs" />
     <Compile Include="IPGlobalPropertiesExtensions\IPGlobalPropertiesable.g.cs" />
     <Compile Include="IsolatedStorageFileStreamExtensions\IsolatedStorageFileStreamable.g.cs" />
     <Compile Include="ItemChangedEventHandlerExtensions\ItemChangedEventHandlerable.g.cs" />
@@ -376,6 +379,7 @@
     <Compile Include="TableLayoutCellPaintEventHandlerExtensions\TableLayoutCellPaintEventHandlerable.g.cs" />
     <Compile Include="TableLayoutSettingsTypeConverterExtensions\TableLayoutSettingsTypeConverterable.g.cs" />
     <Compile Include="TcpClientExtensions\TcpClientable.g.cs" />
+    <Compile Include="TcpClientExtensions\TcpClientable.cs" />
     <Compile Include="TcpListenerExtensions\TcpListenerable.g.cs" />
     <Compile Include="TemporalExtensions\Temporalable.cs" />
     <Compile Include="TextReaderExtensions\TextReaderable.g.cs" />
