@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt", "geschikt\geschikt.csproj", "{BDE41F54-F174-4783-9A7E-6CA6CC4A0BBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stats", "stats\stats.csproj", "{0199F739-2FAF-4A19-BA63-B96351E7B700}"
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{5DE33AA7-F517-4E45-A1FD-B689283060FD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.wp7", "geschikt.wp7\geschikt.wp7.csproj", "{C0780165-D455-4644-8747-907EDCED518F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.net45", "geschikt.net45\geschikt.net45.csproj", "{8A840410-0125-4543-8FAF-DDF7F002C5FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,16 @@ Global
 		{C0780165-D455-4644-8747-907EDCED518F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{C0780165-D455-4644-8747-907EDCED518F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{C0780165-D455-4644-8747-907EDCED518F}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{8A840410-0125-4543-8FAF-DDF7F002C5FB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

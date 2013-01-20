@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#if NET_4_5
+using System;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
+#endif
 
 namespace PRI.ProductivityExtensions.TcpClientExtensions
 {
@@ -15,7 +17,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 		/// <param name="endPoint"></param>
 		/// <returns></returns>
 		/// <exception cref="ArgumentException">if <param name="endPoint"/> is not a 
-		/// <see cref="DnsEndPoint"/> nor an <see cref="IpEndPoint"/></exception>
+		/// <see cref="DnsEndPoint"/> nor an <see cref="IPEndPoint"/></exception>
 		public static Task ConnectAsync(this TcpClient tcpClient, EndPoint endPoint)
 		{
 			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
