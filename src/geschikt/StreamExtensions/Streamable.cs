@@ -96,10 +96,11 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			ByteArrayAsyncResult state = ar as ByteArrayAsyncResult;
 			if (state == null) throw new InvalidOperationException();
 			state.AsyncWaitHandle.WaitOne(-1);
-			using(state)
+			int endReadToEnd = state.Length;
+			using (state)
 			{
 			}
-			return state.Length;
+			return endReadToEnd;
 		}
 
 		private static void OnRead(IAsyncResult ar)
@@ -178,20 +179,11 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 			public void Dispose()
 			{
-				Dispose(true);
-				GC.SuppressFinalize(this);
-			}
-
-			private void Dispose(bool disposing)
-			{
-				if (disposing)
+				lock (syncRoot)
 				{
-					lock (syncRoot)
+					if (asyncWaitHandle != null)
 					{
-						if (asyncWaitHandle != null)
-						{
-							((IDisposable)asyncWaitHandle).Dispose();
-						}
+						((IDisposable)asyncWaitHandle).Dispose();
 					}
 				}
 			}

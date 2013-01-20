@@ -19,15 +19,17 @@ namespace Tests
 			using (var s = new MemoryStream(Encoding.Unicode.GetBytes(data)))
 			{
 				byte[] buffer = new byte[2048];
+				ManualResetEventSlim resetEvent = new ManualResetEventSlim();
+				long bytesRead = -1;
+				var a = s.BeginReadToEnd(buffer,
+				                         ar =>
+					                         {
+						                         Interlocked.Exchange(ref bytesRead, s.EndReadToEnd(ar));
+						                         resetEvent.Set();
+					                         });
 
-				int bytesRead = -1;
-				var a = s.BeginReadToEnd(buffer, ar =>
-				                                 {
-				                                 	bytesRead = s.EndReadToEnd(ar);
-				                                 });
-				bool finished = a.AsyncWaitHandle.WaitOne(10.Seconds());
-				Assert.IsTrue(finished);
-				Assert.AreEqual(2048, bytesRead);
+				Assert.IsTrue(resetEvent.Wait(10.Seconds()));
+				Assert.AreEqual(2048, Interlocked.Read(ref bytesRead));
 				Assert.AreEqual(data, Encoding.Unicode.GetString(buffer));
 			}
 		}
