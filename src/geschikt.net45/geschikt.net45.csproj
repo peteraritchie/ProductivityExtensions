@@ -1300,6 +1300,9 @@
       <Link>XsltMessageEncounteredEventHandlerExtensions\XsltMessageEncounteredEventHandlerable.g.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IAwaitable.cs" />
+    <Compile Include="SocketExtensions\Socketable.cs" />
+    <Compile Include="TaskFactoryExtensions\TaskFactoryable.cs" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDictionary Include="..\geschikt\CustomDictionary.xml">

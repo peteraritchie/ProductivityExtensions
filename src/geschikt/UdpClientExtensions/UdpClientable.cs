@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace PRI.ProductivityExtensions.UdpClientExtensions
 {
@@ -121,5 +122,75 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 			if (udpClient == null) throw new ArgumentNullException("udpClient");
 			return udpClient.BeginSend(datagram, bytes, asyncCallback, state);
 		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="udpClient"></param>
+		/// <param name="datagram"></param>
+		/// <param name="bytes"></param>
+		/// <param name="asyncCallback"></param>
+		/// <param name="state"></param>
+		/// <returns></returns>
+		public static IAsyncResult BeginSend(this UdpClient udpClient, byte[] datagram, IPEndPoint endPoint, AsyncCallback asyncCallback)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.BeginSend(datagram, datagram.Length, endPoint, asyncCallback, null);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="udpClient"></param>
+		/// <param name="datagram"></param>
+		/// <param name="bytes"></param>
+		/// <param name="asyncCallback"></param>
+		/// <param name="state"></param>
+		/// <returns></returns>
+		public static IAsyncResult BeginSend(this UdpClient udpClient, byte[] datagram, IPEndPoint endPoint, AsyncCallback asyncCallback, object state)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.BeginSend(datagram, datagram.Length, endPoint, asyncCallback, state);
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="udpClient"></param>
+		/// <param name="datagram"></param>
+		/// <param name="asyncCallback"></param>
+		/// <returns></returns>
+		/// <exception cref="ArgumentNullException"></exception>
+		public static IAsyncResult BeginSend(this UdpClient udpClient, byte[] datagram, AsyncCallback asyncCallback)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.BeginSend(datagram, datagram.Length, asyncCallback);
+		}
+#if NET_4_5
+		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.SendAsync(datagram, datagram.Length);
+		}
+
+		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram, IPEndPoint endPoint)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.SendAsync(datagram, datagram.Length, endPoint);
+		}
+
+		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram, string hostname, int port)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			return udpClient.SendAsync(datagram, datagram.Length, hostname, port);
+		}
+
+		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram, DnsEndPoint dnsEndPoint)
+		{
+			if (udpClient == null) throw new ArgumentNullException("udpClient");
+			if (dnsEndPoint == null) throw new ArgumentNullException("dnsEndPoint");
+			return udpClient.SendAsync(datagram, datagram.Length, dnsEndPoint.Host, dnsEndPoint.Port);
+		}
+#endif
 	}
 }

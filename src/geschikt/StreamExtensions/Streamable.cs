@@ -1,6 +1,9 @@
 using System;
 using System.IO;
 using System.Threading;
+#if NET_4_5
+using System.Threading.Tasks;
+#endif
 
 namespace PRI.ProductivityExtensions.StreamExtensions
 {
@@ -248,6 +251,32 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				}
 			}
 		}
+
+#if NET_4_5
+		/// <summary>
+		/// Extends WriteAsync so that buffer offset of 0 and call to Array.Length are not needed.
+		/// <example>
+		/// socket.WriteAsync(buffer);
+		/// </example>
+		/// </summary>
+		public static Task WriteAsync(this Stream stream, byte[] buffer)
+		{
+			if (stream == null) throw new ArgumentNullException("stream");
+			return stream.WriteAsync(buffer, 0, buffer.Length);
+		}
+
+		/// <summary>
+		/// Extends ReadAsync so that buffer offset of 0 and call to Array.Length are not needed.
+		/// <example>
+		/// socket.ReadAsync(buffer);
+		/// </example>
+		/// </summary>
+		public static Task<int> ReadAsync(this Stream stream, byte[] buffer)
+		{
+			if (stream == null) throw new ArgumentNullException("stream");
+			return stream.ReadAsync(buffer, 0, buffer.Length);
+		}
+#endif
 
 		/// <summary>
 		/// private state class to transfer state information between invocations of StreamExtensions.OnRead
