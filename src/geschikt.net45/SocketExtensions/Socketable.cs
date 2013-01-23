@@ -85,7 +85,7 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 			return awaitable;
 		}
 
-		public static async Task<int> ReceiveAsync(Socket s, byte[] buffer)
+		public static async Task<int> ReceiveAsync(this Socket s, byte[] buffer)
 		{
 			var args = new SocketAsyncEventArgs();
 			args.SetBuffer(buffer);
