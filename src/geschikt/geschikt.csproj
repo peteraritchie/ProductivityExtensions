@@ -420,6 +420,7 @@
     <Compile Include="TypeFilterExtensions\TypeFilterable.g.cs" />
     <Compile Include="TypeListConverterExtensions\TypeListConverterable.g.cs" />
     <Compile Include="TypeValidationEventHandlerExtensions\TypeValidationEventHandlerable.g.cs" />
+    <Compile Include="UdpClientExtensions\UdpClientable.cs" />
     <Compile Include="UdpClientExtensions\UdpClientable.g.cs" />
     <Compile Include="UICuesEventHandlerExtensions\UICuesEventHandlerable.g.cs" />
     <Compile Include="UInt16ConverterExtensions\UInt16Converterable.g.cs" />

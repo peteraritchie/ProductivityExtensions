@@ -1143,6 +1143,9 @@
     <Compile Include="..\geschikt\TypeValidationEventHandlerExtensions\TypeValidationEventHandlerable.g.cs">
       <Link>TypeValidationEventHandlerExtensions\TypeValidationEventHandlerable.g.cs</Link>
     </Compile>
+    <Compile Include="..\geschikt\UdpClientExtensions\UdpClientable.cs">
+      <Link>UdpClientExtensions\UdpClientable.cs</Link>
+    </Compile>
     <Compile Include="..\geschikt\UdpClientExtensions\UdpClientable.g.cs">
       <Link>UdpClientExtensions\UdpClientable.g.cs</Link>
     </Compile>
