@@ -90,8 +90,6 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 			var args = new SocketAsyncEventArgs();
 			args.SetBuffer(buffer);
 			var awaitable = new SocketAwaitable(args);
-
-			// Do processing, continually receiving from the socket 
 			int totalBytesRead = 0;
 			while (true)
 			{
@@ -99,8 +97,6 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 				int bytesRead = args.BytesTransferred;
 				if (bytesRead <= 0) break;
 				totalBytesRead = bytesRead;
-
-				Console.WriteLine(bytesRead);
 			}
 			return totalBytesRead;
 		}
