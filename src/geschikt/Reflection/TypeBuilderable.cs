@@ -107,5 +107,136 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			                                null,
 			                                new[] {propertyInfo.PropertyType});
 		}
+
+		/// <summary>
+		/// Adds a private property getter method to <paramref name="typeBuilder"/> based on name of <paramref name="propertyInfo"/>
+		/// </summary>
+		/// <param name="typeBuilder"><seealso cref="TypeBuilder"/> that will have the new property.</param>
+		/// <param name="propertyInfo"><seealso cref="PropertyInfo"/> to base name and the method.</param>
+		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
+		public static MethodBuilder DefinePrivatePropertyGetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
+		{
+			return typeBuilder.DefineMethod("get_" + propertyInfo.Name,
+											MethodAttributes.Private | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
+											propertyInfo.PropertyType,
+											Type.EmptyTypes);
+		}
+
+		/// <summary>
+		/// Adds a private property setter method to <paramref name="typeBuilder"/> based on name of <paramref name="propertyInfo"/>
+		/// </summary>
+		/// <param name="typeBuilder"><seealso cref="TypeBuilder"/> that will have the new property.</param>
+		/// <param name="propertyInfo"><seealso cref="PropertyInfo"/> to base name and the method.</param>
+		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
+		public static MethodBuilder DefinePrivatePropertySetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
+		{
+			return typeBuilder.DefineMethod("set_" + propertyInfo.Name,
+											MethodAttributes.Private | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
+											null,
+											new[] { propertyInfo.PropertyType });
+		}
+
+		private static readonly CustomAttributeBuilder CompilerGeneratedAttributeBuilder =
+			new CustomAttributeBuilder(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute).GetConstructor(),
+									   new object[0]);
+
+		public static PropertyBuilder CreatePublicAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+		{
+			return CreatePublicAutoProperty(typeBuilder, propertName, typeof(T));
+		}
+
+		public static PropertyBuilder CreatePublicAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+		{
+			var field = typeBuilder.
+				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+								   propertyType);
+
+			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			var property = typeBuilder.DefineProperty(propertyName, propertyType, PropertyAttributes.HasDefault);
+
+			var propertyGetter = typeBuilder.DefinePropertyGetter(property);
+
+			propertyGetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertyGetter.GetILGenerator().EmitBackingFieldGetter(field);
+
+			var propertySetter = typeBuilder.DefinePropertySetter(property);
+
+			propertySetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertySetter.GetILGenerator().EmitBackingFieldSetter(field);
+
+			property.SetGetMethod(propertyGetter);
+			property.SetSetMethod(propertySetter);
+
+			return property;
+		}
+
+		public static PropertyBuilder CreatePrivateAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+		{
+			return CreatePrivateAutoProperty(typeBuilder, propertName, typeof(T));
+		}
+
+		public static PropertyBuilder CreatePrivateAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+		{
+			var field = typeBuilder.
+				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+								   propertyType);
+
+			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			var property = typeBuilder.DefineProperty(propertyName, propertyType, PropertyAttributes.HasDefault);
+
+			var propertyGetter = typeBuilder.DefinePrivatePropertyGetter(property);
+
+			propertyGetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertyGetter.GetILGenerator().EmitBackingFieldGetter(field);
+
+			var propertySetter = typeBuilder.DefinePrivatePropertySetter(property);
+
+			propertySetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertySetter.GetILGenerator().EmitBackingFieldSetter(field);
+
+			property.SetGetMethod(propertyGetter);
+			property.SetSetMethod(propertySetter);
+
+			return property;
+		}
+
+		public static PropertyBuilder CreateReadonlyAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+		{
+			return CreateReadonlyAutoProperty(typeBuilder, propertName, typeof(T));
+		}
+
+		public static PropertyBuilder CreateReadonlyAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+		{
+			var field = typeBuilder.
+				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+								   propertyType);
+
+			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			var property = typeBuilder.DefineProperty(propertyName, propertyType, PropertyAttributes.HasDefault);
+
+			var propertyGetter = typeBuilder.DefinePropertyGetter(property);
+
+			propertyGetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertyGetter.GetILGenerator().EmitBackingFieldGetter(field);
+
+			var propertySetter = typeBuilder.DefinePrivatePropertySetter(property);
+
+			propertySetter.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
+
+			propertySetter.GetILGenerator().EmitBackingFieldSetter(field);
+
+			property.SetGetMethod(propertyGetter);
+			property.SetSetMethod(propertySetter);
+
+			return property;
+		}
 	}
 }
