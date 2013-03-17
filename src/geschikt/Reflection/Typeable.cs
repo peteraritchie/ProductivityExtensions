@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -25,6 +26,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			else
 				return Type.EmptyTypes;
 #endif
+		}
+
+		/// <summary>
+		/// Gets the default constructor for <paramref name="type"/>
+		/// </summary>
+		/// <param name="type">The type to get the default destructor</param>
+		/// <returns><seealso cref="ConstructorInfo"/> about the default constructor.</returns>
+		public static ConstructorInfo GetConstructor(this Type type)
+		{
+			return type.GetConstructor(new Type[0]);
 		}
 	}
 }

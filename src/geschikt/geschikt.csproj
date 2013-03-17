@@ -314,12 +314,15 @@
     <Compile Include="QuestionEventHandlerExtensions\QuestionEventHandlerable.g.cs" />
     <Compile Include="RectangleConverterExtensions\RectangleConverterable.g.cs" />
     <Compile Include="ReferenceConverterExtensions\ReferenceConverterable.g.cs" />
+    <Compile Include="Reflection\ILGeneratorable.cs" />
     <Compile Include="Reflection\IlInstruction.cs" />
+    <Compile Include="Reflection\ModuleBuilderable.cs" />
     <Compile Include="Reflection\Reflectable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\CustomAttributeProviderExtensions.cs" />
     <Compile Include="Reflection\Typeable.cs" />
     <Compile Include="Reflection\Typeable.bcl.cs" />
+    <Compile Include="Reflection\TypeBuilderable.cs" />
     <Compile Include="RefreshEventHandlerExtensions\RefreshEventHandlerable.g.cs" />
     <Compile Include="RemoteCertificateValidationCallbackExtensions\RemoteCertificateValidationCallbackable.g.cs" />
     <Compile Include="RenamedEventHandlerExtensions\RenamedEventHandlerable.g.cs" />
