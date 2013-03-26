@@ -572,5 +572,114 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		{
 			return ReferencesConstructor(assembly, typeof (T));
 		}
+
+		/// <summary>
+		/// Gets a private field value
+		/// </summary>
+		/// <typeparam name="T">The type of the property</typeparam>
+		/// <param name="obj">the object that will be operated upon.</param>
+		/// <param name="fieldName">Name of the field whose value to retrieve.</param>
+		/// <returns>The value of the property</returns>
+		public static T GetPrivateFieldValue<T>(this Object obj, string fieldName)
+		{
+			if (obj == null) throw new ArgumentNullException("obj");
+			if (string.IsNullOrWhiteSpace(fieldName)) throw new ArgumentNullException("fieldName");
+			var type = obj.GetType();
+			FieldInfo field;
+			do
+			{
+				field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+				type = type.BaseType;
+			} while (field == null && type != null);
+			if (field == null)
+				throw new InvalidOperationException(string.Format("{0} not found in type {1}", fieldName, type.FullName));
+			if (!typeof(T).IsAssignableFrom(field.FieldType))
+				throw
+					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
+																field.FieldType.FullName));
+			return (T)field.GetValue(obj);
+		}
+
+		/// <summary>
+		/// Gets a private property value
+		/// </summary>
+		/// <typeparam name="T">The type of the field</typeparam>
+		/// <param name="obj">the object that will be operated upon.</param>
+		/// <param name="propertyName">Name of the field whose value to retrieve.</param>
+		/// <returns>The value of the field</returns>
+		public static T GetPrivatePropertyValue<T>(this Object obj, string propertyName)
+		{
+			if (obj == null) throw new ArgumentNullException("obj");
+			if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentNullException("propertyName");
+			var type = obj.GetType();
+			PropertyInfo property;
+			do
+			{
+				property = type.GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+				type = type.BaseType;
+			} while (property == null && type != null);
+			if (property == null)
+				throw new InvalidOperationException(string.Format("{0} not found in type {1}", propertyName, type.FullName));
+			if (!typeof(T).IsAssignableFrom(property.PropertyType))
+				throw
+					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
+																property.PropertyType.FullName));
+			return (T)property.GetValue(obj, null);
+		}
+
+		/// <summary>
+		/// Gets a private field value
+		/// </summary>
+		/// <typeparam name="T">The type of the property</typeparam>
+		/// <param name="obj">the object that will be operated upon.</param>
+		/// <param name="fieldName">Name of the field whose value to retrieve.</param>
+		/// <returns>The value of the property</returns>
+		/// <param name="value">The value used to set the field</param>
+		public static void SetPrivateFieldValue<T>(this Object obj, string fieldName, T value)
+		{
+			if (obj == null) throw new ArgumentNullException("obj");
+			if (string.IsNullOrWhiteSpace(fieldName)) throw new ArgumentNullException("fieldName");
+			var type = obj.GetType();
+			FieldInfo field;
+			do
+			{
+				field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+				type = type.BaseType;
+			} while (field == null && type != null);
+			if (field == null)
+				throw new InvalidOperationException(string.Format("{0} not found in type {1}", fieldName, type.FullName));
+			if (!typeof(T).IsAssignableFrom(field.FieldType))
+				throw
+					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
+																field.FieldType.FullName));
+			field.SetValue(obj, value);
+		}
+
+		/// <summary>
+		/// Sets a private property value
+		/// </summary>
+		/// <typeparam name="T">The type of the field</typeparam>
+		/// <param name="obj">the object that will be operated upon.</param>
+		/// <param name="propertyName">Name of the field whose value to retrieve.</param>
+		/// <param name="value">The value used to set the property</param>
+		public static void SetPrivatePropertyValue<T>(this Object obj, string propertyName, T value)
+		{
+			if (obj == null) throw new ArgumentNullException("obj");
+			if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentNullException("propertyName");
+			var type = obj.GetType();
+			PropertyInfo property;
+			do
+			{
+				property = type.GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
+				type = type.BaseType;
+			} while (property == null && type != null);
+			if (property == null)
+				throw new InvalidOperationException(string.Format("{0} not found in type {1}", propertyName, type.FullName));
+			if (!typeof(T).IsAssignableFrom(property.PropertyType))
+				throw
+					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
+																property.PropertyType.FullName));
+			property.SetValue(obj, value, null);
+		}
 	}
 }

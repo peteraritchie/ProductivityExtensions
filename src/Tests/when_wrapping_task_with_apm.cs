@@ -58,4 +58,5 @@ namespace Tests
 			Assert.AreEqual(42, task.Result);
 		}
 	}
+
 }

@@ -154,5 +154,110 @@ namespace Tests
 			var b = typeof(string).Assembly.ReferencesConstructor<AttributedClass>();
 			Assert.IsFalse(b);
 		}
+
+		private class HasPrivateField
+		{
+			private int field;
+
+			public HasPrivateField(int field)
+			{
+				this.field = field;
+			}
+		}
+
+		private class InheritsHasPrivateField : HasPrivateField
+		{
+			public InheritsHasPrivateField(int field) : base(field)
+			{
+			}
+		}
+
+		[Test]
+		public void GetPrivateFieldWorks()
+		{
+			var obj = new HasPrivateField(42);
+
+			Assert.AreEqual(42, obj.GetPrivateFieldValue<int>("field"));
+		}
+
+		[Test]
+		public void GetPrivateFieldWorksWithInheritedField()
+		{
+			var obj = new InheritsHasPrivateField(42);
+
+			Assert.AreEqual(42, obj.GetPrivateFieldValue<int>("field"));
+		}
+
+		[Test]
+		public void SetPrivateFieldWorks()
+		{
+			var obj = new HasPrivateField(42);
+
+			obj.SetPrivateFieldValue("field", 73);
+			Assert.AreEqual(73, obj.GetPrivateFieldValue<int>("field"));
+		}
+
+		[Test]
+		public void SetPrivateFieldWorksWithInheritedField()
+		{
+			var obj = new InheritsHasPrivateField(42);
+
+			obj.SetPrivateFieldValue("field", 73);
+
+			Assert.AreEqual(73, obj.GetPrivateFieldValue<int>("field"));
+		}
+
+		private class HasPrivateProperty
+		{
+			private int Property { get; set; }
+
+			public HasPrivateProperty(int property)
+			{
+				Property = property;
+			}
+		}
+
+		private class InheritsHasPrivateProperty : HasPrivateProperty
+		{
+			public InheritsHasPrivateProperty(int property)
+				: base(property)
+			{
+			}
+		}
+
+		[Test]
+		public void GetPrivatePropertyWorks()
+		{
+			var obj = new HasPrivateProperty(42);
+
+			Assert.AreEqual(42, obj.GetPrivatePropertyValue<int>("Property"));
+		}
+
+		[Test]
+		public void GetPrivatePropertyWorksWithInheritedProperty()
+		{
+			var obj = new InheritsHasPrivateProperty(42);
+
+			Assert.AreEqual(42, obj.GetPrivatePropertyValue<int>("Property"));
+		}
+
+		[Test]
+		public void SetPrivatePropertyWorks()
+		{
+			var obj = new HasPrivateProperty(42);
+
+			obj.SetPrivatePropertyValue("Property", 73);
+			Assert.AreEqual(73, obj.GetPrivatePropertyValue<int>("Property"));
+		}
+
+		[Test]
+		public void SetPrivatePropertyWorksWithInheritedProperty()
+		{
+			var obj = new InheritsHasPrivateProperty(42);
+
+			obj.SetPrivatePropertyValue("Property", 73);
+
+			Assert.AreEqual(73, obj.GetPrivatePropertyValue<int>("Property"));
+		}
 	}
 }

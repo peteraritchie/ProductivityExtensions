@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>ProductivityExtensions</id>
-    <version>1.0.16.0</version>
+    <version>1.0.17.0</version>
     <authors>Peter Ritchie</authors>
     <owners>Peter Ritchie</owners>
     <licenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/peteraritchie/ProductivityExtensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Productivity Extensions is a library of extension methods extending over 650 methods in 400 Framework classes.</description>
-    <releaseNotes>Added Steve Toub's ToApm</releaseNotes>
+    <releaseNotes>Added private field/property accessor methods</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>extension methods</tags>
   </metadata>
