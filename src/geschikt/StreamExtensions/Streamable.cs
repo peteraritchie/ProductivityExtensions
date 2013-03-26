@@ -279,6 +279,18 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 #endif
 
 		/// <summary>
+		/// Seek with default offset of 0.
+		/// </summary>
+		/// <param name="stream"><seealso cref="Stream"/> to operate on</param>
+		/// <param name="seekOrigin"><seealso cref="SeekOrigin.Begin"/> to seek to start,
+		/// <seealso cref="SeekOrigin.End"/> to seek to end, or <seealso cref="SeekOrigin.Current"/> to do nothing.</param>
+		/// <returns></returns>
+		public static long Seek(this Stream stream, SeekOrigin seekOrigin)
+		{
+			return stream.Seek(0, seekOrigin);
+		}
+
+		/// <summary>
 		/// private state class to transfer state information between invocations of StreamExtensions.OnRead
 		/// </summary>
 		private class ByteArrayAsyncState

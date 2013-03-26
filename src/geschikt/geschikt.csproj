@@ -74,6 +74,7 @@
     <Compile Include="BindIPEndPointExtensions\BindIPEndPointable.g.cs" />
     <Compile Include="BooleanConverterExtensions\BooleanConverterable.g.cs" />
     <Compile Include="BufferedStreamExtensions\BufferedStreamable.g.cs" />
+    <Compile Include="ByteArrayExtensions\ByteArrayable.cs" />
     <Compile Include="ByteConverterExtensions\ByteConverterable.g.cs" />
     <Compile Include="CacheVirtualItemsEventHandlerExtensions\CacheVirtualItemsEventHandlerable.g.cs" />
     <Compile Include="CancelEventHandlerExtensions\CancelEventHandlerable.g.cs" />
@@ -383,6 +384,7 @@
     <Compile Include="TabControlEventHandlerExtensions\TabControlEventHandlerable.g.cs" />
     <Compile Include="TableLayoutCellPaintEventHandlerExtensions\TableLayoutCellPaintEventHandlerable.g.cs" />
     <Compile Include="TableLayoutSettingsTypeConverterExtensions\TableLayoutSettingsTypeConverterable.g.cs" />
+    <Compile Include="TaskExtensions\Taskable.cs" />
     <Compile Include="TcpClientExtensions\TcpClientable.g.cs" />
     <Compile Include="TcpClientExtensions\TcpClientable.cs" />
     <Compile Include="TcpListenerExtensions\TcpListenerable.g.cs" />

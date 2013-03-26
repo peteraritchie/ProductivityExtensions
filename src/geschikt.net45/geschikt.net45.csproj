@@ -1023,6 +1023,9 @@
     <Compile Include="..\geschikt\TableLayoutSettingsTypeConverterExtensions\TableLayoutSettingsTypeConverterable.g.cs">
       <Link>TableLayoutSettingsTypeConverterExtensions\TableLayoutSettingsTypeConverterable.g.cs</Link>
     </Compile>
+    <Compile Include="..\geschikt\TaskExtensions\Taskable.cs">
+      <Link>TaskExtensions\Taskable.cs</Link>
+    </Compile>
     <Compile Include="..\geschikt\TcpClientExtensions\TcpClientable.cs">
       <Link>TcpClientExtensions\TcpClientable.cs</Link>
     </Compile>

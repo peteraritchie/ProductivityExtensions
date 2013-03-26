@@ -60,6 +60,7 @@
     <Compile Include="when_swapping_list_values.cs" />
     <Compile Include="when_testing_list_for_null_or_empty.cs" />
     <Compile Include="when_testing_set_equality.cs" />
+    <Compile Include="when_wrapping_task_with_apm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
