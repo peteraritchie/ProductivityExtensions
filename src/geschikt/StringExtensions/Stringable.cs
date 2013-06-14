@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PRI.ProductivityExtensions.StringExtensions
 {
@@ -38,6 +40,20 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			length = Math.Max(length, 0);
 
 			return s.Length > length ? s.Substring(0, length) : s;
+		}
+
+		/// <summary>
+		/// Replace any instances of individual elements in <paramref name="chars"/> with <paramref name="c"/>
+		/// in <paramref name="text"/>.
+		/// </summary>
+		/// <param name="text">string to search within.</param>
+		/// <param name="chars">individual characters to search for.</param>
+		/// <param name="c">character to replace any found characters with.</param>
+		/// <returns></returns>
+		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
+		{
+			return string.Join(c.ToString(System.Globalization.CultureInfo.InvariantCulture),
+				text.Split(chars.ToArray()));
 		}
 	}
 }

@@ -1206,6 +1206,9 @@
     <Compile Include="..\geschikt\ValidationEventHandlerExtensions\ValidationEventHandlerable.g.cs">
       <Link>ValidationEventHandlerExtensions\ValidationEventHandlerable.g.cs</Link>
     </Compile>
+    <Compile Include="..\geschikt\VersionExtensions\Versionable.cs">
+      <Link>VersionExtensions\Versionable.cs</Link>
+    </Compile>
     <Compile Include="..\geschikt\WaitCallbackExtensions\WaitCallbackable.g.cs">
       <Link>WaitCallbackExtensions\WaitCallbackable.g.cs</Link>
     </Compile>
