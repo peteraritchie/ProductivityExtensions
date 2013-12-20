@@ -445,6 +445,7 @@
     <Compile Include="UserPreferenceChangedEventHandlerExtensions\UserPreferenceChangedEventHandlerable.g.cs" />
     <Compile Include="UserPreferenceChangingEventHandlerExtensions\UserPreferenceChangingEventHandlerable.g.cs" />
     <Compile Include="ValidationEventHandlerExtensions\ValidationEventHandlerable.g.cs" />
+    <Compile Include="VersionExtensions\Versionable.cs" />
     <Compile Include="WaitCallbackExtensions\WaitCallbackable.g.cs" />
     <Compile Include="WaitOrTimerCallbackExtensions\WaitOrTimerCallbackable.g.cs" />
     <Compile Include="WebBrowserDocumentCompletedEventHandlerExtensions\WebBrowserDocumentCompletedEventHandlerable.g.cs" />

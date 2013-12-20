@@ -51,11 +51,13 @@
     <Compile Include="StreamableTests.cs" />
     <Compile Include="DataColumnableTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringableTests.cs" />
     <Compile Include="TemporableTests.cs" />
     <Compile Include="TypeableTests.cs" />
     <Compile Include="when_adding_range_to_collection.cs" />
     <Compile Include="when_adding_range_to_dictionary.cs" />
     <Compile Include="when_closing_dbconnection.cs" />
+    <Compile Include="when_comparing_versions.cs" />
     <Compile Include="when_getting_value_from_dictionary.cs" />
     <Compile Include="when_swapping_list_values.cs" />
     <Compile Include="when_testing_list_for_null_or_empty.cs" />
