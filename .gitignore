@@ -9,3 +9,5 @@ TestResults
 *.user
 *.suo
 /nuget/lib
+/src/Backup
+/src/UpgradeLog*.htm
