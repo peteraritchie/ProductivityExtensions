@@ -30,7 +30,7 @@ artifacts:
   name: net40-client
 - path: src\geschikt.net45\bin\Release\geschikt.dll
   name: net45
-- path: nuget\*.nupkg
+- path: '*.nupkg'
   name: nuget
 deploy:
 - provider: NuGet
