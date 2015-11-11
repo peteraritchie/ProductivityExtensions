@@ -24,7 +24,7 @@ after_build:
 
     copy src\geschikt.net45\bin\Release\geschikt.pdb nuget\lib\net45
 
-    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols
+    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols -version $env:APPVEYOR_BUILD_VERSION
 artifacts:
 - path: src\geschikt\bin\Release\geschikt.dll
   name: net40-client
