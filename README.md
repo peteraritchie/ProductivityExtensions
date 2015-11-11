@@ -1,6 +1,8 @@
 ProductivityExtensions
 ======================
 
+[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions)
+
 If you're not comfortable with GitHub for issues/feedback.  I've set up a UserVoice site at https://productivityextensions.uservoice.com/
 
 Productivity Extensions is a series of extension methods for .NET 4.0 or newer (Visual Studio 2010 or newer).
