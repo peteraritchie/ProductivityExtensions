@@ -8,6 +8,8 @@ assembly_info:
   assembly_informational_version: '{version}'
 nuget:
   project_feed: true
+before_build:
+- cmd: SET
 build:
   verbosity: minimal
 after_build:
