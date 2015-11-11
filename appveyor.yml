@@ -9,14 +9,31 @@ assembly_info:
 nuget:
   project_feed: true
 build:
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
   verbosity: minimal
+after_build:
+- cmd: >-
+    if not exist nuget\lib\net40-client md nuget\lib\net40-client
+
+    copy src\geschikt\bin\Release\geschikt.dll nuget\lib\net40-client
+
+    copy src\geschikt\bin\Release\geschikt.pdb nuget\lib\net40-client
+
+    if not exist nuget\lib\net45 md nuget\lib\net45
+
+    copy src\geschikt.net45\bin\Release\geschikt.dll nuget\lib\net45
+
+    copy src\geschikt.net45\bin\Release\geschikt.pdb nuget\lib\net45
+
+    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols
 artifacts:
 - path: src\geschikt\bin\Release\geschikt.dll
   name: net40-client
 - path: src\geschikt.net45\bin\Release\geschikt.dll
   name: net45
-- path: '**\*.nupkg'
+- path: nuget\*.nupkg
   name: nuget
+deploy:
+- provider: NuGet
+  api_key:
+    secure: K+dA1tJ3qNFfJ6G484VCFE9igeHb/BGa6tdJVKcaxvHYK6rwPsKrO/c5EahHvxsP
+  artifact: nuget
