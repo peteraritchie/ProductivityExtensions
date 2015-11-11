@@ -2,8 +2,8 @@
 <package >
   <metadata>
     <id>ProductivityExtensions</id>
-    <version>1.0.18.0</version>
-    <authors>Peter Ritchie</authors>
+    <version>$version$</version>
+    <authors>$author$</authors>
     <dependencies>
         <group targetFramework="sl4-wp">
             <dependency id="Microsoft.BCL" version="1.1.6" />
@@ -13,8 +13,8 @@
     <licenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/peteraritchie/ProductivityExtensions</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Productivity Extensions is a library of extension methods extending over 650 methods in 400 Framework classes.</description>
-    <releaseNotes>Removed Windows Phone 7.1 libaries</releaseNotes>
+    <description>$description$</description>
+    <releaseNotes>Removed Windows Phone 7.1 libaries and bumped version</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>extension methods</tags>
   </metadata>
