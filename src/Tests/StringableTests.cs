@@ -26,5 +26,34 @@ namespace Tests
 			var actual = "wxxxw".ReplaceEach("yzx", 'n');
 			Assert.AreEqual("wnnnw", actual);
 		}
+
+		[Test]
+		public void FirstWordWithSpaceSucceeds()
+		{
+			var actual = "first second".FirstWord();
+			Assert.AreEqual("first", actual);
+		}
+
+		[Test]
+		public void FirstWordWithoutSpaceSucceeds()
+		{
+			var actual = "first".FirstWord();
+			Assert.AreEqual("first", actual);
+		}
+
+		[Test]
+		public void InitialsWithSpaceSucceeds()
+		{
+			var actual = "first second".Initials();
+			Assert.AreEqual("fs", actual);
+		}
+
+		[Test]
+		public void InitialsWithoutSpaceSucceeds()
+		{
+			var actual = "first".Initials();
+			Assert.AreEqual("f", actual);
+		}
+
 	}
 }
