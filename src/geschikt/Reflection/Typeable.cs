@@ -1,5 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using PRI.ProductivityExtensions.IEnumerableExtensions;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -26,6 +29,80 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			else
 				return Type.EmptyTypes;
 #endif
+		}
+
+		/// <summary>
+		/// Tests if <param name="type"></param> has attribute <param name="TAttributes"></param>
+		/// </summary>
+		/// <typeparam name="TAttribute"></typeparam>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static bool HasAttribute<TAttribute>(this Type type) where TAttribute : Attribute
+		{
+			if (type == null) throw new ArgumentNullException("type");
+			return type.GetCustomAttributes(typeof(TAttribute), false).Length > 0;
+		}
+
+		/// <summary>
+		/// Test if <param name="type"> implements interface <typeparamref name="TInterface"/>
+		/// </summary>
+		/// <typeparam name="TInterface"></typeparam>
+		/// <param name="type"></param>
+		/// <returns></returns>
+		public static bool ImplementsInterface<TInterface>(this Type type)
+		{
+			if (type == null) throw new ArgumentNullException("type");
+			return typeof(TInterface).IsAssignableFrom(type);
+		}
+
+		/// <summary>
+		/// tests if <param name="type"> implements interface <param name="interfaceType"></typeparam>
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="interfaceType"></param>
+		/// <returns></returns>
+		public static bool ImplementsInterface(this Type type, Type interfaceType)
+		{
+			if (interfaceType == null) throw new ArgumentNullException("interfaceType");
+			if (type == null) throw new ArgumentNullException("type");
+			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
+			{
+				return type.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
+			}
+			return interfaceType.IsAssignableFrom(type);
+		}
+
+		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
+		{
+			return from assembly in assemblies
+				   from type in assembly.GetTypes()
+				   where !type.IsAbstract && type.IsClass && predicate(type)
+				   select type;
+		}
+
+		/// <summary>
+		/// Get a collection of types that implement interface <param name="interfaceType"></typeparam>
+		/// </summary>
+		/// <param name="interfaceType"></param>
+		/// <returns></returns>
+		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType)
+		{
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
+		}
+
+		/// <summary>
+		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
+		/// </summary>
+		/// <param name="interfaceType"></param>
+		/// <param name="directory"></param>
+		/// <param name="wildcard"></param>
+		/// <returns></returns>
+		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
+		{
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
 		}
 
 		/// <summary>
