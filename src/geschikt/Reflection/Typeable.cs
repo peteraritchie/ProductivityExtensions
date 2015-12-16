@@ -104,6 +104,21 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 
 		/// <summary>
+		/// Get a collection of types that implement interface <param name="interfaceType"></typeparam> within namespace named <paramref name="namespaceName"/>
+		/// </summary>
+		/// <param name="interfaceType"></param>
+		/// <param name="namespaceName"></param>
+		/// <returns></returns>
+		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
+		{
+			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException("namespaceName");
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return ByPredicate(assemblies,
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
+		}
+
+		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
 		/// </summary>
 		/// <param name="interfaceType"></param>
@@ -114,6 +129,21 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		{
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
+		}
+
+		/// <summary>
+		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/> within namespace named <paramref name="namespaceName"/>
+		/// </summary>
+		/// <param name="interfaceType"></param>
+		/// <param name="directory"></param>
+		/// <param name="wildcard"></param>
+		/// <param name="namespaceName"></param>
+		/// <returns></returns>
+		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
+		{
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
 		}
 
 		/// <summary>
