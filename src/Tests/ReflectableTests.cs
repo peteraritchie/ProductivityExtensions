@@ -1,7 +1,12 @@
 using System;
+using System.CodeDom.Compiler;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
 using PRI.ProductivityExtensions.ReflectionExtensions;
+using FileAssert=NUnit.Framework.FileAssert;
 
 namespace Tests
 {
@@ -38,6 +43,27 @@ namespace Tests
 		}
 // ReSharper restore UnusedMember.Local
 		#endregion // stubs
+		private static void GenerateAssembly(string sourceCode, string assemblyName)
+		{
+
+			var parameters = new CompilerParameters
+			{
+				GenerateExecutable = false,
+				OutputAssembly = assemblyName,
+			};
+
+			using (var provider = CodeDomProvider.CreateProvider("CSharp"))
+			{
+				var results = provider.CompileAssemblyFromSource(parameters, sourceCode);
+				if (results.Errors.HasErrors)
+				{
+					foreach (var error in results.Errors)
+					{
+						Trace.WriteLine(error);
+					}
+				}
+			}
+		}
 
 		[Test]
 		public void AssemblyGetCustomAttributeReturnsNonNullForAssemblyWithAttribute()
@@ -255,9 +281,82 @@ namespace Tests
 		{
 			var obj = new InheritsHasPrivateProperty(42);
 
+
 			obj.SetPrivatePropertyValue("Property", 73);
 
 			Assert.AreEqual(73, obj.GetPrivatePropertyValue<int>("Property"));
+		}
+
+		[Test]
+		public void FindTypesByAttributeInstance()
+		{
+			var assemblyName = "test1.dll";
+			GenerateAssembly(@"namespace ClassLibrary
+{
+	[System.Obsolete]
+	public class ClassWithAttribute
+	{
+		public int GetNumber()
+		{
+			return 42;
+		}
+	}
+}", assemblyName);
+			Assert.IsTrue(File.Exists(assemblyName));
+			var types = new ObsoleteAttribute().FindAttributedTypes(".", assemblyName);
+			Assert.AreEqual(1, types.Count());
+		}
+
+		[Test]
+		public void FindTypesByAttributeType()
+		{
+			var assemblyName = "test2.dll";
+			GenerateAssembly(@"namespace ClassLibrary
+{
+	[System.Obsolete]
+	public class ClassWithAttribute
+	{
+		public int GetNumber()
+		{
+			return 42;
+		}
+	}
+}", assemblyName);
+			Assert.IsTrue(File.Exists(assemblyName));
+			var types = typeof(ObsoleteAttribute).FindAttributedTypes(".", assemblyName);
+			Assert.AreEqual(1, types.Count());
+		}
+
+		[Test]
+		public void FindTypesByAttributeTypeInAppDomain()
+		{
+
+			var types = typeof (ObsoleteAttribute).FindAttributedTypes();
+			Assert.IsTrue(types.Any());
+		}
+
+		[Test]
+		public void FindTypesByAttributeInAppDomain()
+		{
+
+			var types = new ObsoleteAttribute().FindAttributedTypes();
+			Assert.IsTrue(types.Any());
+		}
+
+		[Test]
+		public void FindTypesByAttributeInAssemblies()
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			var types = new ObsoleteAttribute().FindAttributedTypes(assemblies);
+			Assert.IsTrue(types.Any());
+		}
+
+		[Test]
+		public void FindTypesByAttributeTypeInAssemblies()
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			var types = typeof(ObsoleteAttribute).FindAttributedTypes(assemblies);
+			Assert.IsTrue(types.Any());
 		}
 	}
 }

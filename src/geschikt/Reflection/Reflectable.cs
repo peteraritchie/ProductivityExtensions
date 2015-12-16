@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
+using PRI.ProductivityExtensions.IEnumerableExtensions;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -680,6 +682,55 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
 																property.PropertyType.FullName));
 			property.SetValue(obj, value, null);
+		}
+
+		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType)
+		{
+			if (attributeType == null) throw new ArgumentNullException("attributeType");
+			if(!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return attributeType.FindAttributedTypes(assemblies);
+		}
+
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute) where TAttribute : Attribute
+		{
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return attribute.FindAttributedTypes(assemblies);
+		}
+
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, string directory, string wildcard) where TAttribute : Attribute
+		{
+			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
+			return attribute.FindAttributedTypes(assemblies);
+		}
+
+		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, IEnumerable<Assembly> assemblies)
+		{
+			if (attributeType == null) throw new ArgumentNullException("attributeType");
+			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			return from assembly in assemblies
+				   from type in assembly.GetTypes()
+				   where !type.IsAbstract && type.IsClass && ((Predicate<Type>)(t => t.HasAttribute(attributeType)))(type)
+				   select type;
+		}
+		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, string directory, string wildcard)
+		{
+			if (attributeType == null) throw new ArgumentNullException("attributeType");
+			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
+			return from assembly in assemblies
+				   from type in assembly.GetTypes()
+				   where !type.IsAbstract && type.IsClass && ((Predicate<Type>)(t => t.HasAttribute(attributeType)))(type)
+				   select type;
+		}
+
+
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, IEnumerable<Assembly> assemblies) where TAttribute : Attribute
+		{
+			return from assembly in assemblies
+				   from type in assembly.GetTypes()
+				   where !type.IsAbstract && type.IsClass && ((Predicate<Type>)(t => t.HasAttribute<TAttribute>()))(type)
+				   select type;
 		}
 	}
 }

@@ -40,7 +40,18 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool HasAttribute<TAttribute>(this Type type) where TAttribute : Attribute
 		{
 			if (type == null) throw new ArgumentNullException("type");
-			return type.GetCustomAttributes(typeof(TAttribute), false).Length > 0;
+			return type.HasAttribute(typeof (TAttribute));
+		}
+
+		/// <summary>
+		/// Tests if <param name="type"></param> has attribute <paramref name="attributeType"/>
+		/// </summary>
+		/// <param name="type"></param>
+		/// <param name="attributeType"></param>
+		/// <returns>true if attributed with <paramref name="attributeType"/>, false otherwise.</returns>
+		public static bool HasAttribute(this Type type, Type attributeType)
+		{
+			return type.GetCustomAttributes(attributeType, false).Length > 0;
 		}
 
 		/// <summary>
