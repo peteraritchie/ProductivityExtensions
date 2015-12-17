@@ -23,9 +23,23 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 
 			return collection;
 		}
+
 		public static IEnumerable<Assembly> ToAssemblies(this IEnumerable<string> filenames)
 		{
-			return filenames.Select(Assembly.LoadFrom);
+			foreach (var f in filenames)
+			{
+				Assembly loadFrom;
+				try
+				{
+					loadFrom = Assembly.LoadFrom(f);
+				}
+				catch (ReflectionTypeLoadException)
+				{
+					// ignore anything that can't be loaded
+					continue;
+				}
+				yield return loadFrom;
+			}
 		}
 	}
 }
