@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
+using PRI.ProductivityExtensions.IEnumerableExtensions;
 using PRI.ProductivityExtensions.ReflectionExtensions;
 using FileAssert=NUnit.Framework.FileAssert;
 
@@ -357,6 +358,13 @@ namespace Tests
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			var types = typeof(ObsoleteAttribute).FindAttributedTypes(assemblies);
 			Assert.IsTrue(types.Any());
+		}
+
+		[Test]
+		public void ToAssembliesDoesNotLeakLoadExceptions()
+		{
+			var x = new DirectoryInfo(".").GetFiles().Select(f => f.FullName).ToAssemblies();
+			var c = x.Count();
 		}
 	}
 }

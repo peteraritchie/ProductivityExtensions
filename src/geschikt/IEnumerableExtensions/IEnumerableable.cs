@@ -33,6 +33,11 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 				{
 					loadFrom = Assembly.LoadFrom(f);
 				}
+				catch (BadImageFormatException)
+				{
+					// ignore anything that can't be loaded
+					continue;
+				}
 				catch (ReflectionTypeLoadException)
 				{
 					// ignore anything that can't be loaded
