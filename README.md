@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/peteraritchie/ProductivityExtensions.png?label=ready&title=Ready)](https://waffle.io/peteraritchie/ProductivityExtensions)
 ProductivityExtensions
 ======================
 
