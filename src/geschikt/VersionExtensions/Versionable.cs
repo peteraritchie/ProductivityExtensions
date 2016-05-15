@@ -21,16 +21,25 @@ namespace PRI.ProductivityExtensions.VersionExtensions
 		public static Version Windows7SP1Version = new Version(6, 1, 7601);
 		public static Version Windows8Version = new Version(6, 2, 9200);
 		public static Version Windows2012Version = new Version(6, 2, 9200);
+		public static Version Windows8_1Version = new Version(6, 3, 9600);
+		public static Version Windows2012R2Version = new Version(6, 3, 9700);
+		public static Version Windows10Version = new Version(10, 0, 10240);
 
 		public static bool IsEarlierThan(this Version leftVersion, Version rightVersion)
 		{
 			return leftVersion < rightVersion;
 		}
 
+		[Obsolete("misspelled name")]
 		public static bool IsVerisonOrEarlierThan(this Version leftVersion, Version rightVersion)
 		{
 			return leftVersion <= rightVersion;
 		}
+		public static bool IsVersionOrEarlierThan(this Version leftVersion, Version rightVersion)
+		{
+			return leftVersion <= rightVersion;
+		}
+
 
 		public static bool IsOlderThan(this Version leftVersion, Version rightVersion)
 		{
