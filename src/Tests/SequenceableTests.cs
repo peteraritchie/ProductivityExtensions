@@ -109,12 +109,37 @@ namespace Tests
 			var l2 = new List<int> { 1, 2, 3 };
 			Assert.AreEqual(-75, l2.SequenceEquality(l1, EqualityComparer<int>.Default));
 		}
+
 		[Test]
 		public void SequenceEqualityEqual()
 		{
 			var l1 = new List<int> { 1, 2 };
 			var l2 = new List<int> { 1, 2 };
 			Assert.AreEqual(0, l2.SequenceEquality(l1, EqualityComparer<int>.Default));
+		}
+
+		[Test]
+		public void SequenceEqualityNotEqual()
+		{
+			var l1 = new List<int> { 1, 2 };
+			var l2 = new List<int> { 3, 4 };
+			Assert.AreEqual(100, l2.SequenceEquality(l1, EqualityComparer<int>.Default));
+		}
+
+		[Test]
+		public void SequenceEqualityLargerThisNotEqual()
+		{
+			var l1 = new List<int> { 1, 2, 3 };
+			var l2 = new List<int> { 4, 5 };
+			Assert.AreEqual(-100, l2.SequenceEquality(l1, EqualityComparer<int>.Default));
+		}
+
+		[Test]
+		public void SequenceEqualityLargerThatNotEqual()
+		{
+			var l1 = new List<int> { 1, 2 };
+			var l2 = new List<int> { 3, 4, 5 };
+			Assert.AreEqual(100, l2.SequenceEquality(l1, EqualityComparer<int>.Default));
 		}
 	}
 }

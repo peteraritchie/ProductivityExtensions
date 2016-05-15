@@ -62,11 +62,13 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 			int p;
 			if (sourceCount >= thatCount)
 			{
-				p = matches*100/sourceCount;
+				if (matches == 0) return 100;
+				p = matches * 100 / sourceCount;
 				return p == 100 ? 0 : p;
 			}
+			if (matches == 0) return -100;
 			p = -matches * 100 / thatCount;
-			return p==100 ? 0 : p;
+			return p == 100 ? 0 : p;
 		}
 	}
 }
