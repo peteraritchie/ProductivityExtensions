@@ -107,10 +107,9 @@ namespace Tests
 		}
 
 		[Test]
-		[ExpectedException(typeof(ArgumentOutOfRangeException))]
 		public void SecondWithValueOtherThan1ResultsInException()
 		{
-			TimeSpan actual = 2.Second();
+			Assert.Throws<ArgumentOutOfRangeException>(() => 2.Second());
 		}
 
 		[Test]
