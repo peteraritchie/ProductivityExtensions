@@ -279,5 +279,9 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			return sb.ToString();
 		}
 
+		public static bool IsEmpty(this string value)
+		{
+			return String.Empty.Equals(value);
+		}
 	}
 }

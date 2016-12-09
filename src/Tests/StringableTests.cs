@@ -55,5 +55,28 @@ namespace Tests
 			Assert.AreEqual("f", actual);
 		}
 
+		[Test]
+		public void EmptyStringIsEqualToStringEmpty()
+		{
+			Assert.IsTrue("".IsEmpty());
+		}
+
+		[Test]
+		public void StringEmptyIsEmpty()
+		{
+			Assert.IsTrue(string.Empty.IsEmpty());
+		}
+
+		[Test]
+		public void NonEmptyStringIsNotEmpty()
+		{
+			Assert.IsFalse("non-empty".IsEmpty());
+		}
+
+		[Test]
+		public void NullStringIsNotEmpty()
+		{
+			Assert.IsFalse(((string)null).IsEmpty());
+		}
 	}
 }
