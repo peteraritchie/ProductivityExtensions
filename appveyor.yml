@@ -9,7 +9,7 @@ assembly_info:
 nuget:
   project_feed: true
 before_build:
-- cmd: SET
+- cmd: nuget restore
 build:
   verbosity: minimal
 after_build:
