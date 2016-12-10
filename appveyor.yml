@@ -10,11 +10,11 @@ nuget:
   project_feed: true
 before_build:
 - cmd: >-
-    pushd src
+    cd src
 
     nuget restore
 
-    popd
+    cd ..
 build:
   verbosity: minimal
 after_build:
