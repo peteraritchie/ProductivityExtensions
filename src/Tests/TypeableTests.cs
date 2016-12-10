@@ -120,7 +120,8 @@ namespace Tests
 		[Test]
 		public void CanFindTypesImplementingInterfaceInDirectory()
 		{
-			var types = typeof(IAsyncResult).ByImplementedInterfaceInDirectory(".", "*.dll");
+			var location = System.IO.Path.GetDirectoryName(this.GetType().Assembly.Location);
+			var types = typeof(IAsyncResult).ByImplementedInterfaceInDirectory(location, "*.dll");
 			Assert.IsTrue(types.Any());
 		}
 
