@@ -29,7 +29,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task<TResult> ToApm<TResult>(this Task<TResult> task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException(nameof(task));
+			if (task == null) throw new ArgumentNullException("task");
 			var tcs = new TaskCompletionSource<TResult>(state);
 
 			task.
@@ -68,7 +68,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task ToApm(this Task task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException(nameof(task));
+			if (task == null) throw new ArgumentNullException("task");
 			var tcs = new TaskCompletionSource<object>(state);
 
 			task.
