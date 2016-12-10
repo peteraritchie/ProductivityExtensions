@@ -1,7 +1,7 @@
 ProductivityExtensions
 ======================
 
-[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions)
+[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions) [![NuGet](https://img.shields.io/nuget/v/Nuget.Core.svg?maxAge=2592000)](https://www.nuget.org/packages/ProductivityExtensions)
 
 If you're not comfortable with GitHub for issues/feedback.  I've set up a UserVoice site at https://productivityextensions.uservoice.com/
 
