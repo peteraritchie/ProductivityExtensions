@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -28,6 +29,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task<TResult> ToApm<TResult>(this Task<TResult> task, AsyncCallback callback, object state)
 		{
+			if (task == null) throw new ArgumentNullException(nameof(task));
 			var tcs = new TaskCompletionSource<TResult>(state);
 
 			task.
@@ -49,7 +51,6 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <summary>
 		/// Converts an executing task from a TAP implementation to another that can be used in an APM implementation
 		/// </summary>
-		/// <typeparam name="TResult">inferred type of the result</typeparam>
 		/// <param name="task"><see cref="Task&lt;TResult&gt;"/> object that is executing</param>
 		/// <param name="callback"><see cref="AsyncCallback"/> from the Begin* method.</param>
 		/// <param name="state">Optional state</param>
@@ -67,6 +68,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task ToApm(this Task task, AsyncCallback callback, object state)
 		{
+			if (task == null) throw new ArgumentNullException(nameof(task));
 			var tcs = new TaskCompletionSource<object>(state);
 
 			task.

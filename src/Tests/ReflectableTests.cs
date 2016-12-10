@@ -363,7 +363,7 @@ namespace Tests
 		[Test]
 		public void ToAssembliesDoesNotLeakLoadExceptions()
 		{
-			var x = new DirectoryInfo(".").GetFiles().Select(f => f.FullName).ToAssemblies();
+			var x = new DirectoryInfo(".").GetFiles().Where(e=>e.Extension != ".msi").Select(f => f.FullName).ToAssemblies();
 			var c = x.Count();
 		}
 	}

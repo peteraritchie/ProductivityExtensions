@@ -125,7 +125,8 @@ namespace Tests
 		{
 			DateTime expected = DateTime.Now.AddMinutes(-10);
 			DateTime actual = new TimeSpan(0, 0, 10, 0).Ago();
-			Assert.AreEqual(expected, actual);
+			var timeSpan = actual - expected;
+			Assert.IsTrue(timeSpan.TotalMilliseconds < 10);
 		}
 
 		[Test]
