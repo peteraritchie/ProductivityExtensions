@@ -85,5 +85,12 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 
 			return tcs.Task;
 		}
+
+#if NET_4_5
+		public static ConfiguredTaskAwaitable ContinueOnTaskContext(this Task task)
+		{
+			return task.ConfigureAwait(continueOnCapturedContext: false);
+		}
+#endif // NET_4_5
 	}
 }
