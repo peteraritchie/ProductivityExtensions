@@ -1,11 +1,14 @@
 using System;
 using System.CodeDom.Compiler;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using NUnit.Framework;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
+using PRI.ProductivityExtensions.Reflection;
 using PRI.ProductivityExtensions.ReflectionExtensions;
 using FileAssert=NUnit.Framework.FileAssert;
 
@@ -365,6 +368,39 @@ namespace Tests
 		{
 			var x = new DirectoryInfo(".").GetFiles().Where(e=>e.Extension != ".msi").Select(f => f.FullName).ToAssemblies();
 			var c = x.Count();
+		}
+
+		private static class ToPropertyInfoWrapper<T>
+		{
+			public static PropertyInfo GetPropertyInfo<TProperty>(Expression<Func<T, TProperty>> e)
+			{
+				return e.ToPropertyInfo();
+			}
+			public static PropertyDescriptor GetPropertyDescriptor<TProperty>(Expression<Func<T, TProperty>> e)
+			{
+				return e.ToPropertyDescriptor();
+			}
+	}
+
+		[Test]
+		public void ToPropertyInfoSucceeds()
+		{
+			var p = ToPropertyInfoWrapper<string>.GetPropertyInfo(e => e.Length);
+			Assert.AreEqual("Length", p.Name);
+			Assert.AreEqual(typeof(int), p.PropertyType);
+			Assert.AreEqual(true, p.CanRead);
+			Assert.AreEqual(false, p.CanWrite);
+			Assert.AreEqual(typeof(string).GetProperties().Single(e => e.Name == "Length"), p);
+		}
+
+		[Test]
+		public void ToPropertDescriptorSucceeds()
+		{
+			var p = ToPropertyInfoWrapper<string>.GetPropertyDescriptor(e => e.Length);
+			Assert.AreEqual("Length", p.Name);
+			Assert.AreEqual(typeof(int), p.PropertyType);
+			Assert.AreEqual(true, p.IsReadOnly);
+			Assert.AreEqual(TypeDescriptor.GetProperties(typeof(string))["Length"], p);
 		}
 	}
 }

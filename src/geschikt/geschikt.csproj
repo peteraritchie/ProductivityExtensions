@@ -340,6 +340,7 @@
     <Compile Include="SelectionRangeConverterExtensions\SelectionRangeConverterable.g.cs" />
     <Compile Include="SendCompletedEventHandlerExtensions\SendCompletedEventHandlerable.g.cs" />
     <Compile Include="SendOrPostCallbackExtensions\SendOrPostCallbackable.g.cs" />
+    <Compile Include="Reflection\Expressionable.cs" />
     <Compile Include="SequenceExtensions\Sequenceable.cs" />
     <Compile Include="SerialDataReceivedEventHandlerExtensions\SerialDataReceivedEventHandlerable.g.cs" />
     <Compile Include="SerialErrorReceivedEventHandlerExtensions\SerialErrorReceivedEventHandlerable.g.cs" />
