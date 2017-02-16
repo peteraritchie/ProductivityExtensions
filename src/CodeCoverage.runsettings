@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- File name extension must be .runsettings -->
+<RunSettings>
+	<DataCollectionRunSettings>
+		<DataCollectors>
+			<DataCollector friendlyName="Code Coverage" uri="datacollector://Microsoft/CodeCoverage/2.0" assemblyQualifiedName="Microsoft.VisualStudio.Coverage.DynamicCoverageDataCollector, Microsoft.VisualStudio.TraceCollector, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+				<Configuration>
+					<CodeCoverage>
+						<Functions>
+							<Exclude>
+							</Exclude>
+						</Functions>
+						<Attributes>
+							<Exclude>
+								<Attribute>^System\.Runtime\.CompilerServices\.CompilerGeneratedAttribute$</Attribute>
+								<Attribute>^System\.CodeDom\.Compiler\.GeneratedCodeAttribute$</Attribute>
+								<Attribute>^System\.Diagnostics\.CodeAnalysis\.ExcludeFromCodeCoverageAttribute$</Attribute>
+								<Attribute>^NUnit\.Framework\.TestFixtureAttribute$</Attribute>
+								<Attribute>^Microsoft\.VisualStudio\.TestTools\.UnitTesting\.TestClassAttribute$</Attribute>
+								<Attribute>$Xunit\.FactAttribute</Attribute>
+								<!-- Add more Attribute nodes here. -->
+							</Exclude>
+						</Attributes>
+						<ModulePaths>
+							<Exclude>
+								<!--e.g:<ModulePath>^.*Tests\.dll$</ModulePath>-->
+								<!-- Add more ModulePath nodes here. -->
+							</Exclude>
+						</ModulePaths>
+						<CompanyNames>
+							<Exclude>
+								<CompanyName>.*microsoft.*</CompanyName>
+								<CompanyName>.*App vNext.*</CompanyName>
+								<CompanyName>.*Marc Gravell.*</CompanyName>
+							</Exclude>
+						</CompanyNames>
+					</CodeCoverage>
+				</Configuration>
+			</DataCollector>
+		</DataCollectors>
+	</DataCollectionRunSettings>
+</RunSettings>

@@ -7,6 +7,42 @@ namespace Tests
 	public class StringableTests
 	{
 		[Test]
+		public void LeftLessThanLength()
+		{
+			Assert.AreEqual("1", "12".Left(1));
+		}
+
+		[Test]
+		public void LeftSameLength()
+		{
+			Assert.AreEqual("12", "12".Left(2));
+		}
+
+		[Test]
+		public void LeftMoreThanLength()
+		{
+			Assert.AreEqual("12", "12".Left(3));
+		}
+
+		[Test]
+		public void RightLessThanLength()
+		{
+			Assert.AreEqual("2", "12".Right(1));
+		}
+
+		[Test]
+		public void RightSameLength()
+		{
+			Assert.AreEqual("12", "12".Right(2));
+		}
+
+		[Test]
+		public void RightMoreThanLength()
+		{
+			Assert.AreEqual("12", "12".Right(3));
+		}
+
+		[Test]
 		public void ReplaceEachAll()
 		{
 			var actual = "xyz".ReplaceEach("yzx", 'n');
