@@ -831,6 +831,9 @@
     <Compile Include="..\geschikt\Reflection\CustomAttributeProviderExtensions.cs">
       <Link>Reflection\CustomAttributeProviderExtensions.cs</Link>
     </Compile>
+    <Compile Include="..\geschikt\Reflection\Expressionable.cs">
+      <Link>Reflection\Expressionable.cs</Link>
+    </Compile>
     <Compile Include="..\geschikt\Reflection\IlInstruction.cs">
       <Link>Reflection\IlInstruction.cs</Link>
     </Compile>
