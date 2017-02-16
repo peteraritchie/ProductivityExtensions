@@ -40,6 +40,9 @@ using System.Collections.Generic;
 
 namespace PRI.ProductivityExtensions.IDictionaryExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="IDictionary{TKey,TValue}"/>
+	/// </summary>
 	public static partial class IDictionaryable
 	{
 		/// <summary>

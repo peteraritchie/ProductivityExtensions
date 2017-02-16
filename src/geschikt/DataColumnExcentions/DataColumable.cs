@@ -3,6 +3,9 @@ using System.Data;
 
 namespace PRI.ProductivityExtensions.DataColumnExcentions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="DataColumnCollection"/>
+	/// </summary>
 	public static class DataColumable
 	{
 		/// <summary>

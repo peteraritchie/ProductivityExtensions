@@ -4,8 +4,19 @@ using System.Text;
 
 namespace PRI.ProductivityExtensions.ByteArrayExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="byte[]"/>
+	/// </summary>
 	static public partial class ByteArrayable
 	{
+		/// <summary>
+		/// Converts a byte array into a continuous hex string
+		/// </summary>
+		/// <param name="buffer">buffer that contains the bytes</param>
+		/// <param name="offset">offset into the buffer to start</param>
+		/// <param name="length">how many types to process</param>
+		/// <returns>string of hex characters</returns>
+		/// <exception cref="IndexOutOfRangeException">if <paramref name="offset"/> is less than 0 or <paramref name="length"/> is longer than the buffer</exception>
 		public static string AsHexString(this byte[] buffer, int offset, int length)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
@@ -20,12 +31,17 @@ namespace PRI.ProductivityExtensions.ByteArrayExtensions
 					++line;
 					lineOctet = 0;
 				}
-				stringBuilder.Append(String.Format("{0} ", b.ToString("X2", CultureInfo.CurrentCulture)));
+				stringBuilder.Append(string.Format("{0} ", b.ToString("X2", CultureInfo.CurrentCulture)));
 			}
 			return stringBuilder.ToString();
 		}
 
-		public static String AsHexString(this byte[] buffer)
+		/// <summary>
+		/// Converts a byte array into a continuous hex string
+		/// </summary>
+		/// <param name="buffer">buffer that contains the bytes</param>
+		/// <returns>string of hex characters</returns>
+		public static string AsHexString(this byte[] buffer)
 		{
 			return AsHexString(buffer, 0, buffer.Length);
 		}

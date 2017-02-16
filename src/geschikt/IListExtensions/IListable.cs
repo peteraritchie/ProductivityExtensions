@@ -40,6 +40,9 @@ using System.Collections.Generic;
 
 namespace PRI.ProductivityExtensions.IListExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="IList{T}"/>
+	/// </summary>
 	public static class IListable
 	{
 		/// <summary>

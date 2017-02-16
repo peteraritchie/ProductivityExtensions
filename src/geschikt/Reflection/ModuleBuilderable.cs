@@ -3,6 +3,9 @@ using System.Reflection.Emit;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="ModuleBuilder"/>
+	/// </summary>
 	public static partial class ModuleBuilderable
 	{
 		/// <summary>

@@ -7,6 +7,9 @@ using PRI.ProductivityExtensions.ICollectionableExtensions;
 
 namespace PRI.ProductivityExtensions.IEnumerableExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="IEnumerable{T}"/>
+	/// </summary>
 	public static partial class IEnumerableable
 	{
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> enumerable)

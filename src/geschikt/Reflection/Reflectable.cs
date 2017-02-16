@@ -9,6 +9,9 @@ using PRI.ProductivityExtensions.IEnumerableExtensions;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
+	/// <summary>
+	/// class hat contains extension methods that extend reflection-related classes 
+	/// </summary>
 	public static class Reflectable
 	{
 		/// <summary>
@@ -684,39 +687,70 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			property.SetValue(obj, value, null);
 		}
 
+		/// <summary>
+		/// Find all types in the current AppDomain that have been attributed with <paramref name="attributeType"/>
+		/// </summary>
+		/// <param name="attributeType">Attribute for which types must implement to match</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType)
 		{
 			if (attributeType == null) throw new ArgumentNullException("attributeType");
-			if(!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			if(!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", "attributeType");
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return attributeType.FindAttributedTypes(assemblies);
 		}
 
+		/// <summary>
+		/// Find all types in the current AppDomain that have been attributed with <paramref name="attribute"/>
+		/// </summary>
+		/// <param name="attribute">Attribute for which types must implement to match</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute) where TAttribute : Attribute
 		{
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return attribute.FindAttributedTypes(assemblies);
 		}
 
+		/// <summary>
+		/// Find all types in <paramref name="directory"/> whose names patch <paramref name="wildcard"/> that have been attributed with <paramref name="attributeType"/>
+		/// </summary>
+		/// <param name="attribute">Attribute for which types must implement to match</param>
+		/// <param name="directory">Directory to search for assemblies</param>
+		/// <param name="wildcard">Wildcard to use to include assembly file names</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, string directory, string wildcard) where TAttribute : Attribute
 		{
 			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
 			return attribute.FindAttributedTypes(assemblies);
 		}
 
+		/// <summary>
+		/// Find all types in <paramref name="assemblies"/> that have been attributed with <paramref name="attributeType"/>
+		/// </summary>
+		/// <param name="attributeType">Attribute for which types must implement to match</param>
+		/// <param name="assemblies">Assemblies to search</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, IEnumerable<Assembly> assemblies)
 		{
 			if (attributeType == null) throw new ArgumentNullException("attributeType");
-			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", "attributeType");
 			return from assembly in assemblies
 				   from type in assembly.GetTypes()
 				   where !type.IsAbstract && type.IsClass && ((Predicate<Type>)(t => t.HasAttribute(attributeType)))(type)
 				   select type;
 		}
+
+		/// <summary>
+		/// Find all types in <paramref name="directory"/> whose names patch <paramref name="wildcard"/> that have been attributed with <paramref name="attributeType"/>
+		/// </summary>
+		/// <param name="attributeType">Attribute for which types must implement to match</param>
+		/// <param name="directory">Directory to search for assemblies</param>
+		/// <param name="wildcard">Wildcard to use to include assembly file names</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, string directory, string wildcard)
 		{
 			if (attributeType == null) throw new ArgumentNullException("attributeType");
-			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attritypeType does implement Attribute", "attributeType");
+			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", "attributeType");
 			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
 			return from assembly in assemblies
 				   from type in assembly.GetTypes()
@@ -725,6 +759,12 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 
 
+		/// <summary>
+		/// Find all types in <paramref name="assemblies"/> that have been attributed with <paramref name="attribute"/>
+		/// </summary>
+		/// <param name="attribute">Attribute for which types must implement to match</param>
+		/// <param name="assemblies">Assemblies to search</param>
+		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, IEnumerable<Assembly> assemblies) where TAttribute : Attribute
 		{
 			return from assembly in assemblies

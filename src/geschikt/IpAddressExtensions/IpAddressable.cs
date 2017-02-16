@@ -3,6 +3,9 @@ using System.Net;
 
 namespace PRI.ProductivityExtensions.IpAddressExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="IPAddress"/>
+	/// </summary>
 	public static partial class IpAddressable
 	{
 		/// <summary>

@@ -39,6 +39,9 @@ using System.Data;
 
 namespace PRI.ProductivityExtensions.IDbConnectionExtensions
 {
+	/// <summary>
+	/// class that contains extension methods that extend <seealso cref="IDbConnection"/>
+	/// </summary>
 	public static class IDbConnectionable
 	{
 		/// <summary>
