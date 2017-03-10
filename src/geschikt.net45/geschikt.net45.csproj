@@ -1308,6 +1308,7 @@
     <Compile Include="..\geschikt\XsltMessageEncounteredEventHandlerExtensions\XsltMessageEncounteredEventHandlerable.g.cs">
       <Link>XsltMessageEncounteredEventHandlerExtensions\XsltMessageEncounteredEventHandlerable.g.cs</Link>
     </Compile>
+    <Compile Include="ActionExtensions\Actionable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IAwaitable.cs" />
     <Compile Include="SocketExtensions\Socketable.cs" />

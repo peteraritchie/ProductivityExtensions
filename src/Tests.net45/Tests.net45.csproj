@@ -48,6 +48,7 @@
     <Compile Include="..\Tests\TypeableTests.cs">
       <Link>TypeableTests.cs</Link>
     </Compile>
+    <Compile Include="ActionableTests.cs" />
     <Compile Include="when_configuring_await.cs" />
     <Compile Include="when_working_with_ipv4_addresses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

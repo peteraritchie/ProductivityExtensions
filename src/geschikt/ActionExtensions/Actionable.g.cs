@@ -31,4 +31,8 @@ namespace PRI.ProductivityExtensions.ActionExtensions
 		}
 
 	}
+
+	public static partial class Actionable
+	{
+	}
 }
