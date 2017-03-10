@@ -1,4 +1,9 @@
 version: 2.0.{build}
+pull_requests:
+  do_not_increment_build_number: true
+branches:
+  only:
+  - master
 configuration: Release
 assembly_info:
   patch: true
@@ -10,11 +15,11 @@ nuget:
   project_feed: true
 before_build:
 - cmd: >-
-    cd src
+    pushd src
 
     nuget restore
 
-    cd ..
+    popd
 build:
   verbosity: minimal
 after_build:
@@ -31,7 +36,7 @@ after_build:
 
     copy src\geschikt.net45\bin\Release\geschikt.pdb nuget\lib\net45
 
-    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols -version %APPVEYOR_BUILD_VERSION%
+    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols -version $env:APPVEYOR_BUILD_VERSION
 artifacts:
 - path: src\geschikt\bin\Release\geschikt.dll
   name: net40-client
