@@ -12,10 +12,11 @@
     <owners>Peter Ritchie</owners>
     <licenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/peteraritchie/ProductivityExtensions</projectUrl>
+    <iconUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/dev/productivity.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Productivity Extensions is a library of extension methods extending over 650 methods in 400 Framework classes</description>
-    <releaseNotes>Added LambdaExpression.ToPropertyInfo and ToPropertyDescriptor</releaseNotes>
-    <copyright>Copyright 2017 Peter Ritchie</copyright>
+    <releaseNotes>Removed Windows Phone 7.1 libaries and bumped version</releaseNotes>
+    <copyright>Copyright 2015</copyright>
     <tags>extension methods</tags>
   </metadata>
 </package>
