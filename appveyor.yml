@@ -11,33 +11,24 @@ assembly_info:
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: sbStw71imn5c9ATjfPvDotgSyReJHM+il7wz8/083Xy3BONRyRxIg0cOjGAr8evI
 nuget:
   project_feed: true
   disable_publish_on_pr: true
 before_build:
-- cmd: >-
-    cd src
-
-    nuget restore
-
-    cd ..
+- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory tools \nnuget install -OutputDirectory tools OpenCover -Version 4.6.519\ndir *.*proj /s /b\ndir *.sln /s /b"
 build:
+  project: src\geschikt.sln
   verbosity: minimal
 after_build:
 - cmd: >-
-    if not exist nuget\lib\net40-client md nuget\lib\net40-client
+    if "%APPVEYOR_PR_BUILD%"=="" CALL copynugetfiles.bat
 
-    copy src\geschikt\bin\Release\geschikt.dll nuget\lib\net40-client
+    tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
 
-    copy src\geschikt\bin\Release\geschikt.pdb nuget\lib\net40-client
-
-    if not exist nuget\lib\net45 md nuget\lib\net45
-
-    copy src\geschikt.net45\bin\Release\geschikt.dll nuget\lib\net45
-
-    copy src\geschikt.net45\bin\Release\geschikt.pdb nuget\lib\net45
-
-    nuget.exe pack nuget\ProductivityExtensions.nuspec -Symbols -version $env:APPVEYOR_BUILD_VERSION
+    tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 artifacts:
 - path: src\geschikt\bin\Release\geschikt.dll
   name: net40-client
