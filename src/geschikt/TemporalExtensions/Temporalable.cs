@@ -280,5 +280,25 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 			}
 			return string.Format("{0} milliseconds", timeSpan.Milliseconds);
 		}
+
+		public static string ToSortableDate(this DateTime dateTime)
+		{
+			return dateTime.Date.ToString("yyyy'-'MM'-'dd");
+		}
+
+		public static string ToIsoDate(this DateTime dateTime)
+		{
+			return dateTime.ToSortableDate();
+		}
+
+		public static string ToSortableDateTime(this DateTime dateTime)
+		{
+			return dateTime.ToString("s");
+		}
+
+		public static string ToIsoDateTime(this DateTime dateTime)
+		{
+			return dateTime.ToString("O");
+		}
 	}
 }

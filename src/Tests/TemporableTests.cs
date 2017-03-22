@@ -109,7 +109,7 @@ namespace Tests
 		[Test]
 		public void SecondWithValueOtherThan1ResultsInException()
 		{
-			Assert.Throws<ArgumentOutOfRangeException>(() => 2.Second());
+			Assert.Throws<ArgumentOutOfRangeException>(()=> { TimeSpan actual = 2.Second();});
 		}
 
 		[Test]
@@ -125,8 +125,7 @@ namespace Tests
 		{
 			DateTime expected = DateTime.Now.AddMinutes(-10);
 			DateTime actual = new TimeSpan(0, 0, 10, 0).Ago();
-			var timeSpan = actual - expected;
-			Assert.IsTrue(timeSpan.TotalMinutes < 10);
+			Assert.AreEqual(expected.AddMilliseconds(-expected.Millisecond), actual.AddMilliseconds(-actual.Millisecond));
 		}
 
 		[Test]
@@ -178,6 +177,30 @@ namespace Tests
 			string actual = new TimeSpan(1, 2, 3, 4).ToEnglishString();
 
 			Assert.AreEqual("1 days and 2 hours", actual);
+		}
+
+		[Test]
+		public void ToSortableDateWorksWithOneDigitDay()
+		{
+			string actual = new DateTime(1999, 5,5, 1,2,3).ToSortableDate();
+
+			Assert.AreEqual("1999-05-05", actual);
+		}
+
+		[Test]
+		public void ToSortableDateWorksWithTwoDigitDay()
+		{
+			string actual = new DateTime(1999, 5,31, 1,2,3).ToSortableDate();
+
+			Assert.AreEqual("1999-05-31", actual);
+		}
+
+		[Test]
+		public void ToSortableDateWorksWithTwoDigitMonth()
+		{
+			string actual = new DateTime(1999, 11,30, 1,2,3).ToSortableDate();
+
+			Assert.AreEqual("1999-11-30", actual);
 		}
 	}
 }
