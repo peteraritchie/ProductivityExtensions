@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.TableLayoutSettingsTypeConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typeconverter.ConvertTo<int>(value);
+		/// typeconverter.ConvertTo&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this TableLayoutSettingsTypeConverter typeconverter, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.TableLayoutSettingsTypeConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// tablelayoutsettingstypeconverter.ConvertTo<int>(context, culture, value);
+		/// tablelayoutsettingstypeconverter.ConvertTo&lt;int&gt;(context, culture, value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this TableLayoutSettingsTypeConverter tablelayoutsettingstypeconverter, System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object value)

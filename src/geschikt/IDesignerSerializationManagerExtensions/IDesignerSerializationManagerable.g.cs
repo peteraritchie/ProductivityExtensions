@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.IDesignerSerializationManagerExtensions
 		/// Extends CreateInstance so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// idesignerserializationmanager.CreateInstance<int>(arguments, name, addToContainer);
+		/// idesignerserializationmanager.CreateInstance&lt;int&gt;(arguments, name, addToContainer);
 		/// </example>
 		/// </summary>
 		public static T CreateInstance<T>(this IDesignerSerializationManager idesignerserializationmanager, System.Collections.ICollection arguments, String name, Boolean addToContainer)

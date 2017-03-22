@@ -49,13 +49,10 @@ namespace stats
 			XPathDocument myXPathDoc = new XPathDocument(@"..\..\..\geschikt\bin\release\ProductivityExtensions.XML");
 			XslCompiledTransform myXslTrans = new XslCompiledTransform();
 			myXslTrans.Load(@"..\..\..\geschikt\bin\release\visual-studio-xml-doc.xsl");
-			using(var stream = new FileStream("doc.html", FileMode.Create, FileAccess.Write))//MemoryStream())
+			var stream = new FileStream("doc.html", FileMode.Create, FileAccess.Write);
+			using (var writer = new StreamWriter(stream))
 			{
-				using(var writer = new StreamWriter(stream))
-				{
-					myXslTrans.Transform(myXPathDoc, null, writer);
-				}
-//				var text = Encoding.ASCII.GetString(stream.ToArray());
+				myXslTrans.Transform(myXPathDoc, null, writer);
 			}
 		}
 	}

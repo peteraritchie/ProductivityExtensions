@@ -103,6 +103,8 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			return stream.BeginReadToEnd(buffer, 0, buffer.Length, callback, null);
 		}
 
+#pragma warning disable CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
+#pragma warning disable CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 		/// <summary>
 		/// The Asynchronous Programming Model matching End method to the corresponding BeginReadToEnd methods.
 		/// </summary>
@@ -113,6 +115,8 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// </returns>
 		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "stream", 
+#pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
+#pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 			Justification = "'stream' is required for this to be an extension method")]
 #if NET_4_5
 		[Obsolete("Prefer Stream.ReadAsync")]

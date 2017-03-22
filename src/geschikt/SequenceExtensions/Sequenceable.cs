@@ -4,7 +4,9 @@ using System.Linq;
 
 namespace PRI.ProductivityExtensions.SequenceExtensions
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Sequenceable'
 	public static class Sequenceable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Sequenceable'
 	{
 		/// <summary>
 		/// Compares two sequences to see if they are equal

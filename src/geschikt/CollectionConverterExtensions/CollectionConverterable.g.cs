@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.CollectionConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// collectionconverter.ConvertTo<int>(context, culture, value);
+		/// collectionconverter.ConvertTo&lt;int&gt;(context, culture, value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this CollectionConverter collectionconverter, ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.CollectionConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typeconverter.ConvertTo<int>(value);
+		/// typeconverter.ConvertTo&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this CollectionConverter typeconverter, Object value)

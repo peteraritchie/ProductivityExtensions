@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.KeysConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typeconverter.ConvertTo<int>(value);
+		/// typeconverter.ConvertTo&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this KeysConverter typeconverter, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.KeysConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// keysconverter.ConvertTo<int>(context, culture, value);
+		/// keysconverter.ConvertTo&lt;int&gt;(context, culture, value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this KeysConverter keysconverter, System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object value)

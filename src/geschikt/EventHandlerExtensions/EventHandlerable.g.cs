@@ -12,15 +12,21 @@ using System;
 namespace PRI.ProductivityExtensions.EventHandlerExtensions
 {
 
+#pragma warning disable CS1570 // XML comment has badly formed XML -- 'Missing closing quotation mark for string literal.'
+#pragma warning disable CS1570 // XML comment has badly formed XML -- 'Expected '>' or '/>' to close tag 'seealso'.'
+#pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'seealso' does not match the start tag 'TEventArgs'.'
 	/// <summary>
-	/// Class that contains extension methods that extend <seealso cref="System.EventHandler<TEventArgs>">EventHandler<TEventArgs></seealso>
+	/// Class that contains extension methods that extend <seealso cref="System.EventHandler<TEventArgs>">EventHandler&lt;TEventArgs&gt;</seealso>
 	/// </summary>
 	public static partial class EventHandlerable
+#pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'seealso' does not match the start tag 'TEventArgs'.'
+#pragma warning restore CS1570 // XML comment has badly formed XML -- 'Expected '>' or '/>' to close tag 'seealso'.'
+#pragma warning restore CS1570 // XML comment has badly formed XML -- 'Missing closing quotation mark for string literal.'
 	{
 		/// <summary>
-		/// Extends BeginInvoke<TEventArgs> so that when a state object is not needed, null does not need to be passed.
+		/// Extends BeginInvoke&lt;TEventArgs&gt; so that when a state object is not needed, null does not need to be passed.
 		/// <example>
-		/// eventhandler.BeginInvoke<TEventArgs>(sender, e, callback);
+		/// eventhandler.BeginInvoke&lt;TEventArgs&gt;(sender, e, callback);
 		/// </example>
 		/// </summary>
 		public static IAsyncResult BeginInvoke<TEventArgs>(this EventHandler<TEventArgs> eventhandler, Object sender, TEventArgs e, AsyncCallback callback) where TEventArgs : EventArgs

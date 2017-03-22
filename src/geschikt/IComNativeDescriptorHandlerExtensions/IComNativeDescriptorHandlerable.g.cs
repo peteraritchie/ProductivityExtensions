@@ -18,14 +18,16 @@ namespace PRI.ProductivityExtensions.IComNativeDescriptorHandlerExtensions
 	/// </summary>
 	public static partial class IComNativeDescriptorHandlerable
 	{
+#pragma warning disable CS0618 // 'IComNativeDescriptorHandler' is obsolete: 'This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  http://go.microsoft.com/fwlink/?linkid=14202'
 		/// <summary>
 		/// Extends GetEditor so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// icomnativedescriptorhandler.GetEditor<int>(component);
+		/// icomnativedescriptorhandler.GetEditor&lt;int&gt;(component);
 		/// </example>
 		/// </summary>
 		public static T GetEditor<T>(this IComNativeDescriptorHandler icomnativedescriptorhandler, Object component)
+#pragma warning restore CS0618 // 'IComNativeDescriptorHandler' is obsolete: 'This interface has been deprecated. Add a TypeDescriptionProvider to handle type TypeDescriptor.ComObjectType instead.  http://go.microsoft.com/fwlink/?linkid=14202'
 		{
 			if(icomnativedescriptorhandler == null) throw new ArgumentNullException("icomnativedescriptorhandler");
 

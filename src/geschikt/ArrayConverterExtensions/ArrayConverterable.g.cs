@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.ArrayConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// arrayconverter.ConvertTo<int>(context, culture, value);
+		/// arrayconverter.ConvertTo&lt;int&gt;(context, culture, value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this ArrayConverter arrayconverter, ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.ArrayConverterExtensions
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typeconverter.ConvertTo<int>(value);
+		/// typeconverter.ConvertTo&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this ArrayConverter typeconverter, Object value)

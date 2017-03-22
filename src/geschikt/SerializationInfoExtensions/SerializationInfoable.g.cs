@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.SerializationInfoExtensions
 		/// Extends GetValue so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// serializationinfo.GetValue<int>(name);
+		/// serializationinfo.GetValue&lt;int&gt;(name);
 		/// </example>
 		/// </summary>
 		public static T GetValue<T>(this SerializationInfo serializationinfo, String name)

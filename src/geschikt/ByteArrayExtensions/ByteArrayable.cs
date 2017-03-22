@@ -5,7 +5,7 @@ using System.Text;
 namespace PRI.ProductivityExtensions.ByteArrayExtensions
 {
 	/// <summary>
-	/// class that contains extension methods that extend <seealso cref="byte[]"/>
+	/// class that contains extension methods that extend <seealso cref="T:byte[]"/>
 	/// </summary>
 	static public partial class ByteArrayable
 	{

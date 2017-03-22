@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlReaderExtensions
 		/// Extends ReadContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadContentAs<int>(namespaceResolver);
+		/// xmlreader.ReadContentAs&lt;int&gt;(namespaceResolver);
 		/// </example>
 		/// </summary>
 		public static T ReadContentAs<T>(this XmlReader xmlreader, IXmlNamespaceResolver namespaceResolver)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.XmlReaderExtensions
 		/// Extends ReadElementContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadElementContentAs<int>(namespaceResolver);
+		/// xmlreader.ReadElementContentAs&lt;int&gt;(namespaceResolver);
 		/// </example>
 		/// </summary>
 		public static T ReadElementContentAs<T>(this XmlReader xmlreader, IXmlNamespaceResolver namespaceResolver)
@@ -50,7 +50,7 @@ namespace PRI.ProductivityExtensions.XmlReaderExtensions
 		/// Extends ReadElementContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadElementContentAs<int>(namespaceResolver, localName, namespaceURI);
+		/// xmlreader.ReadElementContentAs&lt;int&gt;(namespaceResolver, localName, namespaceURI);
 		/// </example>
 		/// </summary>
 		public static T ReadElementContentAs<T>(this XmlReader xmlreader, IXmlNamespaceResolver namespaceResolver, String localName, String namespaceURI)

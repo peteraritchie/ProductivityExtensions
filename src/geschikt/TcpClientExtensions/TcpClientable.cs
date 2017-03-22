@@ -10,13 +10,17 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 {
 	public static partial class TcpClientable
 	{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback)'
 		public static IAsyncResult BeginConnect(this TcpClient tcpClient, IPEndPoint endPoint, AsyncCallback asyncCallback)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback)'
 		{
 			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, null);
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback, object)'
 		public static IAsyncResult BeginConnect(this TcpClient tcpClient, IPEndPoint endPoint, AsyncCallback asyncCallback, object state)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback, object)'
 		{
 			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, state);

@@ -267,7 +267,9 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			return x != -1 ? value.Substring(0, x) : value;
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Stringable.Initials(string)'
 		public static string Initials(this string value)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Stringable.Initials(string)'
 		{
 			if (value == null) return null;
 			var items = value.Split(' ');
@@ -279,7 +281,9 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			return sb.ToString();
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Stringable.IsEmpty(string)'
 		public static bool IsEmpty(this string value)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Stringable.IsEmpty(string)'
 		{
 			return String.Empty.Equals(value);
 		}

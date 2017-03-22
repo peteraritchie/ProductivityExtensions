@@ -15,16 +15,13 @@ using PRI.ProductivityExtensions.ActionExtensions;
 		{
 			Action<TextWriter> a1 = (tw) => { tw.Write("1"); };
 			Action<TextWriter> a2 = (tw) => { tw.Write("2"); };
-			var mcd = new [] {a1, a2}.Sum();
-			string text;
-			using (MemoryStream memoryStream = new MemoryStream())
+			var mcd = new[] {a1, a2}.Sum();
+			MemoryStream memoryStream = new MemoryStream();
+			using (TextWriter tw = new StreamWriter(memoryStream))
 			{
-				using (TextWriter tw = new StreamWriter(memoryStream))
-				{
-					mcd(tw);
-				}
-				text = Encoding.UTF8.GetString(memoryStream.ToArray());
+				mcd(tw);
 			}
+			var text = Encoding.UTF8.GetString(memoryStream.ToArray());
 			Assert.AreEqual("12", text);
 		}
 	}

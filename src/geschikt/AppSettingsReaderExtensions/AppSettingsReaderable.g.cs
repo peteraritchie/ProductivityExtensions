@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.AppSettingsReaderExtensions
 		/// Extends GetValue so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// appsettingsreader.GetValue<int>(key);
+		/// appsettingsreader.GetValue&lt;int&gt;(key);
 		/// </example>
 		/// </summary>
 		public static T GetValue<T>(this AppSettingsReader appsettingsreader, String key)

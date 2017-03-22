@@ -4,7 +4,9 @@ using System.Reflection.Emit;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable'
 	public static partial class TypeBuilderable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable'
 	{
 		/// <summary>
 		/// Add public field to <paramref name="typeBuilder"/> of name <paramref name="fieldName"/>
@@ -140,12 +142,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			new CustomAttributeBuilder(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute).GetConstructor(),
 									   new object[0]);
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty<T>(TypeBuilder, string)'
 		public static PropertyBuilder CreatePublicAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty<T>(TypeBuilder, string)'
 		{
 			return CreatePublicAutoProperty(typeBuilder, propertName, typeof(T));
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty(TypeBuilder, string, Type)'
 		public static PropertyBuilder CreatePublicAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
 				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
@@ -173,12 +179,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return property;
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePrivateAutoProperty<T>(TypeBuilder, string)'
 		public static PropertyBuilder CreatePrivateAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePrivateAutoProperty<T>(TypeBuilder, string)'
 		{
 			return CreatePrivateAutoProperty(typeBuilder, propertName, typeof(T));
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePrivateAutoProperty(TypeBuilder, string, Type)'
 		public static PropertyBuilder CreatePrivateAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePrivateAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
 				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
@@ -206,12 +216,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return property;
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreateReadonlyAutoProperty<T>(TypeBuilder, string)'
 		public static PropertyBuilder CreateReadonlyAutoProperty<T>(this TypeBuilder typeBuilder, string propertName)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreateReadonlyAutoProperty<T>(TypeBuilder, string)'
 		{
 			return CreateReadonlyAutoProperty(typeBuilder, propertName, typeof(T));
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreateReadonlyAutoProperty(TypeBuilder, string, Type)'
 		public static PropertyBuilder CreateReadonlyAutoProperty(this TypeBuilder typeBuilder, string propertyName, Type propertyType)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreateReadonlyAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
 				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),

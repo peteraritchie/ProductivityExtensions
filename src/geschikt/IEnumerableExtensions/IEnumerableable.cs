@@ -12,7 +12,9 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 	/// </summary>
 	public static partial class IEnumerableable
 	{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToCollection<T>(IEnumerable<T>)'
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> enumerable)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToCollection<T>(IEnumerable<T>)'
 		{
 			if (enumerable == null) throw new ArgumentNullException("enumerable");
 
@@ -27,7 +29,9 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			return collection;
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
 		public static IEnumerable<Assembly> ToAssemblies(this IEnumerable<string> filenames)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
 		{
 			foreach (var f in filenames)
 			{

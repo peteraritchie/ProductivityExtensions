@@ -59,8 +59,7 @@ namespace PRI.ProductivityExtensions.IDbConnectionExtensions
 			if (toClose.State != ConnectionState.Closed)
 			{
 				toClose.Close();
-			}
-			if (dispose)
+			} else if (dispose)
 			{
 				toClose.Dispose();
 			}

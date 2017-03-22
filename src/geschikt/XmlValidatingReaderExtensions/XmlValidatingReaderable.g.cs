@@ -18,42 +18,48 @@ namespace PRI.ProductivityExtensions.XmlValidatingReaderExtensions
 	/// </summary>
 	public static partial class XmlValidatingReaderable
 	{
+#pragma warning disable CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		/// <summary>
 		/// Extends ReadContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadContentAs<int>(namespaceResolver);
+		/// xmlreader.ReadContentAs&lt;int&gt;(namespaceResolver);
 		/// </example>
 		/// </summary>
 		public static T ReadContentAs<T>(this XmlValidatingReader xmlreader, IXmlNamespaceResolver namespaceResolver)
+#pragma warning restore CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		{
 			if(xmlreader == null) throw new ArgumentNullException("xmlreader");
 
 			return (T)xmlreader.ReadContentAs(typeof(T), namespaceResolver);
 		}
 
+#pragma warning disable CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		/// <summary>
 		/// Extends ReadElementContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadElementContentAs<int>(namespaceResolver);
+		/// xmlreader.ReadElementContentAs&lt;int&gt;(namespaceResolver);
 		/// </example>
 		/// </summary>
 		public static T ReadElementContentAs<T>(this XmlValidatingReader xmlreader, IXmlNamespaceResolver namespaceResolver)
+#pragma warning restore CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		{
 			if(xmlreader == null) throw new ArgumentNullException("xmlreader");
 
 			return (T)xmlreader.ReadElementContentAs(typeof(T), namespaceResolver);
 		}
 
+#pragma warning disable CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		/// <summary>
 		/// Extends ReadElementContentAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlreader.ReadElementContentAs<int>(namespaceResolver, localName, namespaceURI);
+		/// xmlreader.ReadElementContentAs&lt;int&gt;(namespaceResolver, localName, namespaceURI);
 		/// </example>
 		/// </summary>
 		public static T ReadElementContentAs<T>(this XmlValidatingReader xmlreader, IXmlNamespaceResolver namespaceResolver, String localName, String namespaceURI)
+#pragma warning restore CS0618 // 'XmlValidatingReader' is obsolete: 'Use XmlReader created by XmlReader.Create() method using appropriate XmlReaderSettings instead. http://go.microsoft.com/fwlink/?linkid=14202'
 		{
 			if(xmlreader == null) throw new ArgumentNullException("xmlreader");
 

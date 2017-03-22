@@ -13,14 +13,14 @@ namespace PRI.ProductivityExtensions.ComparisonExtensions
 {
 
 	/// <summary>
-	/// Class that contains extension methods that extend <seealso cref="System.Comparison<T>">Comparison<T></seealso>
+	/// Class that contains extension methods that extend <seealso cref="System.Comparison&lt;T&gt;">Comparison&lt;T&gt;</seealso>
 	/// </summary>
 	public static partial class Comparisonable
 	{
 		/// <summary>
-		/// Extends BeginInvoke<T> so that when a state object is not needed, null does not need to be passed.
+		/// Extends BeginInvoke&lt;T&gt; so that when a state object is not needed, null does not need to be passed.
 		/// <example>
-		/// comparison.BeginInvoke<T>(x, y, callback);
+		/// comparison.BeginInvoke&lt;T&gt;(x, y, callback);
 		/// </example>
 		/// </summary>
 		public static IAsyncResult BeginInvoke<T>(this Comparison<T> comparison, T x, T y, AsyncCallback callback)

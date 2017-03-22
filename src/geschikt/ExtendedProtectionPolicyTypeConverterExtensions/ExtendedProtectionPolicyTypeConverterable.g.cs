@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.ExtendedProtectionPolicyTypeConverterExtens
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typeconverter.ConvertTo<int>(value);
+		/// typeconverter.ConvertTo&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this ExtendedProtectionPolicyTypeConverter typeconverter, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.ExtendedProtectionPolicyTypeConverterExtens
 		/// Extends ConvertTo so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// extendedprotectionpolicytypeconverter.ConvertTo<int>(context, culture, value);
+		/// extendedprotectionpolicytypeconverter.ConvertTo&lt;int&gt;(context, culture, value);
 		/// </example>
 		/// </summary>
 		public static T ConvertTo<T>(this ExtendedProtectionPolicyTypeConverter extendedprotectionpolicytypeconverter, System.ComponentModel.ITypeDescriptorContext context, System.Globalization.CultureInfo culture, Object value)

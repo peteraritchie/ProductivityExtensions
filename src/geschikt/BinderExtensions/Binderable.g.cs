@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.BinderExtensions
 		/// Extends ChangeType so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// binder.ChangeType<int>(value, culture);
+		/// binder.ChangeType&lt;int&gt;(value, culture);
 		/// </example>
 		/// </summary>
 		public static T ChangeType<T>(this Binder binder, Object value, System.Globalization.CultureInfo culture)
