@@ -11,3 +11,6 @@ TestResults
 /nuget/lib
 /src/Backup
 /src/UpgradeLog*.htm
+/TestResult.xml
+/coverage.xml
+/cc.bat

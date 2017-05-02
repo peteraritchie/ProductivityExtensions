@@ -53,5 +53,42 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 				yield return loadFrom;
 			}
 		}
+
+		/// <summary>
+		/// Create a single multicast delegate from a collection of delegates
+		/// </summary>
+		/// <typeparam name="T">Type of parameter to delegate</typeparam>
+		/// <param name="coll"></param>
+		/// <returns>The collection of delegates</returns>
+		public static Action<T> Sum<T>(this IEnumerable<Action<T>> coll)
+		{
+			if (coll == null || !coll.Any())
+			{
+				return _ => { };
+			}
+			Action<T> result = coll.ElementAt(0);
+			foreach (var d in coll.Skip(1))
+				result += d;
+			return result;
+		}
+
+		/// <summary>
+		/// Create a single multicast delegate from a collection of delegates
+		/// </summary>
+		/// <typeparam name="T1">Type of parameter to delegate</typeparam>
+		/// <typeparam name="T2">Type of return of the delegate</typeparam>
+		/// <param name="coll">The collection of delegates</param>
+		/// <returns></returns>
+		public static Func<T1, T2> Sum<T1, T2>(this IEnumerable<Func<T1, T2>> coll)
+		{
+			if (coll == null || !coll.Any())
+			{
+				throw new ArgumentException("Collection should not be empty or null.", nameof(coll));
+			}
+			Func<T1, T2> result = coll.ElementAt(0);
+			foreach (var d in coll.Skip(1))
+				result += d;
+			return result;
+		}
 	}
 }
