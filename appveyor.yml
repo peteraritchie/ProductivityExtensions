@@ -18,7 +18,7 @@ nuget:
   project_feed: true
   disable_publish_on_pr: true
 before_build:
-- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nrmdir /s /q Tools\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools \nnuget install OpenCover -Version 4.6.519 -OutputDirectory Tools"
+- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nIF EXIST Tools RMDIR /s /q Tools\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools \nnuget install OpenCover -Version 4.6.519 -OutputDirectory Tools"
 build:
   project: src\geschikt.sln
   verbosity: minimal
