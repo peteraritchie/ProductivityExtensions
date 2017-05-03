@@ -7,7 +7,7 @@ branches:
 configuration: Release
 assembly_info:
   patch: true
-  file: '**\AssemblyInfo.*'
+  file: src\**\AssemblyInfo.*
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
@@ -18,15 +18,17 @@ nuget:
   project_feed: true
   disable_publish_on_pr: true
 before_build:
-- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory tools \nnuget install -OutputDirectory tools OpenCover -Version 4.6.519\ndir *.*proj /s /b\ndir *.sln /s /b"
+- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nrmdir /s /q Tools\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools \nnuget install OpenCover -Version 4.6.519 -OutputDirectory Tools"
 build:
   project: src\geschikt.sln
   verbosity: minimal
 after_build:
 - cmd: >-
+    dir Tools\OpenCover.4.6.519\tools
+
     if "%APPVEYOR_PR_BUILD%"=="" CALL copynugetfiles.bat
 
-    tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
+    Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
 
     tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 artifacts:
@@ -41,3 +43,5 @@ deploy:
   api_key:
     secure: K+dA1tJ3qNFfJ6G484VCFE9igeHb/BGa6tdJVKcaxvHYK6rwPsKrO/c5EahHvxsP
   artifact: nuget
+  on:
+    branch: master
