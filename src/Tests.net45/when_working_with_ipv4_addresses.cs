@@ -13,11 +13,19 @@ namespace Tests.net45
 			IPAddress ipaddress = IPAddress.Loopback;
 			Assert.IsFalse(ipaddress.IsIPv4LinkLocal());
 		}
+
 		[Test]
 		public void then_link_local_should_be_link_local()
 		{
 			IPAddress ipaddress = IPAddress.Parse("169.254.0.1");
 			Assert.IsTrue(ipaddress.IsIPv4LinkLocal());
+		}
+
+		[Test]
+		public void then_null_argument_throws()
+		{
+			IPAddress ipaddress = null;
+			Assert.Throws<System.ArgumentNullException>(()=>ipaddress.IsIPv4LinkLocal());
 		}
 	}
 }

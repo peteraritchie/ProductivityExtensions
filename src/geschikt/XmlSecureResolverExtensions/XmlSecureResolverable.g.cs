@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlSecureResolverExtensions
 		/// Extends GetEntity so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlsecureresolver.GetEntity<int>(absoluteUri, role);
+		/// xmlsecureresolver.GetEntity&lt;int&gt;(absoluteUri, role);
 		/// </example>
 		/// </summary>
 		public static T GetEntity<T>(this XmlSecureResolver xmlsecureresolver, Uri absoluteUri, String role)

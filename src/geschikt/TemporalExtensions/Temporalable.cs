@@ -3,7 +3,9 @@ using System.Diagnostics.Contracts;
 
 namespace PRI.ProductivityExtensions.TemporalExtensions
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Temporalable'
 	public static class Temporalable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Temporalable'
 	{
 		private const int DaysPerYear = 365;
 		private const int DaysPerMonth = 30;
@@ -281,22 +283,30 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 			return string.Format("{0} milliseconds", timeSpan.Milliseconds);
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToSortableDate(DateTime)'
 		public static string ToSortableDate(this DateTime dateTime)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToSortableDate(DateTime)'
 		{
 			return dateTime.Date.ToString("yyyy'-'MM'-'dd");
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToIsoDate(DateTime)'
 		public static string ToIsoDate(this DateTime dateTime)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToIsoDate(DateTime)'
 		{
 			return dateTime.ToSortableDate();
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToSortableDateTime(DateTime)'
 		public static string ToSortableDateTime(this DateTime dateTime)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToSortableDateTime(DateTime)'
 		{
 			return dateTime.ToString("s");
 		}
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToIsoDateTime(DateTime)'
 		public static string ToIsoDateTime(this DateTime dateTime)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Temporalable.ToIsoDateTime(DateTime)'
 		{
 			return dateTime.ToString("O");
 		}

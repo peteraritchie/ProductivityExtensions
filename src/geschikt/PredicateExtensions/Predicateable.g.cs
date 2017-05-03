@@ -13,14 +13,14 @@ namespace PRI.ProductivityExtensions.PredicateExtensions
 {
 
 	/// <summary>
-	/// Class that contains extension methods that extend <seealso cref="System.Predicate<T>">Predicate<T></seealso>
+	/// Class that contains extension methods that extend <seealso cref="System.Predicate&lt;T&gt;">Predicate&lt;T&gt;</seealso>
 	/// </summary>
 	public static partial class Predicateable
 	{
 		/// <summary>
-		/// Extends BeginInvoke<T> so that when a state object is not needed, null does not need to be passed.
+		/// Extends BeginInvoke&lt;T&gt; so that when a state object is not needed, null does not need to be passed.
 		/// <example>
-		/// predicate.BeginInvoke<T>(obj, callback);
+		/// predicate.BeginInvoke&lt;T&gt;(obj, callback);
 		/// </example>
 		/// </summary>
 		public static IAsyncResult BeginInvoke<T>(this Predicate<T> predicate, T obj, AsyncCallback callback)

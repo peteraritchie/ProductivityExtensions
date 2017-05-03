@@ -19,9 +19,9 @@ namespace PRI.ProductivityExtensions.UnmanagedMemoryAccessorExtensions
 	public static partial class UnmanagedMemoryAccessorable
 	{
 		/// <summary>
-		/// Extends ReadArray<T> so that buffer offset of 0 and call to Array.Length are not needed.
+		/// Extends ReadArray&lt;T&gt; so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
-		/// unmanagedmemoryaccessor.ReadArray<T>(position, array);
+		/// unmanagedmemoryaccessor.ReadArray&lt;T&gt;(position, array);
 		/// </example>
 		/// </summary>
 		public static Int32 ReadArray<T>(this UnmanagedMemoryAccessor unmanagedmemoryaccessor, Int64 position, T[] array) where T : struct
@@ -34,9 +34,9 @@ namespace PRI.ProductivityExtensions.UnmanagedMemoryAccessorExtensions
 		}
 
 		/// <summary>
-		/// Extends WriteArray<T> so that buffer offset of 0 and call to Array.Length are not needed.
+		/// Extends WriteArray&lt;T&gt; so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
-		/// unmanagedmemoryaccessor.WriteArray<T>(position, array);
+		/// unmanagedmemoryaccessor.WriteArray&lt;T&gt;(position, array);
 		/// </example>
 		/// </summary>
 		public static void WriteArray<T>(this UnmanagedMemoryAccessor unmanagedmemoryaccessor, Int64 position, T[] array) where T : struct

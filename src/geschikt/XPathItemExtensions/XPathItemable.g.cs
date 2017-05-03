@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XPathItemExtensions
 		/// Extends ValueAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xpathitem.ValueAs<int>(nsResolver);
+		/// xpathitem.ValueAs&lt;int&gt;(nsResolver);
 		/// </example>
 		/// </summary>
 		public static T ValueAs<T>(this XPathItem xpathitem, System.Xml.IXmlNamespaceResolver nsResolver)

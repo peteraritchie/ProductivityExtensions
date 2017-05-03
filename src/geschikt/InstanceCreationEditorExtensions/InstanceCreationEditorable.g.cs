@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.InstanceCreationEditorExtensions
 		/// Extends CreateInstance so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// instancecreationeditor.CreateInstance<int>(context);
+		/// instancecreationeditor.CreateInstance&lt;int&gt;(context);
 		/// </example>
 		/// </summary>
 		public static T CreateInstance<T>(this InstanceCreationEditor instancecreationeditor, ITypeDescriptorContext context)

@@ -544,6 +544,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			        	constructorInfo => constructorInfo.DeclaringType == type);
 		}
 
+#pragma warning disable CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Type)' has a paramref tag for 'type', but there is no parameter by that name
 		/// <summary>
 		/// Tests wheter <paramref name="sourceType"/> references a constructor in <paramref name="type"/>
 		/// <example>TODO: Example for AssemblyExtensions.ReferencesConstructor</example>
@@ -551,6 +552,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="sourceType"></param>
 		/// <returns><code>true</code>if <typeparamref name="T"/> references any constructors in this <see cref="Type"/>.</returns>
 		public static bool ReferencesConstructor<T>(this Type sourceType)
+#pragma warning restore CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Type)' has a paramref tag for 'type', but there is no parameter by that name
 		{
 			return ReferencesConstructor(sourceType, typeof (T));
 		}
@@ -568,12 +570,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return assembly.GetModules().SelectMany(module => module.GetTypes()).Any(moduleType => ReferencesConstructor(moduleType, type));
 		}
 
+#pragma warning disable CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Assembly)' has a paramref tag for 'type', but there is no parameter by that name
 		/// <summary>
 		/// Tests where any types in the assembly references the constructor of <paramref name="type"/>
 		/// </summary>
 		/// <param name="assembly"></param>
 		/// <returns><code>true</code>if <typeparamref name="T"/> references any constructors in this <see cref="Assembly"/></returns>
 		public static bool ReferencesConstructor<T>(this Assembly assembly)
+#pragma warning restore CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Assembly)' has a paramref tag for 'type', but there is no parameter by that name
 		{
 			return ReferencesConstructor(assembly, typeof (T));
 		}
@@ -711,6 +715,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return attribute.FindAttributedTypes(assemblies);
 		}
 
+#pragma warning disable CS1734 // XML comment on 'Reflectable.FindAttributedTypes<TAttribute>(TAttribute, string, string)' has a paramref tag for 'attributeType', but there is no parameter by that name
 		/// <summary>
 		/// Find all types in <paramref name="directory"/> whose names patch <paramref name="wildcard"/> that have been attributed with <paramref name="attributeType"/>
 		/// </summary>
@@ -719,6 +724,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="wildcard">Wildcard to use to include assembly file names</param>
 		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, string directory, string wildcard) where TAttribute : Attribute
+#pragma warning restore CS1734 // XML comment on 'Reflectable.FindAttributedTypes<TAttribute>(TAttribute, string, string)' has a paramref tag for 'attributeType', but there is no parameter by that name
 		{
 			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
 			return attribute.FindAttributedTypes(assemblies);

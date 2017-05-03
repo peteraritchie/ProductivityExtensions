@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.TypeDescriptionProviderExtensions
 		/// Extends CreateInstance so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// typedescriptionprovider.CreateInstance<int>(provider, argTypes, args);
+		/// typedescriptionprovider.CreateInstance&lt;int&gt;(provider, argTypes, args);
 		/// </example>
 		/// </summary>
 		public static T CreateInstance<T>(this TypeDescriptionProvider typedescriptionprovider, IServiceProvider provider, Type[] argTypes, Object[] args)

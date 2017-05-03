@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XPathNavigatorExtensions
 		/// Extends ValueAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xpathnavigator.ValueAs<int>(nsResolver);
+		/// xpathnavigator.ValueAs&lt;int&gt;(nsResolver);
 		/// </example>
 		/// </summary>
 		public static T ValueAs<T>(this XPathNavigator xpathnavigator, System.Xml.IXmlNamespaceResolver nsResolver)

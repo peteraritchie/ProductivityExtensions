@@ -1,9 +1,10 @@
 ProductivityExtensions
 ======================
 
-[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions) [![NuGet](https://img.shields.io/nuget/v/ProductivityExtensions.svg?maxAge=2592000)](https://www.nuget.org/packages/ProductivityExtensions)
+[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions) [![NuGet](https://img.shields.io/nuget/v/ProductivityExtensions.svg?maxAge=2592000)](https://www.nuget.org/packages/ProductivityExtensions) [![Coverage Status](https://coveralls.io/repos/github/peteraritchie/ProductivityExtensions/badge.svg?branch=master)](https://coveralls.io/github/peteraritchie/ProductivityExtensions?branch=master)
 
-[![Stories in Ready](https://badge.waffle.io/peteraritchie/ProductivityExtensions.png?label=ready&title=Tasks to work on)](https://waffle.io/peteraritchie/ProductivityExtensions)
+[![Stories in Ready](https://badge.waffle.io/peteraritchie/ProductivityExtensions.png?label=ready&title=Tasks+to+work+on)](https://waffle.io/peteraritchie/ProductivityExtensions)
+
 
 If you're not comfortable with GitHub for issues/feedback.  I've set up a UserVoice site at https://productivityextensions.uservoice.com/
 

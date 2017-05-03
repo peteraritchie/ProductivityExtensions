@@ -135,6 +135,9 @@ namespace Tests
 		}
 	}
 
+	// ReSharper disable once UnusedMember.Global
+	// ReSharper disable once IdentifierTypo
+	// ReSharper disable UnusedAutoPropertyAccessor.Local
 	public class ImplementsIntewrface : IAsyncResult
 	{
 		public bool IsCompleted { get; private set; }
@@ -142,4 +145,5 @@ namespace Tests
 		public object AsyncState { get; private set; }
 		public bool CompletedSynchronously { get; private set; }
 	}
+	// ReSharper restore UnusedAutoPropertyAccessor.Local
 }

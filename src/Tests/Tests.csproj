@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649,0414</NoWarn>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,6 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0649,0414</NoWarn>
+    <CodeAnalysisRuleSet />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=3.5.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
@@ -61,6 +63,7 @@
     <Compile Include="when_comparing_versions.cs" />
     <Compile Include="when_getting_value_from_dictionary.cs" />
     <Compile Include="when_swapping_list_values.cs" />
+    <Compile Include="when_testing_creating_multicast_delegates.cs" />
     <Compile Include="when_testing_list_for_null_or_empty.cs" />
     <Compile Include="when_testing_set_equality.cs" />
     <Compile Include="when_wrapping_task_with_apm.cs" />

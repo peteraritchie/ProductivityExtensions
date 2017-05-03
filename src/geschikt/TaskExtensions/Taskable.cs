@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace PRI.ProductivityExtensions.TaskExtensions
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Taskable'
 	public static class Taskable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Taskable'
 	{
 		/// from: http://blogs.msdn.com/b/pfxteam/archive/2011/06/27/10179452.aspx
 		/// <summary>
@@ -23,7 +25,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// 
 		/// static int EndFoo(IAsyncResult asyncResult) 
 		/// { 
-		///    return ((Task<int>)asyncResult).Result; 
+		///    return ((Task&lt;int&gt;)asyncResult).Result; 
 		/// }
 		/// </example>
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>

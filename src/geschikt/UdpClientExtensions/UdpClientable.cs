@@ -123,6 +123,9 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 			return udpClient.BeginSend(datagram, bytes, asyncCallback, state);
 		}
 
+#pragma warning disable CS1572 // XML comment has a param tag for 'bytes', but there is no parameter by that name
+#pragma warning disable CS1573 // Parameter 'endPoint' has no matching param tag in the XML comment for 'UdpClientable.BeginSend(UdpClient, byte[], IPEndPoint, AsyncCallback)' (but other parameters do)
+#pragma warning disable CS1572 // XML comment has a param tag for 'state', but there is no parameter by that name
 		/// <summary>
 		/// 
 		/// </summary>
@@ -133,11 +136,16 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 		/// <param name="state"></param>
 		/// <returns></returns>
 		public static IAsyncResult BeginSend(this UdpClient udpClient, byte[] datagram, IPEndPoint endPoint, AsyncCallback asyncCallback)
+#pragma warning restore CS1572 // XML comment has a param tag for 'state', but there is no parameter by that name
+#pragma warning restore CS1573 // Parameter 'endPoint' has no matching param tag in the XML comment for 'UdpClientable.BeginSend(UdpClient, byte[], IPEndPoint, AsyncCallback)' (but other parameters do)
+#pragma warning restore CS1572 // XML comment has a param tag for 'bytes', but there is no parameter by that name
 		{
 			if (udpClient == null) throw new ArgumentNullException("udpClient");
 			return udpClient.BeginSend(datagram, datagram.Length, endPoint, asyncCallback, null);
 		}
 
+#pragma warning disable CS1572 // XML comment has a param tag for 'bytes', but there is no parameter by that name
+#pragma warning disable CS1573 // Parameter 'endPoint' has no matching param tag in the XML comment for 'UdpClientable.BeginSend(UdpClient, byte[], IPEndPoint, AsyncCallback, object)' (but other parameters do)
 		/// <summary>
 		/// 
 		/// </summary>
@@ -148,6 +156,8 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 		/// <param name="state"></param>
 		/// <returns></returns>
 		public static IAsyncResult BeginSend(this UdpClient udpClient, byte[] datagram, IPEndPoint endPoint, AsyncCallback asyncCallback, object state)
+#pragma warning restore CS1573 // Parameter 'endPoint' has no matching param tag in the XML comment for 'UdpClientable.BeginSend(UdpClient, byte[], IPEndPoint, AsyncCallback, object)' (but other parameters do)
+#pragma warning restore CS1572 // XML comment has a param tag for 'bytes', but there is no parameter by that name
 		{
 			if (udpClient == null) throw new ArgumentNullException("udpClient");
 			return udpClient.BeginSend(datagram, datagram.Length, endPoint, asyncCallback, state);

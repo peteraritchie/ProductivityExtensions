@@ -5,7 +5,9 @@ using System.Reflection;
 
 namespace PRI.ProductivityExtensions.Reflection
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Expressionable'
 	public static class Expressionable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Expressionable'
 	{
 		/// <summary>
 		/// Converts the body of the lambda expression into the <see cref="T:System.Reflection.PropertyInfo" /> referenced by it.

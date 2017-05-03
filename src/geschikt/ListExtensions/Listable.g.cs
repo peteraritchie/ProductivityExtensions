@@ -14,14 +14,14 @@ namespace PRI.ProductivityExtensions.ListExtensions
 {
 
 	/// <summary>
-	/// Class that contains extension methods that extend <seealso cref="System.Collections.Generic.List<T>">List<T></seealso>
+	/// Class that contains extension methods that extend <seealso cref="System.Collections.Generic.List&lt;T&gt;">List&lt;T&gt;</seealso>
 	/// </summary>
 	public static partial class Listable
 	{
 		/// <summary>
-		/// Extends CopyTo<T> so that buffer offset of 0 and call to Array.Length are not needed.
+		/// Extends CopyTo&lt;T&gt; so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
-		/// list.CopyTo<T>(index, array);
+		/// list.CopyTo&lt;T&gt;(index, array);
 		/// </example>
 		/// </summary>
 		public static void CopyTo<T>(this List<T> list, Int32 index, T[] array)

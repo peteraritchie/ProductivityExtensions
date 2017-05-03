@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlPreloadedResolverExtensions
 		/// Extends GetEntity so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlpreloadedresolver.GetEntity<int>(absoluteUri, role);
+		/// xmlpreloadedresolver.GetEntity&lt;int&gt;(absoluteUri, role);
 		/// </example>
 		/// </summary>
 		public static T GetEntity<T>(this XmlPreloadedResolver xmlpreloadedresolver, Uri absoluteUri, String role)

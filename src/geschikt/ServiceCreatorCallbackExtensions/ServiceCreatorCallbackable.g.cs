@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.ServiceCreatorCallbackExtensions
 		/// Extends Invoke so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// servicecreatorcallback.Invoke<int>(container);
+		/// servicecreatorcallback.Invoke&lt;int&gt;(container);
 		/// </example>
 		/// </summary>
 		public static T Invoke<T>(this ServiceCreatorCallback servicecreatorcallback, IServiceContainer container)

@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.FormatterConverterExtensions
 		/// Extends Convert so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// formatterconverter.Convert<int>(value);
+		/// formatterconverter.Convert&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T Convert<T>(this FormatterConverter formatterconverter, Object value)

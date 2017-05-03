@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlSchemasExtensions
 		/// Extends Find so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlschemas.Find<int>(name);
+		/// xmlschemas.Find&lt;int&gt;(name);
 		/// </example>
 		/// </summary>
 		public static T Find<T>(this XmlSchemas xmlschemas, System.Xml.XmlQualifiedName name)

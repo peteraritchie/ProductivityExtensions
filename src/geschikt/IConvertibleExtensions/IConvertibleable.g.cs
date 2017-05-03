@@ -21,7 +21,7 @@ namespace PRI.ProductivityExtensions.IConvertibleExtensions
 		/// Extends ToType so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// iconvertible.ToType<int>(provider);
+		/// iconvertible.ToType&lt;int&gt;(provider);
 		/// </example>
 		/// </summary>
 		public static T ToType<T>(this IConvertible iconvertible, IFormatProvider provider)

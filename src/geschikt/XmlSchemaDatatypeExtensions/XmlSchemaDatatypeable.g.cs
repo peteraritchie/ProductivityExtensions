@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlSchemaDatatypeExtensions
 		/// Extends ChangeType so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlschemadatatype.ChangeType<int>(value);
+		/// xmlschemadatatype.ChangeType&lt;int&gt;(value);
 		/// </example>
 		/// </summary>
 		public static T ChangeType<T>(this XmlSchemaDatatype xmlschemadatatype, Object value)
@@ -36,7 +36,7 @@ namespace PRI.ProductivityExtensions.XmlSchemaDatatypeExtensions
 		/// Extends ChangeType so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlschemadatatype.ChangeType<int>(value, namespaceResolver);
+		/// xmlschemadatatype.ChangeType&lt;int&gt;(value, namespaceResolver);
 		/// </example>
 		/// </summary>
 		public static T ChangeType<T>(this XmlSchemaDatatype xmlschemadatatype, Object value, System.Xml.IXmlNamespaceResolver namespaceResolver)

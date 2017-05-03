@@ -19,9 +19,9 @@ namespace PRI.ProductivityExtensions.SafeBufferExtensions
 	public static partial class SafeBufferable
 	{
 		/// <summary>
-		/// Extends ReadArray<T> so that buffer offset of 0 and call to Array.Length are not needed.
+		/// Extends ReadArray&lt;T&gt; so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
-		/// safebuffer.ReadArray<T>(byteOffset, array);
+		/// safebuffer.ReadArray&lt;T&gt;(byteOffset, array);
 		/// </example>
 		/// </summary>
 		public static void ReadArray<T>(this SafeBuffer safebuffer, UInt64 byteOffset, T[] array) where T : struct
@@ -34,9 +34,9 @@ namespace PRI.ProductivityExtensions.SafeBufferExtensions
 		}
 
 		/// <summary>
-		/// Extends WriteArray<T> so that buffer offset of 0 and call to Array.Length are not needed.
+		/// Extends WriteArray&lt;T&gt; so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
-		/// safebuffer.WriteArray<T>(byteOffset, array);
+		/// safebuffer.WriteArray&lt;T&gt;(byteOffset, array);
 		/// </example>
 		/// </summary>
 		public static void WriteArray<T>(this SafeBuffer safebuffer, UInt64 byteOffset, T[] array) where T : struct

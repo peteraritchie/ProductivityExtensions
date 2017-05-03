@@ -22,7 +22,7 @@ namespace PRI.ProductivityExtensions.XmlAtomicValueExtensions
 		/// Extends ValueAs so that methods that return a specific type object given a Type parameter can be
 		/// used as generic method and casting is not required.
 		/// <example>
-		/// xmlatomicvalue.ValueAs<int>(nsResolver);
+		/// xmlatomicvalue.ValueAs&lt;int&gt;(nsResolver);
 		/// </example>
 		/// </summary>
 		public static T ValueAs<T>(this XmlAtomicValue xmlatomicvalue, System.Xml.IXmlNamespaceResolver nsResolver)
