@@ -25,7 +25,10 @@ build:
   verbosity: minimal
 after_build:
 - cmd: >-
-    dir Tools\OpenCover.4.6.519\tools
+    dir src
+    dir src\geschikt.netstandard
+    dir src\geschikt.netstandard\bin\
+    dir src\geschikt.netstandard\bin\Release /s /b
 
     if "%APPVEYOR_PR_BUILD%"=="" CALL copynugetfiles.bat
 

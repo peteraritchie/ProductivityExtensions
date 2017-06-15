@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stats", "stats\stats.csproj
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E2A010EB-E9AF-488B-9C6E-C59F314A532D}"
 	ProjectSection(SolutionItems) = preProject
+		..\appveyor.yml = ..\appveyor.yml
 		FAQ.md = FAQ.md
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
@@ -22,6 +23,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.net45", "Tests.net45\Tests.net45.csproj", "{1FED06A6-4E83-4846-AA89-EEF0770A8825}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.netstandard", "geschikt.netstandard\geschikt.netstandard.csproj", "{EABFAF0A-0081-4637-A10B-23884DFE4F41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{A1ECA70D-167A-4755-ACB2-64197AD0D7EB}"
+	ProjectSection(SolutionItems) = preProject
+		..\copynugetfiles.bat = ..\copynugetfiles.bat
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -98,5 +104,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1ECA70D-167A-4755-ACB2-64197AD0D7EB} = {E2A010EB-E9AF-488B-9C6E-C59F314A532D}
 	EndGlobalSection
 EndGlobal
