@@ -20,13 +20,11 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 
 			public SocketAwaitable(SocketAsyncEventArgs eventArgs)
 			{
-				if (eventArgs == null) throw new ArgumentNullException("eventArgs");
-				EventArgs = eventArgs;
+				EventArgs = eventArgs ?? throw new ArgumentNullException(nameof(eventArgs));
 				eventArgs.Completed += delegate
 				{
-					var prev = continuation ?? Interlocked.CompareExchange(
-						ref continuation, SENTINEL, null);
-					if (prev != null) prev();
+					(continuation ?? Interlocked.CompareExchange(
+						ref continuation, SENTINEL, null))?.Invoke();
 				};
 			}
 

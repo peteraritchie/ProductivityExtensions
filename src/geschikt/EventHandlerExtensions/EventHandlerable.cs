@@ -51,10 +51,7 @@ namespace PRI.ProductivityExtensions.EventHandlerExtensions
 		public static void RaiseEvent<T>(this EventHandler<T> handler, object sender, T arguments)
 			where T : EventArgs
 		{
-			if(handler != null)
-			{
-				handler(sender, arguments);
-			}
+			handler?.Invoke(sender, arguments);
 		}
 
 
@@ -66,10 +63,7 @@ namespace PRI.ProductivityExtensions.EventHandlerExtensions
 		/// <param name="propertyName">Name of the property.</param>
 		public static void RaiseEvent(this PropertyChangedEventHandler handler, object sender, string propertyName)
 		{
-			if(handler != null)
-			{
-				handler(sender, new PropertyChangedEventArgs(propertyName));
-			}
+			handler?.Invoke(sender, new PropertyChangedEventArgs(propertyName));
 		}
 
 
@@ -80,10 +74,7 @@ namespace PRI.ProductivityExtensions.EventHandlerExtensions
 		/// <param name="sender">The sender.</param>
 		public static void RaiseEvent(this EventHandler handler, object sender)
 		{
-			if(handler != null)
-			{
-				handler(sender, EventArgs.Empty);
-			}
+			handler?.Invoke(sender, EventArgs.Empty);
 		}	
 	}
 }

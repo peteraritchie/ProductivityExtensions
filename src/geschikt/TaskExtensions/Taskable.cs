@@ -1,5 +1,7 @@
 ﻿using System;
+#if NET4_5
 using System.Runtime.CompilerServices;
+#endif
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +33,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task<TResult> ToApm<TResult>(this Task<TResult> task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException("task");
+			if (task == null) throw new ArgumentNullException(nameof(task));
 			var tcs = new TaskCompletionSource<TResult>(state);
 
 			task.
@@ -42,7 +44,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 						else if (task.IsCanceled) tcs.TrySetCanceled();
 						else tcs.TrySetResult(task.Result);
 
-						if (callback != null) callback(tcs.Task);
+						callback?.Invoke(tcs.Task);
 					},
 					CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.Default);
 
@@ -70,7 +72,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task ToApm(this Task task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException("task");
+			if (task == null) throw new ArgumentNullException(nameof(task));
 			var tcs = new TaskCompletionSource<object>(state);
 
 			task.
@@ -81,7 +83,7 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 						else if (task.IsCanceled) tcs.TrySetCanceled();
 						else tcs.TrySetResult(null);
 
-						if (callback != null) callback(tcs.Task);
+						callback?.Invoke(tcs.Task);
 					},
 					CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.Default);
 

@@ -56,8 +56,8 @@ namespace PRI.ProductivityExtensions.IDictionaryExtensions
 		/// <param name="rangeToAdd">The range to add.</param>
 		public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> container, Func<TValue, TKey> keyProducerFunc, IEnumerable<TValue> rangeToAdd)
 		{
-			if (keyProducerFunc == null) throw new ArgumentNullException("keyProducerFunc");
-			if ((container == null) || (rangeToAdd == null))
+			if (keyProducerFunc == null) throw new ArgumentNullException(nameof(keyProducerFunc));
+			if (container == null || rangeToAdd == null)
 			{
 				return;
 			}
@@ -80,7 +80,7 @@ namespace PRI.ProductivityExtensions.IDictionaryExtensions
 		public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
 		{
 			TValue toReturn;
-			if (((object)key == null) || !dictionary.TryGetValue(key, out toReturn))
+			if (key == null || !dictionary.TryGetValue(key, out toReturn))
 			{
 				toReturn = default(TValue);
 			}

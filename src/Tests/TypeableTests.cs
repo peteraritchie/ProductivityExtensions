@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
-using PRI.ProductivityExtensions;
 using PRI.ProductivityExtensions.ReflectionExtensions;
 
 namespace Tests

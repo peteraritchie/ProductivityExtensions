@@ -15,7 +15,7 @@ namespace PRI.ProductivityExtensions.IpAddressExtensions
 		/// <returns>true if IP address is an IPv4 link local address</returns>
 		public static bool IsIPv4LinkLocal(this IPAddress ipAddress)
 		{
-			if (ipAddress == null) throw new ArgumentNullException("ipAddress");
+			if (ipAddress == null) throw new ArgumentNullException(nameof(ipAddress));
 			byte[] ipBytes = ipAddress.GetAddressBytes();
 			return ipBytes[0] == 169 && ipBytes[1] == 254;
 		}

@@ -70,8 +70,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			/// <returns></returns>
 			public static string Truncate(this string text, int maxLength)
 		{
-			if (text == null) return null;
-			return text.Substring(0, Math.Min(text.Length, maxLength));
+			return text?.Substring(0, Math.Min(text.Length, maxLength));
 		}
 
 		/// <summary>

@@ -15,7 +15,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 		public static IAsyncResult BeginConnect(this TcpClient tcpClient, IPEndPoint endPoint, AsyncCallback asyncCallback)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback)'
 		{
-			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
+			if (tcpClient == null) throw new ArgumentNullException(nameof(tcpClient));
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, null);
 		}
 
@@ -23,7 +23,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 		public static IAsyncResult BeginConnect(this TcpClient tcpClient, IPEndPoint endPoint, AsyncCallback asyncCallback, object state)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TcpClientable.BeginConnect(TcpClient, IPEndPoint, AsyncCallback, object)'
 		{
-			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
+			if (tcpClient == null) throw new ArgumentNullException(nameof(tcpClient));
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, state);
 		}
 
@@ -38,8 +38,8 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 		/// <see cref="DnsEndPoint"/> nor an <see cref="IPEndPoint"/></exception>
 		public static Task ConnectAsync(this TcpClient tcpClient, EndPoint endPoint)
 		{
-			if (tcpClient == null) throw new ArgumentNullException("tcpClient");
-			if (endPoint == null) throw new ArgumentNullException("endPoint");
+			if (tcpClient == null) throw new ArgumentNullException(nameof(tcpClient));
+			if (endPoint == null) throw new ArgumentNullException(nameof(endPoint));
 
 			var dnsEndPoint = endPoint as DnsEndPoint;
 			if (dnsEndPoint != null)
@@ -47,7 +47,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 			var ipEndPoint = endPoint as IPEndPoint;
 			if (ipEndPoint != null)
 				return tcpClient.ConnectAsync(ipEndPoint.Address, ipEndPoint.Port);
-			throw new ArgumentException("Unsupported EndPoint type", "endpoint");
+			throw new ArgumentException("Unsupported EndPoint type", nameof(endPoint));
 		}
 #endif
 	}

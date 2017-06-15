@@ -16,7 +16,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1>(this TaskFactory taskFactory, Func<TArg1, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, null);
 		}
 
@@ -30,7 +30,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1>(this TaskFactory taskFactory, Func<TArg1, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1, TaskCreationOptions creationOptions)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, null, creationOptions);
 		}
 
@@ -46,7 +46,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1, TArg2>(this TaskFactory taskFactory, Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, arg2, null);
 		}
 
@@ -62,7 +62,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1, TArg2>(this TaskFactory taskFactory, Func<TArg1, TArg2, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TaskCreationOptions creationOptions)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, arg2, null, creationOptions);
 		}
 
@@ -78,7 +78,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1, TArg2, TArg3>(this TaskFactory taskFactory, Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, arg2, arg3, null);
 		}
 
@@ -94,7 +94,7 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		/// </returns>
 		public static Task FromAsync<TArg1, TArg2, TArg3>(this TaskFactory taskFactory, Func<TArg1, TArg2, TArg3, AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, TArg1 arg1, TArg2 arg2, TArg3 arg3, TaskCreationOptions creationOptions)
 		{
-			if (taskFactory == null) throw new ArgumentNullException("taskFactory");
+			if (taskFactory == null) throw new ArgumentNullException(nameof(taskFactory));
 			return taskFactory.FromAsync(beginMethod, endMethod, arg1, arg2, arg3, null, creationOptions);
 		}
 	}

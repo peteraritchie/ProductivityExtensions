@@ -53,7 +53,7 @@ namespace PRI.ProductivityExtensions.ICollectionableExtensions
 		// PR: was originally extension IList<T>
 		public static bool IsNullOrEmpty<T>(this ICollection<T> toCheck)
 		{
-			return ((toCheck == null) || (toCheck.Count <= 0));
+			return toCheck == null || toCheck.Count <= 0;
 		}
 
 		/// <summary>
@@ -64,7 +64,7 @@ namespace PRI.ProductivityExtensions.ICollectionableExtensions
 		// PR: was originally an extension on HashSet<T>
 		public static void AddRange<T>(this ICollection<T> destination, IEnumerable<T> source)
 		{
-			if (destination == null) throw new ArgumentNullException("destination");
+			if (destination == null) throw new ArgumentNullException(nameof(destination));
 			if (source == null) return;
 
 			foreach (T element in source)

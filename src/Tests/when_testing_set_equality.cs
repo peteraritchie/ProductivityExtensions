@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using NUnit.Framework;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
 
@@ -61,8 +60,8 @@ namespace Tests
 
 			public DelegateEqualityComparer(Func<T, int> getHashCode, Func<T, T, bool> comparer)
 			{
-				if (getHashCode == null) throw new ArgumentNullException("getHashCode");
-				if (comparer == null) throw new ArgumentNullException("comparer");
+				if (getHashCode == null) throw new ArgumentNullException(nameof(getHashCode));
+				if (comparer == null) throw new ArgumentNullException(nameof(comparer));
 				this.getHashCode = getHashCode;
 				this.comparer = comparer;
 			}

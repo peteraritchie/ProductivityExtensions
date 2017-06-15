@@ -10,7 +10,6 @@ using NUnit.Framework;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
 using PRI.ProductivityExtensions.Reflection;
 using PRI.ProductivityExtensions.ReflectionExtensions;
-using FileAssert=NUnit.Framework.FileAssert;
 
 namespace Tests
 {

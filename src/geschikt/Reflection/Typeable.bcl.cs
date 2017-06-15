@@ -40,6 +40,9 @@ using System.Reflection;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
+	/// <summary>
+	/// Type Extensions
+	/// </summary>
 	public static partial class Typeable
 	{
 		/// <summary>
@@ -50,11 +53,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool IsNullableValueType(this Type toCheck)
 		{
 #if (NET4_5 || NET4_0)
-			if ((toCheck == null) || !toCheck.IsValueType)
+			if (toCheck == null || !toCheck.IsValueType)
 			{
 				return false;
 			}
-			return (toCheck.IsGenericType && toCheck.GetGenericTypeDefinition() == (typeof(Nullable<>)));
+			return toCheck.IsGenericType && toCheck.GetGenericTypeDefinition() == typeof(Nullable<>);
 #else
 			var typeInfo = toCheck.GetTypeInfo();
 			if ((toCheck == null) || !typeInfo.IsValueType)
@@ -111,8 +114,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			AssemblyName nameToCheck = type.GetTypeInfo().Assembly.GetName();
 #endif
 			var exceptions = new[] { "Microsoft.SqlServer.Types" };
-			return (new[] { "System", "mscorlib", "System.", "Microsoft." })
-					.Any(s=>(s.EndsWith(".") && nameToCheck.Name.StartsWith(s)) || (nameToCheck.Name == s)) &&
+			return new[] { "System", "mscorlib", "System.", "Microsoft." }
+					.Any(s=>s.EndsWith(".") && nameToCheck.Name.StartsWith(s) || nameToCheck.Name == s) &&
 					!exceptions.Any(s=>nameToCheck.Name.StartsWith(s));
 		}
 

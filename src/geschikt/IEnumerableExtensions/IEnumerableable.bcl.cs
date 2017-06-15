@@ -52,7 +52,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		/// <returns>true if the source and the sequence to compare with have the same elements, regardless of ordering</returns>
 		public static bool SetEqual<T>(this IEnumerable<T> source, IEnumerable<T> toCompareWith)
 		{
-			if ((source == null) || (toCompareWith == null))
+			if (source == null || toCompareWith == null)
 			{
 				return false;
 			}
@@ -72,7 +72,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		/// </returns>
 		public static bool SetEqual<T>(this IEnumerable<T> source, IEnumerable<T> toCompareWith, IEqualityComparer<T> comparer)
 		{
-			if ((source == null) || (toCompareWith == null))
+			if (source == null || toCompareWith == null)
 			{
 				return false;
 			}
@@ -89,7 +89,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 
 			IEqualityComparer<T> comparerToUse = comparer ?? EqualityComparer<T>.Default;
 			// check whether the intersection of both sequences has the same number of elements
-			return (source.Intersect(toCompareWith, comparerToUse).Count() == countSource);
+			return source.Intersect(toCompareWith, comparerToUse).Count() == countSource;
 		}
 	}
 }

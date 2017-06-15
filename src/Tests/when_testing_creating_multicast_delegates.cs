@@ -53,7 +53,6 @@ namespace Tests
 		public void then_action_collection_of_multiples_returns_correct_delegate()
 		{
 			var parameters = new List<int>();
-			int p = 0;
 			var coll = new List<Action<int>> {x => parameters.Add(x), y => parameters.Add(y) };
 			var action = coll.Sum();
 			action(21);
@@ -76,7 +75,6 @@ namespace Tests
 		public void then_func_collection_of_multiples_returns_correct_delegate()
 		{
 			var parameters = new List<int>();
-			int p = 0;
 			var coll = new List<Func<int, int>>
 			{
 				x =>

@@ -1,6 +1,8 @@
 #if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET4_0 || NET4_5)
 using System;
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
 using System.Collections.Generic;
+#endif
 using System.Linq;
 using System.Reflection;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
@@ -15,7 +17,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool IsStatic(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
 		{
-			if (type == null) throw new ArgumentNullException("type");
+			if (type == null) throw new ArgumentNullException(nameof(type));
 #if (NET4_0 || NET4_5)
 			return type.IsAbstract && type.IsSealed;
 #else
@@ -66,7 +68,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1571 // XML comment has a duplicate param tag for 'type'
 #pragma warning restore CS1572 // XML comment has a param tag for 'TAttributes', but there is no parameter by that name
 		{
-			if (type == null) throw new ArgumentNullException("type");
+			if (type == null) throw new ArgumentNullException(nameof(type));
 			return type.HasAttribute(typeof (TAttribute));
 		}
 
@@ -99,7 +101,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'Expected an end tag for element 'summary'.'
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 		{
-			if (type == null) throw new ArgumentNullException("type");
+			if (type == null) throw new ArgumentNullException(nameof(type));
 #if (NET4_0 || NET4_5)
 			return typeof(TInterface).IsAssignableFrom(type);
 #else
@@ -122,8 +124,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 		{
-			if (interfaceType == null) throw new ArgumentNullException("interfaceType");
-			if (type == null) throw new ArgumentNullException("type");
+			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
+			if (type == null) throw new ArgumentNullException(nameof(type));
 #if (NET4_0 || NET4_5)
 			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
 			{
@@ -160,7 +162,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
 #if (NET4_0 || NET4_5)
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
 #elif (NETSTANDARD2_0)
@@ -180,9 +182,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
-			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException("namespaceName");
+			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException(nameof(namespaceName));
 #if (NET4_5 || NET4_0)
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies,
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
@@ -206,7 +208,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
 #if (NET4_5 || NET4_0)
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
+			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
 #else
 			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");

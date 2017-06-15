@@ -1,6 +1,5 @@
 using System.Data;
 using NUnit.Framework;
-using PRI.ProductivityExtensions;
 using PRI.ProductivityExtensions.IDbConnectionExtensions;
 
 namespace Tests

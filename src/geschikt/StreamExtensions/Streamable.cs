@@ -39,7 +39,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 #endif
 		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
 		{
-			if (stream == null) throw new ArgumentNullException("stream");
+			if (stream == null) throw new ArgumentNullException(nameof(stream));
 			byte[] tempBuffer = new byte[count];
 			ByteArrayAsyncResult result = new ByteArrayAsyncResult(callback, state, buffer, offset, tempBuffer);
 			ByteArrayAsyncState asyncState = new ByteArrayAsyncState { Result = result, Stream = stream };
@@ -110,7 +110,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// The Asynchronous Programming Model matching End method to the corresponding BeginReadToEnd methods.
 		/// </summary>
 		/// <param name="stream"></param>
-		/// <param name="ar">The reference to the pending asynchronous request to finish. </param><exception cref="T:System.ArgumentNullException"><paramref name="asyncResult"/> is null. </exception><exception cref="T:System.ArgumentException">A handle to the pending read operation is not available.-or-The pending operation does not support reading.</exception><exception cref="T:System.InvalidOperationException"><paramref name="asyncResult"/> did not originate from a <see cref="M:System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)"/> method on the current stream.</exception><exception cref="T:System.IO.IOException">The stream is closed or an internal error has occurred.</exception><filterpriority>2</filterpriority>
+		/// <param name="ar">The reference to the pending asynchronous request to finish. </param><exception cref="T:System.ArgumentNullException"><paramref name="ar"/> is null. </exception><exception cref="T:System.ArgumentException">A handle to the pending read operation is not available.-or-The pending operation does not support reading.</exception><exception cref="T:System.InvalidOperationException"><paramref name="ar"/> did not originate from a <see cref="M:System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)"/> method on the current stream.</exception><exception cref="T:System.IO.IOException">The stream is closed or an internal error has occurred.</exception><filterpriority>2</filterpriority>
 		/// <returns>
 		/// The number of bytes read from the stream, between zero (0) and the number of bytes you requested. Streams return zero (0) only at the end of the stream, otherwise, they should block until at least one byte is available.
 		/// </returns>
@@ -125,7 +125,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 #endif
 		public static int EndReadToEnd(this Stream stream, IAsyncResult ar)
 		{
-			if (stream == null) throw new ArgumentNullException("stream");
+			if (stream == null) throw new ArgumentNullException(nameof(stream));
 			ByteArrayAsyncResult state = ar as ByteArrayAsyncResult;
 			if (state == null) throw new InvalidOperationException();
 			if(!state.IsCompleted)
@@ -139,8 +139,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 		private static void OnRead(IAsyncResult ar)
 		{
-			if (ar == null) return;
-			ByteArrayAsyncState state = ar.AsyncState as ByteArrayAsyncState;
+			ByteArrayAsyncState state = ar?.AsyncState as ByteArrayAsyncState;
 			if (state == null) return;
 			int bytesRead = state.Stream.EndRead(ar);
 			if (bytesRead != 0)
@@ -223,10 +222,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			{
 				lock (syncRoot)
 				{
-					if (asyncWaitHandle != null)
-					{
-						((IDisposable)asyncWaitHandle).Dispose();
-					}
+					asyncWaitHandle?.Dispose();
 				}
 			}
 
@@ -245,17 +241,13 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 			private void SignalCompletion()
 			{
-				if(asyncWaitHandle != null)
-					asyncWaitHandle.Set();
+				asyncWaitHandle?.Set();
 
 				ThreadPool.QueueUserWorkItem(InvokeCallback);
 			}
 			private void InvokeCallback(object state)
 			{
-				if (callback != null)
-				{
-					callback(this);
-				}
+				callback?.Invoke(this);
 			}
 		}
 #endif
@@ -269,7 +261,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// </summary>
 		public static Task WriteAsync(this Stream stream, byte[] buffer)
 		{
-			if (stream == null) throw new ArgumentNullException("stream");
+			if (stream == null) throw new ArgumentNullException(nameof(stream));
 			return stream.WriteAsync(buffer, 0, buffer.Length);
 		}
 
@@ -281,7 +273,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// </summary>
 		public static Task<int> ReadAsync(this Stream stream, byte[] buffer)
 		{
-			if (stream == null) throw new ArgumentNullException("stream");
+			if (stream == null) throw new ArgumentNullException(nameof(stream));
 			return stream.ReadAsync(buffer, 0, buffer.Length);
 		}
 #endif

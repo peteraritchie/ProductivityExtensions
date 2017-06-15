@@ -1,6 +1,8 @@
 #if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET4_0 || NET4_5)
 using System;
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 using System.ComponentModel;
+#endif
 using System.Linq.Expressions;
 using System.Reflection;
 

@@ -21,8 +21,8 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 		/// <returns></returns>
 		public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, int offsetIntoSecond)
 		{
-			if (first == null) throw new ArgumentNullException("first");
-			if (second == null) throw new ArgumentNullException("second");
+			if (first == null) throw new ArgumentNullException(nameof(first));
+			if (second == null) throw new ArgumentNullException(nameof(second));
 			var comparer = EqualityComparer<TSource>.Default;
 			using (IEnumerator<TSource> e1 = first.GetEnumerator())
 			using (IEnumerator<TSource> e2 = second.GetEnumerator())
@@ -46,8 +46,8 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 		/// <returns></returns>
 		public static int SequenceEquality<T>(this IEnumerable<T> source, IEnumerable<T> that, IEqualityComparer<T> equalityComparer)
 		{
-			if (source == null) throw new ArgumentNullException("source");
-			if (that == null) throw new ArgumentNullException("that");
+			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (that == null) throw new ArgumentNullException(nameof(that));
 			var sourceCount = source.Count();
 			if (sourceCount == 0) return 100;
 			var thatCount = that.Count();

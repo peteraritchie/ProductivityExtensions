@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 using System.Reflection;
+#endif
 using PRI.ProductivityExtensions.ICollectionableExtensions;
 
 namespace PRI.ProductivityExtensions.IEnumerableExtensions
@@ -17,7 +19,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> enumerable)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToCollection<T>(IEnumerable<T>)'
 		{
-			if (enumerable == null) throw new ArgumentNullException("enumerable");
+			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
 
 			var list = enumerable as IList<T>;
 			if (list != null)

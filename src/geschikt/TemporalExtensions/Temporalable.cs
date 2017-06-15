@@ -135,7 +135,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		/// <returns></returns>
 		public static TimeSpan Second(this int source)
 		{
-			if (source != 1) throw new ArgumentOutOfRangeException("source", source, "'source' must have value of '1'.");
+			if (source != 1) throw new ArgumentOutOfRangeException(nameof(source), source, "'source' must have value of '1'.");
 #if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 			Contract.EndContractBlock();
 #endif
@@ -175,6 +175,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		/// </example>
 		/// </summary>
 		/// <param name="source"></param>
+		/// <param name="now">DateTime, or DateTime.Now if missing</param>
 		/// <returns></returns>
 		public static DateTime Ago(this TimeSpan source, DateTime now = default(DateTime))
 		{

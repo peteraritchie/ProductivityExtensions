@@ -54,12 +54,12 @@ namespace PRI.ProductivityExtensions.IListExtensions
 		/// <param name="indexB">The index for B.</param>
 		public static void SwapValues<T>(this IList<T> source, int indexA, int indexB)
 		{
-			if (source == null) throw new ArgumentNullException("source");
-			if ((indexA < uint.MinValue) || (indexA >= source.Count))
+			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (indexA < uint.MinValue || indexA >= source.Count)
 			{
 				throw new IndexOutOfRangeException("indexA is out of range");
 			}
-			if ((indexB < uint.MinValue) || (indexB >= source.Count))
+			if (indexB < uint.MinValue || indexB >= source.Count)
 			{
 				throw new IndexOutOfRangeException("indexB is out of range");
 			}
@@ -91,7 +91,7 @@ namespace PRI.ProductivityExtensions.IListExtensions
 		/// <remarks>Assumes that sortedList is sorted ascending. If you pass in a descending sorted list, be sure the comparer is adjusted as well.</remarks>
 		public static int BinarySearch<T>(this IList<T> sortedList, T element, IComparer<T> comparer)
 		{
-			if (sortedList == null) throw new ArgumentNullException("sortedList");
+			if (sortedList == null) throw new ArgumentNullException(nameof(sortedList));
 			if (sortedList.Count <= 0)
 			{
 				return -1;
