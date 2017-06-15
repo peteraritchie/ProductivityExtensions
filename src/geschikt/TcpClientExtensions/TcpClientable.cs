@@ -1,8 +1,9 @@
-﻿using System;
+﻿#if (NET4_5 || NET4_0)
+using System;
 using System.Net;
 using System.Net.Sockets;
 
-#if NET_4_5
+#if NET4_5
 using System.Threading.Tasks;
 #endif
 
@@ -26,7 +27,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, state);
 		}
 
-#if NET_4_5
+#if NET4_5
 		/// <summary>
 		/// Connect asyncronously to <param name="endPoint"></param>
 		/// </summary>
@@ -51,3 +52,4 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 #endif
 	}
 }
+#endif

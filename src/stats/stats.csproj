@@ -49,9 +49,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\geschikt\geschikt.csproj">
+    <ProjectReference Include="..\geschikt\geschikt.net40.csproj">
       <Project>{BDE41F54-F174-4783-9A7E-6CA6CC4A0BBE}</Project>
-      <Name>geschikt</Name>
+      <Name>geschikt.net40</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

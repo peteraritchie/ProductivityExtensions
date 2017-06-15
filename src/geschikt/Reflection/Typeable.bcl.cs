@@ -49,23 +49,31 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>true if toCheck is a Nullable(Of T) type, otherwise false</returns>
 		public static bool IsNullableValueType(this Type toCheck)
 		{
-			if((toCheck == null) || !toCheck.IsValueType)
+#if (NET4_5 || NET4_0)
+			if ((toCheck == null) || !toCheck.IsValueType)
 			{
 				return false;
 			}
 			return (toCheck.IsGenericType && toCheck.GetGenericTypeDefinition() == (typeof(Nullable<>)));
+#else
+			var typeInfo = toCheck.GetTypeInfo();
+			if ((toCheck == null) || !typeInfo.IsValueType)
+			{
+				return false;
+			}
+			return (typeInfo.IsGenericType && toCheck.GetGenericTypeDefinition() == (typeof(Nullable<>)));
+#endif
 		}
-		
 
-		/// <summary>
-		/// Gets the full type name, of the format: Type.Fullname, assembly name. 
-		/// If the assembly is signed, the full assembly name is added, otherwise just the assembly name, not the version, public key token or culture.
-		/// </summary>
-		/// <param name="type">The type of which the full name should be obtained.</param>
-		/// <returns>full type name. If the type is a .NET system type (e.g. is located in mscorlib or namespace starts with Microsoft. or System.) the 
-		/// FullTypeName is equal to the FullName of the type.</returns>
-		/// <remarks>Use this method if you need to store the type's full name in a string for re-instantiation later on with Activator.CreateInstance.</remarks>
-		public static string GetFullTypeName(this Type type)
+			/// <summary>
+			/// Gets the full type name, of the format: Type.Fullname, assembly name. 
+			/// If the assembly is signed, the full assembly name is added, otherwise just the assembly name, not the version, public key token or culture.
+			/// </summary>
+			/// <param name="type">The type of which the full name should be obtained.</param>
+			/// <returns>full type name. If the type is a .NET system type (e.g. is located in mscorlib or namespace starts with Microsoft. or System.) the 
+			/// FullTypeName is equal to the FullName of the type.</returns>
+			/// <remarks>Use this method if you need to store the type's full name in a string for re-instantiation later on with Activator.CreateInstance.</remarks>
+			public static string GetFullTypeName(this Type type)
 		{
 			if(type == null)
 			{
@@ -75,8 +83,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			{
 				return type.FullName;
 			}
+#if (NET4_5 || NET4_0)
 			return type.Assembly.GetName().GetPublicKeyToken().Length <= 0 
 				? string.Format("{0}, {1}", type.FullName, type.Assembly.GetName().Name) : type.AssemblyQualifiedName;
+#else
+			var assembly = type.GetTypeInfo().Assembly;
+			return assembly.GetName().GetPublicKeyToken().Length <= 0 
+				? string.Format("{0}, {1}", type.FullName, assembly.GetName().Name) : type.AssemblyQualifiedName;
+#endif
 		}
 
 
@@ -91,7 +105,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			{
 				return false;
 			}
+#if (NET4_5 || NET4_0)
 			AssemblyName nameToCheck = type.Assembly.GetName();
+#else
+			AssemblyName nameToCheck = type.GetTypeInfo().Assembly.GetName();
+#endif
 			var exceptions = new[] { "Microsoft.SqlServer.Types" };
 			return (new[] { "System", "mscorlib", "System.", "Microsoft." })
 					.Any(s=>(s.EndsWith(".") && nameToCheck.Name.StartsWith(s)) || (nameToCheck.Name == s)) &&
@@ -111,12 +129,23 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static object GetDefaultValue(this Type typeToCreateValueFor, bool safeDefaults)
 		{
 			Type sourceType = typeToCreateValueFor;
+#if (NET4_5 || NET4_0)
 			if(typeToCreateValueFor.IsNullableValueType())
 			{
 				sourceType = typeToCreateValueFor.GetGenericArguments()[0];
 			}
+#else
+			if(typeToCreateValueFor.IsNullableValueType())
+			{
+				sourceType = typeToCreateValueFor.GetTypeInfo().GenericTypeArguments[0];
+			}
+#endif
 			object toReturn = null;
+#if (NET4_5 || NET4_0)
 			if(sourceType.IsValueType)
+#else
+			if(sourceType.GetTypeInfo().IsValueType)
+#endif
 			{
 				// produce default value for value type. 
 				toReturn = Array.CreateInstance(sourceType, 1).GetValue(0);

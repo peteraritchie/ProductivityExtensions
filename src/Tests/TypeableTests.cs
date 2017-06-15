@@ -45,7 +45,7 @@ namespace Tests
 			Assert.IsFalse(typeof (IList<int>).IsOpenGenericType());
 		}
 
-#if NET_4_5
+#if NET4_5
 		[Test]
 		public void OpenGenericTypesHaveNoGenericTypeArguments()
 		{

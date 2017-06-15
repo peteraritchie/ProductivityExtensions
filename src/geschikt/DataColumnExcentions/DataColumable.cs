@@ -1,3 +1,4 @@
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 using System;
 using System.Data;
 
@@ -21,3 +22,4 @@ namespace PRI.ProductivityExtensions.DataColumnExcentions
 		}
 	}
 }
+#endif

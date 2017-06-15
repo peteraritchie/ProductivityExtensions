@@ -1,3 +1,4 @@
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 //////////////////////////////////////////////////////////////////////
 // BCLExtensions is (c) 2010 Solutions Design. All rights reserved.
 // http://www.sd.nl
@@ -67,3 +68,4 @@ namespace PRI.ProductivityExtensions.IDbConnectionExtensions
 		}		 
 	}
 }
+#endif

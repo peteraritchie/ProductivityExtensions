@@ -53,17 +53,22 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		/// <returns></returns>
 		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
 		{
+#if (NET4_0 || NET4_5)
 			return string.Join(c.ToString(System.Globalization.CultureInfo.InvariantCulture),
 				text.Split(chars.ToArray()));
+#else
+			return string.Join(c.ToString(),
+				text.Split(chars.ToArray()));
+#endif
 		}
 
-		/// <summary>
-		/// Truncate string <paramref name="text"/> to a maximim length of <paramref name="maxLength"/>
-		/// </summary>
-		/// <param name="text"></param>
-		/// <param name="maxLength"></param>
-		/// <returns></returns>
-		public static string Truncate(this string text, int maxLength)
+			/// <summary>
+			/// Truncate string <paramref name="text"/> to a maximim length of <paramref name="maxLength"/>
+			/// </summary>
+			/// <param name="text"></param>
+			/// <param name="maxLength"></param>
+			/// <returns></returns>
+			public static string Truncate(this string text, int maxLength)
 		{
 			if (text == null) return null;
 			return text.Substring(0, Math.Min(text.Length, maxLength));

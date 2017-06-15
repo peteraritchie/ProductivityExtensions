@@ -18,6 +18,7 @@ namespace PRI.ProductivityExtensions.TcpListenerExtensions
 	/// </summary>
 	public static partial class TcpListenerable
 	{
+#if (NET4_5 || NET4_0)
 		/// <summary>
 		/// Extends BeginAcceptSocket so that when a state object is not needed, null does not need to be passed.
 		/// <example>
@@ -43,6 +44,6 @@ namespace PRI.ProductivityExtensions.TcpListenerExtensions
 
 			return tcplistener.BeginAcceptTcpClient(callback, null);
 		}
-
+#endif
 	}
 }

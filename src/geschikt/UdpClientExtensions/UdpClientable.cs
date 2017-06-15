@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if (NET4_5 || NET4_0)
+using System;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
@@ -176,7 +177,7 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 			if (udpClient == null) throw new ArgumentNullException("udpClient");
 			return udpClient.BeginSend(datagram, datagram.Length, asyncCallback);
 		}
-#if NET_4_5
+#if NET4_5
 		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram)
 		{
 			if (udpClient == null) throw new ArgumentNullException("udpClient");
@@ -204,3 +205,4 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 #endif
 	}
 }
+#endif

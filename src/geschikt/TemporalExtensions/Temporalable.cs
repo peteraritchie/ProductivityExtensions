@@ -1,5 +1,7 @@
 using System;
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 using System.Diagnostics.Contracts;
+#endif
 
 namespace PRI.ProductivityExtensions.TemporalExtensions
 {
@@ -134,7 +136,9 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		public static TimeSpan Second(this int source)
 		{
 			if (source != 1) throw new ArgumentOutOfRangeException("source", source, "'source' must have value of '1'.");
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 			Contract.EndContractBlock();
+#endif
 			return new TimeSpan(0, 0, 0, 1);
 		}
 
@@ -172,9 +176,10 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		/// </summary>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static DateTime Ago(this TimeSpan source)
+		public static DateTime Ago(this TimeSpan source, DateTime now = default(DateTime))
 		{
-			return DateTime.Now.Add(source.Negate());
+			if (now == default(DateTime)) now = DateTime.Now;
+			return now.Add(source.Negate());
 		}
 
 		/// <summary>

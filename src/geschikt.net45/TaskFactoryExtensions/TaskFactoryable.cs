@@ -1,4 +1,4 @@
-﻿#if NET_4_5
+﻿#if NET4_5
 using System;
 using System.Threading.Tasks;
 
@@ -99,4 +99,4 @@ namespace PRI.ProductivityExtensions.TaskFactoryExtensions
 		}
 	}
 }
-#endif // NET_4_5
+#endif // NET4_5

@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt", "geschikt\geschikt.csproj", "{BDE41F54-F174-4783-9A7E-6CA6CC4A0BBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.net40", "geschikt\geschikt.net40.csproj", "{BDE41F54-F174-4783-9A7E-6CA6CC4A0BBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stats", "stats\stats.csproj", "{0199F739-2FAF-4A19-BA63-B96351E7B700}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.net45", "geschikt.net45\geschikt.net45.csproj", "{8A840410-0125-4543-8FAF-DDF7F002C5FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.net45", "Tests.net45\Tests.net45.csproj", "{1FED06A6-4E83-4846-AA89-EEF0770A8825}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt.netstandard", "geschikt.netstandard\geschikt.netstandard.csproj", "{EABFAF0A-0081-4637-A10B-23884DFE4F41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,18 @@ Global
 		{1FED06A6-4E83-4846-AA89-EEF0770A8825}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1FED06A6-4E83-4846-AA89-EEF0770A8825}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1FED06A6-4E83-4846-AA89-EEF0770A8825}.Release|x86.ActiveCfg = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Debug|x86.Build.0 = Debug|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|x86.ActiveCfg = Release|Any CPU
+		{EABFAF0A-0081-4637-A10B-23884DFE4F41}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -123,8 +123,9 @@ namespace Tests
 		[Test]
 		public void AgoResultsInCorrectDateTime()
 		{
-			DateTime expected = DateTime.Now.AddMinutes(-10);
-			DateTime actual = new TimeSpan(0, 0, 10, 0).Ago();
+			var dateTime = DateTime.Now;
+			DateTime expected = dateTime.AddMinutes(-10);
+			DateTime actual = new TimeSpan(0, 0, 10, 0).Ago(dateTime);
 			Assert.AreEqual(expected.AddMilliseconds(-expected.Millisecond), actual.AddMilliseconds(-actual.Millisecond));
 		}
 

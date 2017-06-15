@@ -1,3 +1,4 @@
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET4_0 || NET4_5)
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,25 +16,39 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
 		{
 			if (type == null) throw new ArgumentNullException("type");
+#if (NET4_0 || NET4_5)
 			return type.IsAbstract && type.IsSealed;
+#else
+			return type.GetTypeInfo().IsAbstract && type.GetTypeInfo().IsSealed;
+#endif
 		}
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
 		public static bool IsOpenGenericType(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
 		{
+#if (NET4_0 || NET4_5)
 			return type.GetGenericTypeArguments().Length == 0 && type.IsGenericType;
+#else
+			return type.GetGenericTypeArguments().Length == 0 && type.GetTypeInfo().IsGenericType;
+#endif
 		}
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		public static Type[] GetGenericTypeArguments(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		{
-#if NET_4_5
+#if NET4_5
 			return type.GenericTypeArguments;
 #else
+#if NET4_0
 			if (type.IsGenericType && !type.IsGenericTypeDefinition)
 				return type.GetGenericArguments();
+#else
+			var typeInfo = type.GetTypeInfo();
+			if (typeInfo.IsGenericType && !typeInfo.IsGenericTypeDefinition)
+				return typeInfo.GenericTypeArguments;
+#endif
 			else
 				return Type.EmptyTypes;
 #endif
@@ -65,7 +80,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool HasAttribute(this Type type, Type attributeType)
 #pragma warning restore CS1571 // XML comment has a duplicate param tag for 'type'
 		{
+#if (NET4_0 || NET4_5)
 			return type.GetCustomAttributes(attributeType, false).Length > 0;
+#else
+			return type.GetTypeInfo().GetCustomAttributes(attributeType, false).Any();
+#endif
 		}
 
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
@@ -81,9 +100,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 		{
 			if (type == null) throw new ArgumentNullException("type");
+#if (NET4_0 || NET4_5)
 			return typeof(TInterface).IsAssignableFrom(type);
+#else
+			return typeof(TInterface).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
+#endif
 		}
 
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'Expected an end tag for element 'summary'.'
@@ -100,11 +124,20 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		{
 			if (interfaceType == null) throw new ArgumentNullException("interfaceType");
 			if (type == null) throw new ArgumentNullException("type");
+#if (NET4_0 || NET4_5)
 			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
 			{
 				return type.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
 			}
 			return interfaceType.IsAssignableFrom(type);
+#else
+			var typeInfo = interfaceType.GetTypeInfo();
+			if (typeInfo.IsGenericType && typeInfo.ContainsGenericParameters)
+			{
+				return type.GetTypeInfo().GetInterfaces().Any(t => t.GetTypeInfo().IsGenericType && t.GetTypeInfo().GetGenericTypeDefinition() == interfaceType);
+			}
+			return typeInfo.IsAssignableFrom(type.GetTypeInfo());
+#endif
 		}
 
 		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
@@ -114,7 +147,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 				   where !type.IsAbstract && type.IsClass && predicate(type)
 				   select type;
 		}
+#endif
 
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		/// <summary>
 		/// Get a collection of types that implement interface <param name="interfaceType"></typeparam>
@@ -124,28 +159,43 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType)
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
+#if (NET4_0 || NET4_5)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
+#elif (NETSTANDARD2_0)
+			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
+#endif
 		}
 
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
-		/// <summary>
-		/// Get a collection of types that implement interface <param name="interfaceType"></typeparam> within namespace named <paramref name="namespaceName"/>
-		/// </summary>
-		/// <param name="interfaceType"></param>
-		/// <param name="namespaceName"></param>
-		/// <returns></returns>
-		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
+			/// <summary>
+			/// Get a collection of types that implement interface <param name="interfaceType"></typeparam> within namespace named <paramref name="namespaceName"/>
+			/// </summary>
+			/// <param name="interfaceType"></param>
+			/// <param name="namespaceName"></param>
+			/// <returns></returns>
+			public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
 			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException("namespaceName");
+#if (NET4_5 || NET4_0)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies,
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
+#elif (NETSTANDARD2_0)
+			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
+			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+			return ByPredicate(assemblies,
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.GetTypeInfo().ImplementsInterface(interfaceType));
+#endif
 		}
+#endif
 
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
 		/// </summary>
@@ -155,8 +205,13 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
+#if (NET4_5 || NET4_0)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
+#else
+			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
+#endif
 		}
 
 		/// <summary>
@@ -169,10 +224,17 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
 		{
+#if (NET4_5 || NET4_0)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
+#else
+			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
+#endif
 		}
+#endif
 
 		/// <summary>
 		/// Gets the default constructor for <paramref name="type"/>
@@ -181,7 +243,12 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns><seealso cref="ConstructorInfo"/> about the default constructor.</returns>
 		public static ConstructorInfo GetConstructor(this Type type)
 		{
+#if (NET4_5 || NET4_0)
 			return type.GetConstructor(new Type[0]);
+#else
+			return type.GetTypeInfo().DeclaredConstructors.Single(e => !e.GetParameters().Any());
+#endif
 		}
 	}
 }
+#endif

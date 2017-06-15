@@ -1,7 +1,8 @@
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 using System;
 using System.IO;
 using System.Threading;
-#if NET_4_5
+#if NET4_5
 using System.Threading.Tasks;
 #endif
 
@@ -9,31 +10,31 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 {
 	static partial class Streamable
 	{
-		/// <summary>
-		/// Asynchronously read to end of stream
-		/// </summary>
-		/// <example>
-		///	byte[] buffer = new byte[1024];
-		///	stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
-		///	                                               {
-		///	                                               	int bytesRead = stream.EndRead(ar);
-		///	                                               	ProcessData(buffer, bytesRead);
-		///	                                               }, null);
-		/// </example>
-		/// <param name="stream">The stream for which this extension method acts upon.</param>
-		/// <param name="buffer">The buffer to read the data into. </param>
-		/// <param name="offset">The byte offset in <paramref name="buffer"/> at which to begin writing data read from the stream. </param>
-		/// <param name="count">The maximum number of bytes to read. </param>
-		/// <param name="callback">An optional asynchronous callback, to be called when the read is complete. </param>
-		/// <param name="state">A user-provided object that distinguishes this particular asynchronous read request from other requests. </param>
-		/// <exception cref="T:System.IO.IOException">Attempted an asynchronous read past the end of the stream, or a disk error occurs. </exception>
-		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
-		/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
-		/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
-		/// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
+/// <summary>
+/// Asynchronously read to end of stream
+/// </summary>
+/// <example>
+///	byte[] buffer = new byte[1024];
+///	stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
+///	                                               {
+///	                                               	int bytesRead = stream.EndRead(ar);
+///	                                               	ProcessData(buffer, bytesRead);
+///	                                               }, null);
+/// </example>
+/// <param name="stream">The stream for which this extension method acts upon.</param>
+/// <param name="buffer">The buffer to read the data into. </param>
+/// <param name="offset">The byte offset in <paramref name="buffer"/> at which to begin writing data read from the stream. </param>
+/// <param name="count">The maximum number of bytes to read. </param>
+/// <param name="callback">An optional asynchronous callback, to be called when the read is complete. </param>
+/// <param name="state">A user-provided object that distinguishes this particular asynchronous read request from other requests. </param>
+/// <exception cref="T:System.IO.IOException">Attempted an asynchronous read past the end of the stream, or a disk error occurs. </exception>
+/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
+/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
+/// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope",
 			Justification = "'result' is used asynchronously")]
-#if NET_4_5
+#if NET4_5
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
@@ -67,7 +68,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
 		/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
 		/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
-#if NET_4_5
+#if NET4_5
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static void BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback)
@@ -95,7 +96,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
 		/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
 		/// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
-#if NET_4_5
+#if NET4_5
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, AsyncCallback callback)
@@ -114,11 +115,12 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// The number of bytes read from the stream, between zero (0) and the number of bytes you requested. Streams return zero (0) only at the end of the stream, otherwise, they should block until at least one byte is available.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "stream", 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId =
+"stream", 
 #pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 #pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 			Justification = "'stream' is required for this to be an extension method")]
-#if NET_4_5
+#if NET4_5
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static int EndReadToEnd(this Stream stream, IAsyncResult ar)
@@ -158,17 +160,17 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			private bool completed;
 			private bool completedSynchronously;
 			private readonly object syncRoot;
-			public readonly byte[] Result;
 			public int Index;
 			public readonly byte[] TempBuffer;
+			public readonly byte[] Result;
 			public int Length;
 			private ManualResetEvent asyncWaitHandle;
 
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 			internal ByteArrayAsyncResult(AsyncCallback cb, object state, byte[] buffer, int offset, byte[] tempBuffer)
 				: this(cb, state, buffer, offset, tempBuffer, false)
 			{
 			}
-
 			private ByteArrayAsyncResult(AsyncCallback cb, object state, byte[] buffer, int offset, byte[] tempBuffer, bool completed)
 			{
 				callback = cb;
@@ -181,6 +183,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 				syncRoot = new object();
 			}
+#endif
 
 			public object AsyncState { get; private set; }
 
@@ -227,6 +230,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				}
 			}
 
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 			internal void Complete(bool didCompleteSynchronously)
 			{
 				lock (syncRoot)
@@ -246,7 +250,6 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 				ThreadPool.QueueUserWorkItem(InvokeCallback);
 			}
-
 			private void InvokeCallback(object state)
 			{
 				if (callback != null)
@@ -255,8 +258,9 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				}
 			}
 		}
+#endif
 
-#if NET_4_5
+#if NET4_5
 		/// <summary>
 		/// Extends WriteAsync so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
@@ -283,6 +287,15 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 #endif
 
 		/// <summary>
+		/// private state class to transfer state information between invocations of StreamExtensions.OnRead
+		/// </summary>
+		private class ByteArrayAsyncState
+		{
+			public ByteArrayAsyncResult Result;
+			public Stream Stream;
+		}
+
+		/// <summary>
 		/// Seek with default offset of 0.
 		/// </summary>
 		/// <param name="stream"><seealso cref="Stream"/> to operate on</param>
@@ -293,14 +306,6 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		{
 			return stream.Seek(0, seekOrigin);
 		}
-
-		/// <summary>
-		/// private state class to transfer state information between invocations of StreamExtensions.OnRead
-		/// </summary>
-		private class ByteArrayAsyncState
-		{
-			public ByteArrayAsyncResult Result;
-			public Stream Stream;
-		}
 	}
 }
+#endif

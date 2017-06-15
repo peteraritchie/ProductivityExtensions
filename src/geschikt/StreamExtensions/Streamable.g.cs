@@ -18,6 +18,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 	/// </summary>
 	public static partial class Streamable
 	{
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 		/// <summary>
 		/// Extends BeginRead so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
@@ -103,6 +104,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 			return stream.BeginWrite(buffer, 0, buffer.Length, callback);
 		}
+#endif
 
 		/// <summary>
 		/// Extends Read so that buffer offset of 0 and call to Array.Length are not needed.

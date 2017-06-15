@@ -20,6 +20,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 	/// </summary>
 	public static partial class TcpClientable
 	{
+#if (NET4_5 || NET4_0)
 		/// <summary>
 		/// Extends BeginConnect so that when a state object is not needed, null does not need to be passed.
 		/// <example>
@@ -58,6 +59,6 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 
 			return tcpclient.BeginConnect(addresses, port, requestCallback, null);
 		}
-
+#endif
 	}
 }

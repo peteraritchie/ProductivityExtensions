@@ -1,3 +1,4 @@
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
 using System;
 using System.Linq;
 using System.Reflection;
@@ -24,3 +25,4 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 	}
 }
+#endif

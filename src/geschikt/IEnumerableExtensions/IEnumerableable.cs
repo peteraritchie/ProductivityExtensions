@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET4_0 || NET4_5)
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			return collection;
 		}
 
+#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
 		public static IEnumerable<Assembly> ToAssemblies(this IEnumerable<string> filenames)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
@@ -53,6 +55,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 				yield return loadFrom;
 			}
 		}
+#endif
 
 		/// <summary>
 		/// Create a single multicast delegate from a collection of delegates
@@ -92,3 +95,4 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		}
 	}
 }
+#endif

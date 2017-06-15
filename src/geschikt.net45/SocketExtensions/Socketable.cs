@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+using System;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,8 +9,8 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 {
 	public partial class Socketable
 	{
-#if NET_4_5
-		#region based on code from http://blogs.msdn.com/b/pfxteam/archive/2011/12/15/10248293.aspx
+#if NET4_5
+#region based on code from http://blogs.msdn.com/b/pfxteam/archive/2011/12/15/10248293.aspx
 		private sealed class SocketAwaitable : IAwaitable
 		{
 			private static readonly Action SENTINEL = () => { };
@@ -100,7 +101,8 @@ namespace PRI.ProductivityExtensions.SocketExtensions
 			}
 			return totalBytesRead;
 		}
-		#endregion msdn blog
-#endif // NET_4_5
+#endregion msdn blog
+#endif // NET4_5
 	}
 }
+#endif
