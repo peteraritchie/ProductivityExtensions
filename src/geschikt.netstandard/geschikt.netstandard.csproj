@@ -584,8 +584,4 @@
     <Folder Include="XPathNavigatorExtensions\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.NETCore.Portable.Compatibility" Version="1.0.1" />
-  </ItemGroup>
-
 </Project>
