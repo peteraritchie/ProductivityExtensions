@@ -18,6 +18,8 @@ build_script:
 
     dotnet restore
 
+    nuget restore
+
     dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION
 
     dotnet pack -c Release  /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_REPO_COMMIT_MESSAGE$env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED" --include-symbols
