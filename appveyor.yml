@@ -20,6 +20,8 @@ build_script:
 
     nuget restore
 
+    dotnet build Tests.net45\Tests.net45.csproj -c Release 
+
     dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
