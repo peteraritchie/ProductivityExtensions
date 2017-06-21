@@ -1,9 +1,9 @@
-﻿#if (NET4_5 || NET4_0)
+﻿#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
 using System.Net;
 using System.Net.Sockets;
 
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Threading.Tasks;
 #endif
 
@@ -27,7 +27,7 @@ namespace PRI.ProductivityExtensions.TcpClientExtensions
 			return tcpClient.BeginConnect(endPoint.Address, endPoint.Port, asyncCallback, state);
 		}
 
-#if NET4_5
+#if (NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// Connect asyncronously to <param name="endPoint"></param>
 		/// </summary>

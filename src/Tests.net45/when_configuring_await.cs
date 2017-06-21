@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿#if false
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using PRI.ProductivityExtensions.TaskExtensions;
@@ -28,3 +29,4 @@ namespace Tests.net45
 		}
 	}
 }
+#endif

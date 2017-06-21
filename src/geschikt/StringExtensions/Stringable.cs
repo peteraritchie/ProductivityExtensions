@@ -53,7 +53,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		/// <returns></returns>
 		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
 		{
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			return string.Join(c.ToString(System.Globalization.CultureInfo.InvariantCulture),
 				text.Split(chars.ToArray()));
 #else

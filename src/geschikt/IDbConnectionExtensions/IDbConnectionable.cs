@@ -1,4 +1,4 @@
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 //////////////////////////////////////////////////////////////////////
 // BCLExtensions is (c) 2010 Solutions Design. All rights reserved.
 // http://www.sd.nl

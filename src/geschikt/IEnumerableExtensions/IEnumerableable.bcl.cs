@@ -40,6 +40,7 @@ using System.Linq;
 
 namespace PRI.ProductivityExtensions.IEnumerableExtensions
 {
+	// ReSharper disable once PartialTypeWithSinglePart
 	public static partial class IEnumerableable
 	{
 		/// <summary>

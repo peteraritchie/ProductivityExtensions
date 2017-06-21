@@ -2,9 +2,9 @@
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using PRI.ProductivityExtensions.ActionExtensions;
+using PRI.ProductivityExtensions.IEnumerableExtensions;
 
-	namespace Tests
+namespace Tests
 {
 	[TestFixture]
 	public class ActionableTests

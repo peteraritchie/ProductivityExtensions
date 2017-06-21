@@ -18,7 +18,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 	/// </summary>
 	public static partial class Streamable
 	{
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// Extends BeginRead so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>

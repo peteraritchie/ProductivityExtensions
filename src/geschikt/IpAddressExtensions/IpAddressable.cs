@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+using System;
 using System.Net;
 
 namespace PRI.ProductivityExtensions.IpAddressExtensions
@@ -21,3 +22,4 @@ namespace PRI.ProductivityExtensions.IpAddressExtensions
 		}
 	}
 }
+#endif

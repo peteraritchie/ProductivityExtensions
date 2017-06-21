@@ -1,11 +1,13 @@
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Collections.Generic;
 #endif
 using System.Linq;
 using System.Reflection;
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using PRI.ProductivityExtensions.IEnumerableExtensions;
+#endif
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -18,7 +20,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			return type.IsAbstract && type.IsSealed;
 #else
 			return type.GetTypeInfo().IsAbstract && type.GetTypeInfo().IsSealed;
@@ -29,7 +31,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool IsOpenGenericType(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
 		{
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			return type.GetGenericTypeArguments().Length == 0 && type.IsGenericType;
 #else
 			return type.GetGenericTypeArguments().Length == 0 && type.GetTypeInfo().IsGenericType;
@@ -40,10 +42,10 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static Type[] GetGenericTypeArguments(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		{
-#if NET4_5
+#if (NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 			return type.GenericTypeArguments;
 #else
-#if NET4_0
+#if NET40
 			if (type.IsGenericType && !type.IsGenericTypeDefinition)
 				return type.GetGenericArguments();
 #else
@@ -52,7 +54,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 				return typeInfo.GenericTypeArguments;
 #endif
 			else
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 				return Type.EmptyTypes;
+#else
+				return new Type[0];
+#endif
 #endif
 		}
 
@@ -82,7 +88,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool HasAttribute(this Type type, Type attributeType)
 #pragma warning restore CS1571 // XML comment has a duplicate param tag for 'type'
 		{
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			return type.GetCustomAttributes(attributeType, false).Length > 0;
 #else
 			return type.GetTypeInfo().GetCustomAttributes(attributeType, false).Any();
@@ -102,14 +108,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			return typeof(TInterface).IsAssignableFrom(type);
 #else
 			return typeof(TInterface).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
 #endif
 		}
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'Expected an end tag for element 'summary'.'
@@ -126,7 +132,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		{
 			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
 			{
 				return type.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
@@ -151,7 +157,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		/// <summary>
 		/// Get a collection of types that implement interface <param name="interfaceType"></typeparam>
@@ -161,7 +167,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType)
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
-#if (NET4_0 || NET4_5)
+#if (NET40 || NET45)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
@@ -183,7 +189,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 		{
 			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException(nameof(namespaceName));
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies,
@@ -197,7 +203,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
 		/// </summary>
@@ -207,7 +213,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
 #else
@@ -226,7 +232,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
 		{
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
@@ -245,7 +251,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns><seealso cref="ConstructorInfo"/> about the default constructor.</returns>
 		public static ConstructorInfo GetConstructor(this Type type)
 		{
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			return type.GetConstructor(new Type[0]);
 #else
 			return type.GetTypeInfo().DeclaredConstructors.Single(e => !e.GetParameters().Any());

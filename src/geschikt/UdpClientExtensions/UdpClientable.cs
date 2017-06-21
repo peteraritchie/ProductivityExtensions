@@ -1,4 +1,4 @@
-﻿#if (NET4_5 || NET4_0)
+﻿#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -177,7 +177,7 @@ namespace PRI.ProductivityExtensions.UdpClientExtensions
 			if (udpClient == null) throw new ArgumentNullException(nameof(udpClient));
 			return udpClient.BeginSend(datagram, datagram.Length, asyncCallback);
 		}
-#if NET4_5
+#if (NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static Task<int> SendAsync(this UdpClient udpClient, byte[] datagram)
 		{
 			if (udpClient == null) throw new ArgumentNullException(nameof(udpClient));

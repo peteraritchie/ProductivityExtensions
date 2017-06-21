@@ -43,6 +43,7 @@ namespace PRI.ProductivityExtensions.IDictionaryExtensions
 	/// <summary>
 	/// class that contains extension methods that extend <seealso cref="IDictionary{TKey,TValue}"/>
 	/// </summary>
+	// ReSharper disable once PartialTypeWithSinglePart
 	public static partial class IDictionaryable
 	{
 		/// <summary>

@@ -19,12 +19,16 @@ namespace Tests
 				byte[] buffer = new byte[2048];
 				ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 				long bytesRead = -1;
+#pragma warning disable CS0618 // Type or member is obsolete
 				var a = s.BeginReadToEnd(buffer,
 				                         ar =>
 					                         {
-						                         Interlocked.Exchange(ref bytesRead, s.EndReadToEnd(ar));
-						                         resetEvent.Set();
+#pragma warning disable CS0618 // Type or member is obsolete
+												 Interlocked.Exchange(ref bytesRead, s.EndReadToEnd(ar));
+#pragma warning restore CS0618 // Type or member is obsolete
+												 resetEvent.Set();
 					                         });
+#pragma warning restore CS0618 // Type or member is obsolete
 
 				Assert.IsTrue(resetEvent.Wait(10.Seconds()));
 				Assert.AreEqual(2048, Interlocked.Read(ref bytesRead));

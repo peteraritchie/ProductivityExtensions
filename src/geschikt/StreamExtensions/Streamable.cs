@@ -1,8 +1,8 @@
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
 using System.IO;
 using System.Threading;
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Threading.Tasks;
 #endif
 
@@ -34,7 +34,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 /// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope",
 			Justification = "'result' is used asynchronously")]
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
@@ -68,7 +68,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
 		/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
 		/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static void BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback)
@@ -96,7 +96,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
 		/// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
 		/// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, AsyncCallback callback)
@@ -120,7 +120,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 #pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 #pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 			Justification = "'stream' is required for this to be an extension method")]
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static int EndReadToEnd(this Stream stream, IAsyncResult ar)
@@ -165,7 +165,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			public int Length;
 			private ManualResetEvent asyncWaitHandle;
 
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			internal ByteArrayAsyncResult(AsyncCallback cb, object state, byte[] buffer, int offset, byte[] tempBuffer)
 				: this(cb, state, buffer, offset, tempBuffer, false)
 			{
@@ -226,7 +226,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				}
 			}
 
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			internal void Complete(bool didCompleteSynchronously)
 			{
 				lock (syncRoot)
@@ -252,7 +252,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		}
 #endif
 
-#if NET4_5
+#if (NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// Extends WriteAsync so that buffer offset of 0 and call to Array.Length are not needed.
 		/// <example>
