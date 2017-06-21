@@ -20,9 +20,13 @@ build_script:
 
     nuget restore
 
-    #dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION
-
     dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+
+    if(Test-Path .\Tools) {
+    	Remove-Item -Recurse -Force .\Tools
+    }
+    nuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools
+    nuget install OpenCover -Version 4.6.519 -OutputDirectory Tools"
 
     #Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
 
