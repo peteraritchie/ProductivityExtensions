@@ -52,7 +52,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>true if toCheck is a Nullable(Of T) type, otherwise false</returns>
 		public static bool IsNullableValueType(this Type toCheck)
 		{
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (toCheck == null || !toCheck.IsValueType)
 			{
 				return false;
@@ -86,7 +86,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			{
 				return type.FullName;
 			}
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			return type.Assembly.GetName().GetPublicKeyToken().Length <= 0 
 				? string.Format("{0}, {1}", type.FullName, type.Assembly.GetName().Name) : type.AssemblyQualifiedName;
 #else
@@ -108,7 +108,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			{
 				return false;
 			}
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			AssemblyName nameToCheck = type.Assembly.GetName();
 #else
 			AssemblyName nameToCheck = type.GetTypeInfo().Assembly.GetName();
@@ -132,7 +132,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static object GetDefaultValue(this Type typeToCreateValueFor, bool safeDefaults)
 		{
 			Type sourceType = typeToCreateValueFor;
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if(typeToCreateValueFor.IsNullableValueType())
 			{
 				sourceType = typeToCreateValueFor.GetGenericArguments()[0];
@@ -144,7 +144,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			}
 #endif
 			object toReturn = null;
-#if (NET4_5 || NET4_0)
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if(sourceType.IsValueType)
 #else
 			if(sourceType.GetTypeInfo().IsValueType)

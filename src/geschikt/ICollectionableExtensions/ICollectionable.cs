@@ -41,6 +41,7 @@ using System.Collections.Generic;
 namespace PRI.ProductivityExtensions.ICollectionableExtensions
 {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'ICollectionable'
+	// ReSharper disable once PartialTypeWithSinglePart
 	public static partial class ICollectionable
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'ICollectionable'
 	{

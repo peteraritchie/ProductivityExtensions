@@ -1,3 +1,4 @@
+#if (NET4O || NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Reflection;
 using System.Reflection.Emit;
 
@@ -33,3 +34,4 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 	}
 }
+#endif

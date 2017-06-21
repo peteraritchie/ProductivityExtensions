@@ -1,5 +1,5 @@
 using System;
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Diagnostics.Contracts;
 #endif
 
@@ -136,7 +136,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		public static TimeSpan Second(this int source)
 		{
 			if (source != 1) throw new ArgumentOutOfRangeException(nameof(source), source, "'source' must have value of '1'.");
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			Contract.EndContractBlock();
 #endif
 			return new TimeSpan(0, 0, 0, 1);

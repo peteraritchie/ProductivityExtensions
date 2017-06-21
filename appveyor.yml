@@ -6,41 +6,33 @@ branches:
   - master
 image: Visual Studio 2017
 configuration: Release
-assembly_info:
-  patch: true
-  file: src\**\AssemblyInfo.*
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
-  assembly_informational_version: '{version}'
 environment:
   COVERALLS_REPO_TOKEN:
     secure: sbStw71imn5c9ATjfPvDotgSyReJHM+il7wz8/083Xy3BONRyRxIg0cOjGAr8evI
 nuget:
   project_feed: true
   disable_publish_on_pr: true
-before_build:
-- cmd: "set \"APPVEYOR_PR_BUILD=\"\nfor /f \"delims=-.0123456789\" %%i in (\"%APPVEYOR_BUILD_VERSION%\") do set APPVEYOR_PR_BUILD=%%i\ncd src\nnuget restore\ncd ..\nIF EXIST Tools RMDIR /s /q Tools\nnuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools \nnuget install OpenCover -Version 4.6.519 -OutputDirectory Tools"
-build:
-  project: src\geschikt.sln
-  verbosity: minimal
-after_build:
-- cmd: >-
-    dir src
-    dir src\geschikt.netstandard
-    dir src\geschikt.netstandard\bin\
-    dir src\geschikt.netstandard\bin\Release /s /b
+build_script:
+- ps: >-
+    dotnet restore
 
-    if "%APPVEYOR_PR_BUILD%"=="" CALL copynugetfiles.bat
+    dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION
 
-    Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
+    dotnet pack -c Release  /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_REPO_COMMIT_MESSAGE$env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED" --include-symbols
 
-    tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
+    #Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
+
+    #tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 artifacts:
-- path: src\geschikt\bin\Release\geschikt.dll
-  name: net40-client
-- path: src\geschikt.net45\bin\Release\geschikt.dll
+- path: src\geschikt\bin\Release\netstandard1.0\geschikt.dll
+  name: netstandard1.0
+- path: src\geschikt\bin\Release\netstandard1.4\geschikt.dll
+  name: netstandard1.4
+- path: src\geschikt\bin\Release\net40\geschikt.dll
+  name: net40
+- path: src\geschikt\bin\Release\net45\geschikt.dll
   name: net45
-- path: '*.nupkg'
+- path: 'src\geschikt\bin\Release\*.nupkg'
   name: nuget
 deploy:
 - provider: NuGet

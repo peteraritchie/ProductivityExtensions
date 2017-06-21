@@ -1,5 +1,5 @@
 ﻿using System;
-#if NET4_5
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Runtime.CompilerServices;
 #endif
 using System.Threading;
@@ -90,11 +90,11 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 			return tcs.Task;
 		}
 
-#if NET4_5
+#if (NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static ConfiguredTaskAwaitable ContinueOnTaskContext(this Task task)
 		{
 			return task.ConfigureAwait(continueOnCapturedContext: false);
 		}
-#endif // NET4_5
+#endif // NET45
 	}
 }

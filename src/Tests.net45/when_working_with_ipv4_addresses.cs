@@ -25,6 +25,7 @@ namespace Tests.net45
 		public void then_null_argument_throws()
 		{
 			IPAddress ipaddress = null;
+			// ReSharper disable once ExpressionIsAlwaysNull
 			Assert.Throws<System.ArgumentNullException>(()=>ipaddress.IsIPv4LinkLocal());
 		}
 	}

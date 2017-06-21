@@ -7,7 +7,8 @@ namespace PRI.ProductivityExtensions.ByteArrayExtensions
 	/// <summary>
 	/// class that contains extension methods that extend <seealso cref="T:byte[]"/>
 	/// </summary>
-	static public partial class ByteArrayable
+	// ReSharper disable once PartialTypeWithSinglePart
+	public static partial class ByteArrayable
 	{
 		/// <summary>
 		/// Converts a byte array into a continuous hex string
@@ -20,7 +21,6 @@ namespace PRI.ProductivityExtensions.ByteArrayExtensions
 		public static string AsHexString(this byte[] buffer, int offset, int length)
 		{
 			StringBuilder stringBuilder = new StringBuilder();
-			int line = 0;
 			int lineOctet = 0;
 			for (int i = offset; i < length; ++i)
 			{
@@ -28,7 +28,6 @@ namespace PRI.ProductivityExtensions.ByteArrayExtensions
 				if (lineOctet > 16)
 				{
 					stringBuilder.Append(Environment.NewLine);
-					++line;
 					lineOctet = 0;
 				}
 				stringBuilder.Append(string.Format("{0} ", b.ToString("X2", CultureInfo.CurrentCulture)));

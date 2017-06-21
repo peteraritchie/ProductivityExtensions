@@ -1,4 +1,4 @@
-#if (NETSTANDARD2_0 || NET4_0 || NET4_5)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
 using System.Collections.Generic;
 using System.Linq;
