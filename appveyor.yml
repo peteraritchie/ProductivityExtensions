@@ -22,7 +22,9 @@ build_script:
 
     dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION
 
-    dotnet pack -c Release  /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_REPO_COMMIT_MESSAGE$env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED" --include-symbols
+    # tests
+
+    dotnet pack geschikt\geschikt.csproj --no-build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_REPO_COMMIT_MESSAGE$env:APPVEYOR_REPO_COMMIT_MESSAGE_EXTENDED" --include-symbols
 
     #Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:src\Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:src\Tests.net45\bin\Release\
 
