@@ -1,12 +1,12 @@
 #if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
-#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Collections.Generic;
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #endif
 using System.Linq;
 using System.Reflection;
-#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using PRI.ProductivityExtensions.IEnumerableExtensions;
+#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #endif
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
@@ -115,7 +115,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'Expected an end tag for element 'summary'.'
@@ -125,14 +124,18 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="type"></param>
 		/// <param name="interfaceType"></param>
 		/// <returns></returns>
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static bool ImplementsInterface(this Type type, Type interfaceType)
+#else
+		public static bool ImplementsInterface(this TypeInfo type, Type interfaceType)
+#endif
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'Expected an end tag for element 'summary'.'
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
 #pragma warning restore CS1570 // XML comment has badly formed XML -- 'End tag 'summary' does not match the start tag 'param'.'
 		{
 			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NET40 || NET45)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
 			{
 				return type.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
@@ -142,20 +145,27 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			var typeInfo = interfaceType.GetTypeInfo();
 			if (typeInfo.IsGenericType && typeInfo.ContainsGenericParameters)
 			{
-				return type.GetTypeInfo().GetInterfaces().Any(t => t.GetTypeInfo().IsGenericType && t.GetTypeInfo().GetGenericTypeDefinition() == interfaceType);
+				return type.ImplementedInterfaces.Any(t => t.GetTypeInfo().IsGenericType && t.GetTypeInfo().GetGenericTypeDefinition() == interfaceType);
 			}
-			return typeInfo.IsAssignableFrom(type.GetTypeInfo());
+			return typeInfo.IsAssignableFrom(type);
 #endif
 		}
 
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
+#else
+		private static IEnumerable<TypeInfo> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<TypeInfo> predicate)
+#endif
 		{
 			return from assembly in assemblies
+#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
+				   from type in assembly.DefinedTypes
+#else
 				   from type in assembly.GetTypes()
+#endif
 				   where !type.IsAbstract && type.IsClass && predicate(type)
 				   select type;
 		}
-#endif
 
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1570 // XML comment has badly formed XML -- 'End tag 'typeparam' does not match the start tag 'param'.'
@@ -203,7 +213,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
 		/// </summary>
@@ -211,16 +220,19 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="directory"></param>
 		/// <param name="wildcard"></param>
 		/// <returns></returns>
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
-#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
-#else
-			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
-#endif
 		}
+#elif (NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3)
+		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
+		{
+			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType)).Select(t=>t.AsType());
+		}
+#endif
 
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/> within namespace named <paramref name="namespaceName"/>
@@ -230,17 +242,19 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="wildcard"></param>
 		/// <param name="namespaceName"></param>
 		/// <returns></returns>
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
 		{
-#if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
-#else
+		}
+#elif (NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3)
+		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
+		{
 			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
-				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
-#endif
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType)).Select(t=>t.AsType());
 		}
 #endif
 
