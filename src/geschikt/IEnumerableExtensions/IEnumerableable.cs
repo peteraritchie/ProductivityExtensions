@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 #if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System.Reflection;
@@ -32,7 +33,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			return collection;
 		}
 
-#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
 		public static IEnumerable<Assembly> ToAssemblies(this IEnumerable<string> filenames)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
@@ -42,7 +43,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 				Assembly loadFrom;
 				try
 				{
-					loadFrom = Assembly.Load(new AssemblyName(f));
+					loadFrom = Assembly.LoadFrom(f);
 				}
 				catch (BadImageFormatException)
 				{

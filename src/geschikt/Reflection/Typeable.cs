@@ -226,12 +226,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
 		}
-#elif (NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3)
-		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
-		{
-			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType)).Select(t=>t.AsType());
-		}
 #endif
 
 		/// <summary>
@@ -248,13 +242,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
-		}
-#elif (NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3)
-		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
-		{
-			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
-				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType)).Select(t=>t.AsType());
 		}
 #endif
 
