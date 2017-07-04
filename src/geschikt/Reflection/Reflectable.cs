@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Reflection.Emit;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
+using PRI.ProductivityExtensions.ReflectionExtensions;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {

@@ -5,11 +5,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using NUnit.Framework;
 using PRI.ProductivityExtensions.IEnumerableExtensions;
-using PRI.ProductivityExtensions.Reflection;
 using PRI.ProductivityExtensions.ReflectionExtensions;
+using PRI.ProductivityExtensions.Reflection;
+using Assembly = System.Reflection.Assembly;
+using AssemblyCopyrightAttribute = System.Reflection.AssemblyCopyrightAttribute;
+using PropertyInfo = System.Reflection.PropertyInfo;
 
 namespace Tests
 {
@@ -27,7 +29,10 @@ namespace Tests
 			}
 
 			[Obsolete]
+#pragma warning disable 0649
 			public int Field;
+#pragma warning restore 0649
+
 			[Obsolete]
 			public int Property { get; set; }
 		}
@@ -41,7 +46,9 @@ namespace Tests
 #pragma warning restore 612,618
 			}
 
+#pragma warning disable 0649
 			public int Field;
+#pragma warning restore 0649
 			public int Property { get; set; }
 		}
 // ReSharper restore UnusedMember.Local

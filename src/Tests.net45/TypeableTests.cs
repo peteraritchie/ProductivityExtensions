@@ -30,8 +30,6 @@ namespace Tests
 
 		#endregion // stubs
 
-		private int n = 0;
-
 		[Test]
 		public void OpenGenericTypeIsOpenGenericType()
 		{

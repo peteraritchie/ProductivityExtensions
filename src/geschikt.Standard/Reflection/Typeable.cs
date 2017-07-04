@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using PRI.ProductivityExtensions.IEnumerableExtensions;
+//using PRI.ProductivityExtensions.IEnumerableExtensions;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -62,7 +62,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 #endif
-
+#if NETSTANDARD1_0
 #if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <typeparam name="TAttribute"/>
@@ -78,7 +78,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 #endif
 
-#if NET40
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <param name="attributeType" />
 		/// </summary>
@@ -87,11 +86,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>true if attributed with <paramref name="attributeType" />, false otherwise.</returns>
 		public static bool HasAttribute(this Type type, Type attributeType)
 		{
-//#if (NET40 || NET45)
-//			return type.GetCustomAttributes(attributeType, false).Length > 0;
-//#else
+#if (NET40 || NET45)
+			return type.GetCustomAttributes(attributeType, false).Length > 0;
+#else
 			return type.GetTypeInfo().GetCustomAttributes(attributeType, false).Any();
-//#endif
+#endif
 		}
 #endif
 
@@ -181,13 +180,13 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 
-		/// <summary>
-		/// Get a collection of types that implement interface <param name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
-		/// </summary>
-		/// <param name="interfaceType"></param>
-		/// <param name="namespaceName"></param>
-		/// <returns></returns>
-		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
+			/// <summary>
+			/// Get a collection of types that implement interface <param name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
+			/// </summary>
+			/// <param name="interfaceType"></param>
+			/// <param name="namespaceName"></param>
+			/// <returns></returns>
+			public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
 		{
 			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException(nameof(namespaceName));
 #if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
@@ -215,7 +214,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => type.ImplementsInterface(interfaceType));
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => ImplementsInterface(type, interfaceType));
 		}
 #endif
 
@@ -232,10 +231,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		{
 			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
-				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
+				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && ImplementsInterface(type, interfaceType));
 		}
 #endif
-
 #if NETSTANDARD1_0
 #if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 		/// <summary>

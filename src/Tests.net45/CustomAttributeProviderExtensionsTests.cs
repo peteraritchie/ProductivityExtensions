@@ -9,7 +9,7 @@ namespace Tests
 		[Test]
 		public void ContainsAttributeReturnsTrueForMethodThatHasAttributeApplied()
 		{
-			var mi = typeof (string).GetMethod("Equals", new [] {typeof(object)});
+			var mi = typeof (string).GetMethod("Equals", new [] {typeof(object)}) as System.Reflection.ICustomAttributeProvider;
 			Assert.IsTrue(mi.ContainsAttribute("ReliabilityContractAttribute"));
 		}
 		[Test]

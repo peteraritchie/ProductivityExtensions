@@ -51,16 +51,19 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		/// <param name="chars">individual characters to search for.</param>
 		/// <param name="c">character to replace any found characters with.</param>
 		/// <returns></returns>
+#if (NET40 || NET45)
 		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
 		{
-#if (NET40 || NET45)
 			return string.Join(c.ToString(System.Globalization.CultureInfo.InvariantCulture),
 				text.Split(chars.ToArray()));
+		}
 #else
+		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
+		{
 			return string.Join(c.ToString(),
 				text.Split(chars.ToArray()));
-#endif
 		}
+#endif
 
 			/// <summary>
 			/// Truncate string <paramref name="text"/> to a maximim length of <paramref name="maxLength"/>

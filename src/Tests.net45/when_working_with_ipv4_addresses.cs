@@ -1,5 +1,7 @@
-﻿using System.Net;
+﻿#if false
+using System.Net;
 using NUnit.Framework;
+using PRI.ProductivityExtensions.ActionExtensions;
 using PRI.ProductivityExtensions.IpAddressExtensions;
 
 namespace Tests.net45
@@ -30,3 +32,4 @@ namespace Tests.net45
 		}
 	}
 }
+#endif
