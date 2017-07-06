@@ -59,6 +59,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 					// ignore anything that can't be loaded
 					continue;
 				}
+
 				yield return loadFrom;
 			}
 		}

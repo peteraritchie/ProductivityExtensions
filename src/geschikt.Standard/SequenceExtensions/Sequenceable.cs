@@ -12,7 +12,7 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 		/// Compares two sequences to see if they are equal
 		/// </summary>
 		/// <remarks>
-		/// The default <see cref="EqualityComparer&lt;T&gt;"/> for <typeparamref name="TSource"/> is used 
+		/// The default <see cref="EqualityComparer&lt;T&gt;"/> for <typeparamref name="TSource"/> is used
 		/// </remarks>
 		/// <typeparam name="TSource"></typeparam>
 		/// <param name="first"></param>
@@ -21,18 +21,34 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 		/// <returns></returns>
 		public static bool SequenceEqual<TSource>(this IEnumerable<TSource> first, IEnumerable<TSource> second, int offsetIntoSecond)
 		{
-			if (first == null) throw new ArgumentNullException(nameof(first));
-			if (second == null) throw new ArgumentNullException(nameof(second));
+			if (first == null)
+			{
+				throw new ArgumentNullException(nameof(first));
+			}
+
+			if (second == null)
+			{
+				throw new ArgumentNullException(nameof(second));
+			}
+
 			var comparer = EqualityComparer<TSource>.Default;
 			using (IEnumerator<TSource> e1 = first.GetEnumerator())
 			using (IEnumerator<TSource> e2 = second.GetEnumerator())
 			{
-				for (int i = 0; i < offsetIntoSecond; ++i) e2.MoveNext();
+				for (int i = 0; i < offsetIntoSecond; ++i)
+				{
+					e2.MoveNext();
+				}
+
 				while (e1.MoveNext())
 				{
-					if (!(e2.MoveNext() && comparer.Equals(e1.Current, e2.Current))) return false;
+					if (!(e2.MoveNext() && comparer.Equals(e1.Current, e2.Current)))
+					{
+						return false;
+					}
 				}
 			}
+
 			return true;
 		}
 
@@ -46,12 +62,27 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 		/// <returns></returns>
 		public static int SequenceEquality<T>(this IEnumerable<T> source, IEnumerable<T> that, IEqualityComparer<T> equalityComparer)
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
-			if (that == null) throw new ArgumentNullException(nameof(that));
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
+			if (that == null)
+			{
+				throw new ArgumentNullException(nameof(that));
+			}
+
 			var sourceCount = source.Count();
-			if (sourceCount == 0) return 100;
+			if (sourceCount == 0)
+			{
+				return 100;
+			}
+
 			var thatCount = that.Count();
-			if (thatCount == 0) return -100;
+			if (thatCount == 0)
+			{
+				return -100;
+			}
 
 			int matches = 0;
 			foreach (var e in source)
@@ -61,14 +92,24 @@ namespace PRI.ProductivityExtensions.SequenceExtensions
 					matches++;
 				}
 			}
+
 			int p;
 			if (sourceCount >= thatCount)
 			{
-				if (matches == 0) return 100;
+				if (matches == 0)
+				{
+					return 100;
+				}
+
 				p = matches * 100 / sourceCount;
 				return p == 100 ? 0 : p;
 			}
-			if (matches == 0) return -100;
+
+			if (matches == 0)
+			{
+				return -100;
+			}
+
 			p = -matches * 100 / thatCount;
 			return p == 100 ? 0 : p;
 		}

@@ -8,6 +8,15 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 	public class IlInstruction
 	{
 		/// <summary>
+		/// construct an IlInstruction based on the OpCode
+		/// </summary>
+		/// <param name="code"></param>
+		public IlInstruction(OpCode code)
+		{
+			Code = code;
+		}
+
+		/// <summary>
 		/// Opcode of the instruction
 		/// </summary>
 		public OpCode Code { get; set; }
@@ -16,14 +25,5 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// Optional operand of the instruction
 		/// </summary>
 		public object Operand { get; set; }
-
-		/// <summary>
-		/// construct an IlInstruction based on the OpCode
-		/// </summary>
-		/// <param name="code"></param>
-		public IlInstruction(OpCode code)
-		{
-			Code = code;
-		}
 	}
 }

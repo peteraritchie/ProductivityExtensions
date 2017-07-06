@@ -22,7 +22,8 @@ build_script:
 
     dotnet build Tests.net45\Tests.net45.csproj -c Release 
 
-    dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    #dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
 
@@ -38,15 +39,15 @@ build_script:
 
     tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 artifacts:
-- path: src\geschikt\bin\Release\netstandard1.0\geschikt.dll
+- path: src\geschikt.Standard\bin\Release\netstandard1.0\geschikt.Standard.???
   name: netstandard1.0
-- path: src\geschikt\bin\Release\netstandard1.4\geschikt.dll
+- path: src\geschikt.Standard\bin\Release\netstandard1.4\geschikt.Standard.???
   name: netstandard1.4
-- path: src\geschikt\bin\Release\net40\geschikt.dll
+- path: src\geschikt\bin\Release\netcoreapp1.1\geschikt.???
   name: net40
-- path: src\geschikt\bin\Release\net45\geschikt.dll
+- path: src\geschikt\bin\Release\net45\geschikt.???
   name: net45
-- path: 'src\geschikt\bin\Release\*.nupkg'
+- path: 'src\geschikt*\*.nupkg'
   name: nuget
 deploy:
 - provider: NuGet

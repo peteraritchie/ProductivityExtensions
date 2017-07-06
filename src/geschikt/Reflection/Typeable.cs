@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+#if (NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
 using PRI.ProductivityExtensions.IEnumerableExtensions;
+#endif
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
@@ -164,14 +166,18 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
-		/// Get a collection of types that implement interface <param name="interfaceType" />
+		/// Get a collection of types that implement interface <paramref name="interfaceType" />
 		/// </summary>
 		/// <param name="interfaceType"></param>
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType)
 		{
 #if (NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			if (!interfaceType.IsInterface)
+			{
+				throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			}
+
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return ByPredicate(assemblies, type => type.ImplementsInterface(interfaceType));
 #elif (NETSTANDARD2_0)
@@ -182,18 +188,26 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 
 		/// <summary>
-		/// Get a collection of types that implement interface <param name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
+		/// Get a collection of types that implement interface <paramref name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
 		/// </summary>
 		/// <param name="interfaceType"></param>
 		/// <param name="namespaceName"></param>
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterface(this Type interfaceType, string namespaceName)
 		{
-			if (string.IsNullOrWhiteSpace(namespaceName)) throw new ArgumentNullException(nameof(namespaceName));
+			if (string.IsNullOrWhiteSpace(namespaceName))
+			{
+				throw new ArgumentNullException(nameof(namespaceName));
+			}
 #if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			if (!interfaceType.IsInterface)
+			{
+				throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			}
+
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-			return ByPredicate(assemblies,
+			return ByPredicate(
+				assemblies,
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
 #elif (NETSTANDARD2_0)
 			if (!interfaceType.GetTypeInfo().IsInterface) throw new ArgumentException("Type is not an interface", "interfaceType");
@@ -214,7 +228,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			if (!interfaceType.IsInterface)
+			{
+				throw new ArgumentException("Type is not an interface", nameof(interfaceType));
+			}
+
 			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => type.ImplementsInterface(interfaceType));
 		}
 #endif
@@ -230,8 +248,13 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
 		{
-			if (!interfaceType.IsInterface) throw new ArgumentException("Type is not an interface", "TInterface");
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
+			if (!interfaceType.IsInterface)
+			{
+				throw new ArgumentException("Type is not an interface", "TInterface");
+			}
+
+			return ByPredicate(
+				System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
 				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
 		}
 #endif

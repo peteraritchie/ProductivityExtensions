@@ -42,11 +42,35 @@
 	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.0|AnyCPU'">
+	  <DocumentationFile>bin\Debug\netstandard1.0\geschikt.Standard.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.0|AnyCPU'">
+	  <DocumentationFile>bin\Release\netstandard1.0\geschikt.Standard.xml</DocumentationFile>
+	</PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.4|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard1.4\geschikt.Standard.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard1.4\geschikt.Standard.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
 		<Reference Include="System" />
 		<Reference Include="System.Core" />
 		<Reference Include="System.Windows.forms" />
 		<Reference Include="System.Data" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <AdditionalFiles Include="stylecop.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
 	</ItemGroup>
 	
 </Project>

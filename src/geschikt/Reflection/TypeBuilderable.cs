@@ -18,7 +18,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>The new FieldBuilder object that encapsulates the field</returns>
 		public static FieldBuilder DefinePublicField<T>(this TypeBuilder typeBuilder, string fieldName)
 		{
-			return DefinePublicField(typeBuilder, fieldName, typeof (T));
+			return DefinePublicField(typeBuilder, fieldName, typeof(T));
 		}
 
 		/// <summary>
@@ -67,7 +67,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>The new PropertyBuilder object that encapsulates the property</returns>
 		public static PropertyBuilder DefineProperty<T>(this TypeBuilder typeBuilder, string propertyName, PropertyAttributes propertyAttributes)
 		{
-			return DefineProperty(typeBuilder, propertyName, typeof (T), propertyAttributes);
+			return DefineProperty(typeBuilder, propertyName, typeof(T), propertyAttributes);
 		}
 
 		/// <summary>
@@ -91,7 +91,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
 		public static MethodBuilder DefinePropertyGetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
 		{
-			return typeBuilder.DefineMethod("get_" + propertyInfo.Name,
+			return typeBuilder.DefineMethod(
+				"get_" + propertyInfo.Name,
 			                                MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
 			                                propertyInfo.PropertyType,
 			                                Type.EmptyTypes);
@@ -105,10 +106,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
 		public static MethodBuilder DefinePropertySetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
 		{
-			return typeBuilder.DefineMethod("set_" + propertyInfo.Name,
+			return typeBuilder.DefineMethod(
+				"set_" + propertyInfo.Name,
 			                                MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
 			                                null,
-			                                new[] {propertyInfo.PropertyType});
+			                                new[] { propertyInfo.PropertyType });
 		}
 
 		/// <summary>
@@ -119,7 +121,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
 		public static MethodBuilder DefinePrivatePropertyGetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
 		{
-			return typeBuilder.DefineMethod("get_" + propertyInfo.Name,
+			return typeBuilder.DefineMethod(
+				"get_" + propertyInfo.Name,
 											MethodAttributes.Private | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
 											propertyInfo.PropertyType,
 											Type.EmptyTypes);
@@ -133,14 +136,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>the new <seealso cref="MethodBuilder"/> object that encapsulates the method</returns>
 		public static MethodBuilder DefinePrivatePropertySetter(this TypeBuilder typeBuilder, PropertyInfo propertyInfo)
 		{
-			return typeBuilder.DefineMethod("set_" + propertyInfo.Name,
+			return typeBuilder.DefineMethod(
+				"set_" + propertyInfo.Name,
 											MethodAttributes.Private | MethodAttributes.SpecialName | MethodAttributes.HideBySig,
 											null,
 											new[] { propertyInfo.PropertyType });
 		}
 
 		private static readonly CustomAttributeBuilder CompilerGeneratedAttributeBuilder =
-			new CustomAttributeBuilder(typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute).GetConstructor(),
+			new CustomAttributeBuilder(
+				typeof(System.Runtime.CompilerServices.CompilerGeneratedAttribute).GetConstructor(),
 									   new object[0]);
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty<T>(TypeBuilder, string)'
@@ -155,7 +160,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePublicAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
-				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+				DefinePrivateField(
+					string.Format("<{0}>k__BackingField", propertyName),
 								   propertyType);
 
 			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
@@ -192,7 +198,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreatePrivateAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
-				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+				DefinePrivateField(
+					string.Format("<{0}>k__BackingField", propertyName),
 								   propertyType);
 
 			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);
@@ -229,7 +236,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'TypeBuilderable.CreateReadonlyAutoProperty(TypeBuilder, string, Type)'
 		{
 			var field = typeBuilder.
-				DefinePrivateField(string.Format("<{0}>k__BackingField", propertyName),
+				DefinePrivateField(
+					string.Format("<{0}>k__BackingField", propertyName),
 								   propertyType);
 
 			field.SetCustomAttribute(CompilerGeneratedAttributeBuilder);

@@ -1,4 +1,4 @@
-﻿#if (NETSTANDARD1_0 || NETSTANDARD1_1 ||NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+﻿#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,13 +23,17 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> enumerable)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToCollection<T>(IEnumerable<T>)'
 		{
-			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+			if (enumerable == null)
+			{
+				throw new ArgumentNullException(nameof(enumerable));
+			}
 
 			var list = enumerable as IList<T>;
 			if (list != null)
 			{
 				return new Collection<T>(list);
 			}
+
 			var collection = new Collection<T>();
 			collection.AddRange(enumerable);
 
@@ -78,9 +82,13 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			{
 				return _ => { };
 			}
+
 			Action<T> result = coll.ElementAt(0);
 			foreach (var d in coll.Skip(1))
+			{
 				result += d;
+			}
+
 			return result;
 		}
 
@@ -97,9 +105,13 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			{
 				throw new ArgumentException("Collection should not be empty or null.", nameof(coll));
 			}
+
 			Func<T1, T2> result = coll.ElementAt(0);
 			foreach (var d in coll.Skip(1))
+			{
 				result += d;
+			}
+
 			return result;
 		}
 #endif

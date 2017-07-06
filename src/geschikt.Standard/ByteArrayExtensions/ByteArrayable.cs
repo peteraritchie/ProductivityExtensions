@@ -30,8 +30,10 @@ namespace PRI.ProductivityExtensions.ByteArrayExtensions
 					stringBuilder.Append(Environment.NewLine);
 					lineOctet = 0;
 				}
+
 				stringBuilder.Append(string.Format("{0} ", b.ToString("X2", CultureInfo.CurrentCulture)));
 			}
+
 			return stringBuilder.ToString();
 		}
 

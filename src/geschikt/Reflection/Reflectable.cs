@@ -11,7 +11,7 @@ using PRI.ProductivityExtensions.ReflectionExtensions;
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
 	/// <summary>
-	/// class hat contains extension methods that extend reflection-related classes 
+	/// class hat contains extension methods that extend reflection-related classes
 	/// </summary>
 	public static class Reflectable
 	{
@@ -24,9 +24,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this Assembly source) where T: Attribute
+		public static T GetCustomAttribute<T>(this Assembly source)
+			where T : Attribute
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
 			return (T)Attribute.GetCustomAttribute(source, typeof(T));
 		}
 
@@ -39,9 +44,10 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this MemberInfo source) where T : Attribute
+		public static T GetCustomAttribute<T>(this MemberInfo source)
+			where T : Attribute
 		{
-			return (T) Attribute.GetCustomAttribute(source, typeof (T));
+			return (T)Attribute.GetCustomAttribute(source, typeof(T));
 		}
 
 		/// <summary>
@@ -53,7 +59,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this ParameterInfo source) where T : Attribute
+		public static T GetCustomAttribute<T>(this ParameterInfo source)
+			where T : Attribute
 		{
 			return (T)Attribute.GetCustomAttribute(source, typeof(T));
 		}
@@ -67,7 +74,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"> </param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this Module source) where T : Attribute
+		public static T GetCustomAttribute<T>(this Module source)
+			where T : Attribute
 		{
 			return (T)Attribute.GetCustomAttribute(source, typeof(T));
 		}
@@ -82,9 +90,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this Assembly source, bool inherit) where T : Attribute
+		public static T GetCustomAttribute<T>(this Assembly source, bool inherit)
+			where T : Attribute
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
 			return (T)Attribute.GetCustomAttribute(source, typeof(T), inherit);
 		}
 
@@ -98,7 +111,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this MemberInfo source, bool inherit) where T : Attribute
+		public static T GetCustomAttribute<T>(this MemberInfo source, bool inherit)
+			where T : Attribute
 		{
 			return (T)Attribute.GetCustomAttribute(source, typeof(T), inherit);
 		}
@@ -113,7 +127,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T GetCustomAttribute<T>(this ParameterInfo source, bool inherit) where T : Attribute
+		public static T GetCustomAttribute<T>(this ParameterInfo source, bool inherit)
+			where T : Attribute
 		{
 			return (T)Attribute.GetCustomAttribute(source, typeof(T), inherit);
 		}
@@ -128,11 +143,12 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"> </param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns>A reference to the single custom attribute of type <typeparamref name="T"/> that is applied to <paramref name="source" />, or null if there is no such attribute.</returns>
-		public static T GetCustomAttribute<T>(this Module source, bool inherit) where T : Attribute
+		public static T GetCustomAttribute<T>(this Module source, bool inherit)
+			where T : Attribute
 		{
 			return (T)Attribute.GetCustomAttribute(source, typeof(T), inherit);
 		}
-//
+
 		/// <summary>
 		/// Makes Attribute.GetCustomAttributes() generic and avoids having to pass a Type and cast the result.
 		/// <example>
@@ -142,9 +158,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this Assembly source) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this Assembly source)
+			where T : Attribute
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T));
 		}
 
@@ -157,7 +178,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this MemberInfo source) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this MemberInfo source)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T));
 		}
@@ -171,7 +193,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"></param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this ParameterInfo source) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this ParameterInfo source)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T));
 		}
@@ -185,7 +208,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <typeparam name="T">The type, or a base type, of the custom attribute to search for.</typeparam>
 		/// <param name="source"> </param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this Module source) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this Module source)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T));
 		}
@@ -200,9 +224,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this Assembly source, bool inherit) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this Assembly source, bool inherit)
+			where T : Attribute
 		{
-			if (source == null) throw new ArgumentNullException(nameof(source));
+			if (source == null)
+			{
+				throw new ArgumentNullException(nameof(source));
+			}
+
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T), inherit);
 		}
 
@@ -216,7 +245,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this MemberInfo source, bool inherit) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this MemberInfo source, bool inherit)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T), inherit);
 		}
@@ -231,7 +261,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"></param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns></returns>
-		public static T[] GetCustomAttributes<T>(this ParameterInfo source, bool inherit) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this ParameterInfo source, bool inherit)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T), inherit);
 		}
@@ -246,13 +277,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="source"> </param>
 		/// <param name="inherit">If true, specifies to also search the ancestors of <paramref name="source" /> for custom attributes. </param>
 		/// <returns>A reference to the single custom attribute of type <typeparamref name="T"/> that is applied to <paramref name="source" />, or null if there is no such attribute.</returns>
-		public static T[] GetCustomAttributes<T>(this Module source, bool inherit) where T : Attribute
+		public static T[] GetCustomAttributes<T>(this Module source, bool inherit)
+			where T : Attribute
 		{
 			return (T[])Attribute.GetCustomAttributes(source, typeof(T), inherit);
 		}
 
-		private static readonly OpCode[] singleByteOpCodes = new OpCode[0x100];
-		private static readonly OpCode[] multiByteOpCodes = new OpCode[0x100];
+		private static readonly OpCode[] SingleByteOpCodes = new OpCode[0x100];
+		private static readonly OpCode[] MultiByteOpCodes = new OpCode[0x100];
 
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1810:InitializeReferenceTypeStaticFieldsInline")]
 		static Reflectable()
@@ -268,10 +300,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 				{
 					continue;
 				}
+
 				ushort opCodeValue = (ushort)((OpCode)field.GetValue(null)).Value;
 				if (opCodeValue < 0x100)
 				{
-					singleByteOpCodes[opCodeValue] = (OpCode)field.GetValue(null);
+					SingleByteOpCodes[opCodeValue] = (OpCode)field.GetValue(null);
 				}
 				else
 				{
@@ -279,7 +312,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 					{
 						throw new InvalidOperationException("Invalid OpCode loading opcode.");
 					}
-					multiByteOpCodes[opCodeValue & 0xff] = (OpCode)field.GetValue(null);
+
+					MultiByteOpCodes[opCodeValue & 0xff] = (OpCode)field.GetValue(null);
 				}
 			}
 		}
@@ -291,8 +325,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="module"></param>
 		/// <param name="il"></param>
 		/// <returns></returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Replacing case statements would be more complex"),
-		System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "only way to know if tokey not support is to catch all exceptions")]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity", Justification = "Replacing case statements would be more complex")]
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "only way to know if tokey not support is to catch all exceptions")]
 		private static IEnumerable<IlInstruction> GetMethodInstructions(MethodInfo methodInfo, Module module, byte[] il)
 		{
 			int position = 0;
@@ -303,18 +337,19 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 				ushort value = il[position++];
 				if (value != 0xfe)
 				{
-					code = singleByteOpCodes[value];
+					code = SingleByteOpCodes[value];
 				}
 				else
 				{
 					value = il[position++];
-					code = multiByteOpCodes[value];
+					code = MultiByteOpCodes[value];
 					value = (ushort)(value | 0xfe00);
 				}
-				IlInstruction instruction = new IlInstruction(code) {Code = code};
-				int metadataToken = 0;
-				// get the operand of the current operation
 
+				IlInstruction instruction = new IlInstruction(code) { Code = code };
+				int metadataToken = 0;
+
+				// get the operand of the current operation
 				switch (code.OperandType)
 				{
 					case OperandType.InlineBrTarget:
@@ -334,6 +369,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 						{
 							// if field could not be resolved, ignore it.
 						}
+
 						break;
 					case OperandType.InlineMethod:
 						metadataToken = BitConverter.ToInt32(il, position);
@@ -346,6 +382,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 						{
 							// if method could not be resolved, ignore it.
 						}
+
 						if (instruction.Operand == null)
 						{
 							try
@@ -357,6 +394,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 								// if member could not be resolved, ignore it.
 							}
 						}
+
 						break;
 					case OperandType.InlineSig:
 						metadataToken = BitConverter.ToInt32(il, position);
@@ -374,26 +412,32 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 						{
 							// if type could not be resolved, ignore it.
 						}
+
 						// SSS : see what to do here
 						break;
 					case OperandType.InlineType:
 						metadataToken = BitConverter.ToInt32(il, position);
 						position += 4;
+
 						// now we call the ResolveType always using the generic attributes type in order
 						// to support decompilation of generic methods and classes
-
-						// thanks to the guys from code project who commented on this missing feature
-
+						//
+						// thanks to the guys from Code Project who commented on this missing feature
 						try
 						{
 							if (methodInfo.DeclaringType != null)
-								instruction.Operand = module.ResolveType(metadataToken, methodInfo.DeclaringType.GetGenericArguments(),
-								                                         methodInfo.GetGenericArguments());
+							{
+								instruction.Operand = module.ResolveType(
+									metadataToken,
+									methodInfo.DeclaringType.GetGenericArguments(),
+									methodInfo.GetGenericArguments());
+							}
 						}
 						catch (Exception)
 						{
 							// if type could not be resolved, ignore it.
 						}
+
 						break;
 					case OperandType.InlineI:
 						{
@@ -401,23 +445,27 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 							position += 4;
 							break;
 						}
+
 					case OperandType.InlineI8:
 						{
 							instruction.Operand = BitConverter.ToInt64(il, position);
 							position += 8;
 							break;
 						}
+
 					case OperandType.InlineNone:
 						{
 							instruction.Operand = null;
 							break;
 						}
+
 					case OperandType.InlineR:
 						{
 							instruction.Operand = BitConverter.ToDouble(il, position);
-							position += sizeof(Double);
+							position += sizeof(double);
 							break;
 						}
+
 					case OperandType.InlineString:
 						{
 							metadataToken = BitConverter.ToInt32(il, position);
@@ -425,6 +473,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 							instruction.Operand = module.ResolveString(metadataToken);
 							break;
 						}
+
 					case OperandType.InlineSwitch:
 						{
 							int count = BitConverter.ToInt32(il, position);
@@ -435,50 +484,60 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 								casesAddresses[i] = BitConverter.ToInt32(il, position);
 								position += 4;
 							}
+
 							int[] cases = new int[count];
 							for (int i = 0; i < count; i++)
 							{
 								cases[i] = position + casesAddresses[i];
 							}
+
 							break;
 						}
+
 					case OperandType.InlineVar:
 						{
 							instruction.Operand = BitConverter.ToUInt16(il, position);
-							position += sizeof(UInt16);
+							position += sizeof(ushort);
 							break;
 						}
+
 					case OperandType.ShortInlineBrTarget:
 						{
 							instruction.Operand = (sbyte)il[position] + position;
 							position++;
 							break;
 						}
+
 					case OperandType.ShortInlineI:
 						{
 							instruction.Operand = (sbyte)il[position];
 							position++;
 							break;
 						}
+
 					case OperandType.ShortInlineR:
 						{
 							instruction.Operand = BitConverter.ToSingle(il, position);
-							position += sizeof(Single);
+							position += sizeof(float);
 							break;
 						}
+
 					case OperandType.ShortInlineVar:
 						{
 							instruction.Operand = il[position];
 							position++;
 							break;
 						}
+
 					default:
 						{
 							throw new ArgumentException(string.Format("Unknown operand type {0} in supplied IL", code.OperandType), nameof(il));
 						}
 				}
+
 				instructions.Add(instruction);
 			}
+
 			return instructions;
 		}
 
@@ -492,41 +551,70 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns><code>true</code>if method contained in expression <paramref name="func"/> references any constructors in this <see cref="Type"/></returns>
 		public static bool ReferencesMethod<T>(this Type sourceType, Expression<Action<T>> func)
 		{
-			if (sourceType == null) throw new ArgumentNullException(nameof(sourceType));
-			if (func == null) throw new ArgumentNullException(nameof(func));
+			if (sourceType == null)
+			{
+				throw new ArgumentNullException(nameof(sourceType));
+			}
+
+			if (func == null)
+			{
+				throw new ArgumentNullException(nameof(func));
+			}
+
 			var methodCallExpression = func.Body as MethodCallExpression;
-			if (methodCallExpression == null) return false;
+			if (methodCallExpression == null)
+			{
+				return false;
+			}
+
 			MethodInfo memberInfo = methodCallExpression.Method;
-			MethodInfo getTypeMethodInfo = typeof (Object).GetMethods().Single(x => x.Name == "GetType");// && x.GetParameters().Count() == 0 && x.ReflectedType == typeof(Object));
+			MethodInfo getTypeMethodInfo = typeof(object).GetMethods().Single(x => x.Name == "GetType"); // && x.GetParameters().Count() == 0 && x.ReflectedType == typeof(Object));
 			bool getTypeCall = memberInfo == getTypeMethodInfo;
 
 			foreach (var methodInfo in sourceType.GetMethods())
 			{
 				var methodBody = methodInfo.GetMethodBody();
-				if (methodBody == null) continue;
+				if (methodBody == null)
+				{
+					continue;
+				}
 
 				var il = methodBody.GetILAsByteArray();
 				IEnumerable<IlInstruction> instructions = GetMethodInstructions(methodInfo, sourceType.Module, il);
 
-				for(int i = 0; i < instructions.Count(); ++i)
+				for (int i = 0; i < instructions.Count(); ++i)
 				{
 					var instruction = instructions.ElementAt(i);
-					if(getTypeCall && instruction.Code == OpCodes.Ldtoken && i < instructions.Count() && instructions.ElementAt(i+1).Code == OpCodes.Call)
+					if (getTypeCall && instruction.Code == OpCodes.Ldtoken && i < instructions.Count() && instructions.ElementAt(i + 1).Code == OpCodes.Call)
 					{
-						var calledMethodInfo = instructions.ElementAt(i+1).Operand as MethodInfo;
-						if (calledMethodInfo == null) continue;
+						var calledMethodInfo = instructions.ElementAt(i + 1).Operand as MethodInfo;
+						if (calledMethodInfo == null)
+						{
+							continue;
+						}
+
 						if (calledMethodInfo == typeof(Type).GetMethods().Single(x => x.Name == "GetTypeFromHandle"))
+						{
 							return true;
+						}
 					}
 
 					if (instruction.Code == OpCodes.Call || instruction.Code == OpCodes.Callvirt)
 					{
 						var calledMethodInfo = instruction.Operand as MethodInfo;
-						if (calledMethodInfo == null) continue;
-						if (calledMethodInfo == memberInfo) return true;
+						if (calledMethodInfo == null)
+						{
+							continue;
+						}
+
+						if (calledMethodInfo == memberInfo)
+						{
+							return true;
+						}
 					}
 				}
 			}
+
 			return false;
 		}
 
@@ -539,7 +627,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns><code>true</code>if <paramref name="type"/> references any constructors in this <see cref="Type"/>.</returns>
 		public static bool ReferencesConstructor(this Type sourceType, Type type)
 		{
-			if (sourceType == null) throw new ArgumentNullException(nameof(sourceType));
+			if (sourceType == null)
+			{
+				throw new ArgumentNullException(nameof(sourceType));
+			}
+
 			return (from methodInfo in sourceType.GetMethods()
 			        let methodBody = methodInfo.GetMethodBody()
 			        where methodBody != null
@@ -560,7 +652,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool ReferencesConstructor<T>(this Type sourceType)
 #pragma warning restore CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Type)' has a paramref tag for 'type', but there is no parameter by that name
 		{
-			return ReferencesConstructor(sourceType, typeof (T));
+			return ReferencesConstructor(sourceType, typeof(T));
 		}
 
 		/// <summary>
@@ -571,7 +663,10 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns><code>true</code>if <paramref name="type"/> references any constructors in this <see cref="Assembly"/></returns>
 		public static bool ReferencesConstructor(this Assembly assembly, Type type)
 		{
-			if (assembly == null) throw new ArgumentNullException(nameof(assembly));
+			if (assembly == null)
+			{
+				throw new ArgumentNullException(nameof(assembly));
+			}
 
 			return assembly.GetModules().SelectMany(module => module.GetTypes()).Any(moduleType => ReferencesConstructor(moduleType, type));
 		}
@@ -585,7 +680,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool ReferencesConstructor<T>(this Assembly assembly)
 #pragma warning restore CS1734 // XML comment on 'Reflectable.ReferencesConstructor<T>(Assembly)' has a paramref tag for 'type', but there is no parameter by that name
 		{
-			return ReferencesConstructor(assembly, typeof (T));
+			return ReferencesConstructor(assembly, typeof(T));
 		}
 
 		/// <summary>
@@ -595,23 +690,41 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="obj">the object that will be operated upon.</param>
 		/// <param name="fieldName">Name of the field whose value to retrieve.</param>
 		/// <returns>The value of the property</returns>
-		public static T GetPrivateFieldValue<T>(this Object obj, string fieldName)
+		public static T GetPrivateFieldValue<T>(this object obj, string fieldName)
 		{
-			if (obj == null) throw new ArgumentNullException(nameof(obj));
-			if (string.IsNullOrWhiteSpace(fieldName)) throw new ArgumentNullException(nameof(fieldName));
+			if (obj == null)
+			{
+				throw new ArgumentNullException(nameof(obj));
+			}
+
+			if (string.IsNullOrWhiteSpace(fieldName))
+			{
+				throw new ArgumentNullException(nameof(fieldName));
+			}
+
 			var type = obj.GetType();
 			FieldInfo field;
 			do
 			{
 				field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
 				type = type.BaseType;
-			} while (field == null && type != null);
+			}
+			while (field == null && type != null);
+
 			if (field == null)
+			{
 				throw new InvalidOperationException(string.Format("{0} not found in type {1}", fieldName, type.FullName));
+			}
+
 			if (!typeof(T).IsAssignableFrom(field.FieldType))
-				throw
-					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
-																field.FieldType.FullName));
+			{
+				throw new InvalidOperationException(
+						string.Format(
+							"{0} is not assignable from {1}",
+							typeof(T).FullName,
+							field.FieldType.FullName));
+			}
+
 			return (T)field.GetValue(obj);
 		}
 
@@ -622,23 +735,40 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="obj">the object that will be operated upon.</param>
 		/// <param name="propertyName">Name of the field whose value to retrieve.</param>
 		/// <returns>The value of the field</returns>
-		public static T GetPrivatePropertyValue<T>(this Object obj, string propertyName)
+		public static T GetPrivatePropertyValue<T>(this object obj, string propertyName)
 		{
-			if (obj == null) throw new ArgumentNullException(nameof(obj));
-			if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentNullException(nameof(propertyName));
+			if (obj == null)
+			{
+				throw new ArgumentNullException(nameof(obj));
+			}
+
+			if (string.IsNullOrWhiteSpace(propertyName))
+			{
+				throw new ArgumentNullException(nameof(propertyName));
+			}
+
 			var type = obj.GetType();
 			PropertyInfo property;
 			do
 			{
 				property = type.GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
 				type = type.BaseType;
-			} while (property == null && type != null);
+			}
+			while (property == null && type != null);
 			if (property == null)
+			{
 				throw new InvalidOperationException(string.Format("{0} not found in type {1}", propertyName, type.FullName));
+			}
+
 			if (!typeof(T).IsAssignableFrom(property.PropertyType))
-				throw
-					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
-																property.PropertyType.FullName));
+			{
+				throw new InvalidOperationException(
+					string.Format(
+						"{0} is not assignable from {1}",
+						typeof(T).FullName,
+						property.PropertyType.FullName));
+			}
+
 			return (T)property.GetValue(obj, null);
 		}
 
@@ -650,23 +780,40 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="fieldName">Name of the field whose value to retrieve.</param>
 		/// <returns>The value of the property</returns>
 		/// <param name="value">The value used to set the field</param>
-		public static void SetPrivateFieldValue<T>(this Object obj, string fieldName, T value)
+		public static void SetPrivateFieldValue<T>(this object obj, string fieldName, T value)
 		{
-			if (obj == null) throw new ArgumentNullException(nameof(obj));
-			if (string.IsNullOrWhiteSpace(fieldName)) throw new ArgumentNullException(nameof(fieldName));
+			if (obj == null)
+			{
+				throw new ArgumentNullException(nameof(obj));
+			}
+
+			if (string.IsNullOrWhiteSpace(fieldName))
+			{
+				throw new ArgumentNullException(nameof(fieldName));
+			}
+
 			var type = obj.GetType();
 			FieldInfo field;
 			do
 			{
 				field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
 				type = type.BaseType;
-			} while (field == null && type != null);
+			}
+			while (field == null && type != null);
 			if (field == null)
+			{
 				throw new InvalidOperationException(string.Format("{0} not found in type {1}", fieldName, type.FullName));
+			}
+
 			if (!typeof(T).IsAssignableFrom(field.FieldType))
-				throw
-					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
-																field.FieldType.FullName));
+			{
+				throw new InvalidOperationException(
+						string.Format(
+							"{0} is not assignable from {1}",
+							typeof(T).FullName,
+							field.FieldType.FullName));
+			}
+
 			field.SetValue(obj, value);
 		}
 
@@ -677,23 +824,40 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="obj">the object that will be operated upon.</param>
 		/// <param name="propertyName">Name of the field whose value to retrieve.</param>
 		/// <param name="value">The value used to set the property</param>
-		public static void SetPrivatePropertyValue<T>(this Object obj, string propertyName, T value)
+		public static void SetPrivatePropertyValue<T>(this object obj, string propertyName, T value)
 		{
-			if (obj == null) throw new ArgumentNullException(nameof(obj));
-			if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentNullException(nameof(propertyName));
+			if (obj == null)
+			{
+				throw new ArgumentNullException(nameof(obj));
+			}
+
+			if (string.IsNullOrWhiteSpace(propertyName))
+			{
+				throw new ArgumentNullException(nameof(propertyName));
+			}
+
 			var type = obj.GetType();
 			PropertyInfo property;
 			do
 			{
 				property = type.GetProperty(propertyName, BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy);
 				type = type.BaseType;
-			} while (property == null && type != null);
+			}
+			while (property == null && type != null);
 			if (property == null)
+			{
 				throw new InvalidOperationException(string.Format("{0} not found in type {1}", propertyName, type.FullName));
+			}
+
 			if (!typeof(T).IsAssignableFrom(property.PropertyType))
-				throw
-					new InvalidOperationException(string.Format("{0} is not assignable from {1}", typeof(T).FullName,
-																property.PropertyType.FullName));
+			{
+				throw new InvalidOperationException(
+					string.Format(
+						"{0} is not assignable from {1}",
+						typeof(T).FullName,
+						property.PropertyType.FullName));
+			}
+
 			property.SetValue(obj, value, null);
 		}
 
@@ -704,8 +868,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType)
 		{
-			if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
-			if(!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			if (attributeType == null)
+			{
+				throw new ArgumentNullException(nameof(attributeType));
+			}
+
+			if (!typeof(Attribute).IsAssignableFrom(attributeType))
+			{
+				throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			}
+
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return attributeType.FindAttributedTypes(assemblies);
 		}
@@ -715,7 +887,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// </summary>
 		/// <param name="attribute">Attribute for which types must implement to match</param>
 		/// <returns>Collection of types that match.</returns>
-		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute) where TAttribute : Attribute
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute)
+			where TAttribute : Attribute
 		{
 			var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 			return attribute.FindAttributedTypes(assemblies);
@@ -729,8 +902,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="directory">Directory to search for assemblies</param>
 		/// <param name="wildcard">Wildcard to use to include assembly file names</param>
 		/// <returns>Collection of types that match.</returns>
-		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, string directory, string wildcard) where TAttribute : Attribute
-#pragma warning restore CS1734 // XML comment on 'Reflectable.FindAttributedTypes<TAttribute>(TAttribute, string, string)' has a paramref tag for 'attributeType', but there is no parameter by that name
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, string directory, string wildcard)
+			where TAttribute : Attribute
 		{
 			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
 			return attribute.FindAttributedTypes(assemblies);
@@ -744,8 +917,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, IEnumerable<Assembly> assemblies)
 		{
-			if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
-			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			if (attributeType == null)
+			{
+				throw new ArgumentNullException(nameof(attributeType));
+			}
+
+			if (!typeof(Attribute).IsAssignableFrom(attributeType))
+			{
+				throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			}
+
 			return from assembly in assemblies
 				   from type in assembly.GetTypes()
 				   where !type.IsAbstract && type.IsClass && ((Predicate<Type>)(t => t.HasAttribute(attributeType)))(type)
@@ -761,8 +942,16 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>Collection of types that match.</returns>
 		public static IEnumerable<Type> FindAttributedTypes(this Type attributeType, string directory, string wildcard)
 		{
-			if (attributeType == null) throw new ArgumentNullException(nameof(attributeType));
-			if (!typeof(Attribute).IsAssignableFrom(attributeType)) throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			if (attributeType == null)
+			{
+				throw new ArgumentNullException(nameof(attributeType));
+			}
+
+			if (!typeof(Attribute).IsAssignableFrom(attributeType))
+			{
+				throw new ArgumentException("attributeType does implement Attribute", nameof(attributeType));
+			}
+
 			var assemblies = System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies();
 			return from assembly in assemblies
 				   from type in assembly.GetTypes()
@@ -770,14 +959,14 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 				   select type;
 		}
 
-
 		/// <summary>
 		/// Find all types in <paramref name="assemblies"/> that have been attributed with <paramref name="attribute"/>
 		/// </summary>
 		/// <param name="attribute">Attribute for which types must implement to match</param>
 		/// <param name="assemblies">Assemblies to search</param>
 		/// <returns>Collection of types that match.</returns>
-		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, IEnumerable<Assembly> assemblies) where TAttribute : Attribute
+		public static IEnumerable<Type> FindAttributedTypes<TAttribute>(this TAttribute attribute, IEnumerable<Assembly> assemblies)
+			where TAttribute : Attribute
 		{
 			return from assembly in assemblies
 				   from type in assembly.GetTypes()

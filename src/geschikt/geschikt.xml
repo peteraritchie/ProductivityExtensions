@@ -1773,6 +1773,11 @@
             <returns>true - <paramref name="t"/> has the attribute defined.
             false - <paramref name="t"/> does not have the attribute defined.</returns>
         </member>
+        <member name="T:PRI.ProductivityExtensions.ReflectionExtensions.ILGeneratorable">
+            <summary>
+            Extension methods for <seealso cref="T:System.Reflection.Emit.ILGenerator"/>
+            </summary>
+        </member>
         <member name="M:PRI.ProductivityExtensions.ReflectionExtensions.ILGeneratorable.EmitBackingFieldGetter(System.Reflection.Emit.ILGenerator,System.Reflection.FieldInfo)">
             <summary>
             Emit code that will get the value from <paramref name="field"/>
@@ -1802,7 +1807,7 @@
         </member>
         <member name="T:PRI.ProductivityExtensions.ReflectionExtensions.Reflectable">
             <summary>
-            class hat contains extension methods that extend reflection-related classes 
+            class hat contains extension methods that extend reflection-related classes
             </summary>
         </member>
         <member name="M:PRI.ProductivityExtensions.ReflectionExtensions.Reflectable.GetCustomAttribute``1(System.Reflection.Assembly)">
@@ -2127,14 +2132,14 @@
         </member>
         <member name="M:PRI.ProductivityExtensions.ReflectionExtensions.Typeable.ByImplementedInterface(System.Type)">
             <summary>
-            Get a collection of types that implement interface <param name="interfaceType" />
+            Get a collection of types that implement interface <paramref name="interfaceType" />
             </summary>
             <param name="interfaceType"></param>
             <returns></returns>
         </member>
         <member name="M:PRI.ProductivityExtensions.ReflectionExtensions.Typeable.ByImplementedInterface(System.Type,System.String)">
             <summary>
-            Get a collection of types that implement interface <param name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
+            Get a collection of types that implement interface <paramref name="interfaceType" /> within namespace named <paramref name="namespaceName"/>
             </summary>
             <param name="interfaceType"></param>
             <param name="namespaceName"></param>

@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace PRI.ProductivityExtensions.ActionExtensions
 {
+	/// <summary>
+	/// Extensions methods on <seealso cref="Action{T}"/>
+	/// </summary>
 	public static partial class Actionable
 	{
 		/// <summary>
@@ -17,7 +20,10 @@ namespace PRI.ProductivityExtensions.ActionExtensions
 		{
 			Action<T> result = coll.ElementAt(0);
 			foreach (var d in coll.Skip(1))
+			{
 				result += d;
+			}
+
 			return result;
 		}
 	}

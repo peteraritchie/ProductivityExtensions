@@ -24,29 +24,44 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// {
 		/// 	return FooAsync().ToApm(callback, state);
 		/// }
-		/// 
-		/// static int EndFoo(IAsyncResult asyncResult) 
-		/// { 
-		///    return ((Task&lt;int&gt;)asyncResult).Result; 
+		///
+		/// static int EndFoo(IAsyncResult asyncResult)
+		/// {
+		///    return ((Task&lt;int&gt;)asyncResult).Result;
 		/// }
 		/// </example>
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task<TResult> ToApm<TResult>(this Task<TResult> task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException(nameof(task));
+			if (task == null)
+			{
+				throw new ArgumentNullException(nameof(task));
+			}
+
 			var tcs = new TaskCompletionSource<TResult>(state);
 
 			task.
 				ContinueWith(
 					_ =>
 					{
-						if (task.IsFaulted) tcs.TrySetException(task.Exception.InnerExceptions);
-						else if (task.IsCanceled) tcs.TrySetCanceled();
-						else tcs.TrySetResult(task.Result);
+						if (task.IsFaulted)
+						{
+							tcs.TrySetException(task.Exception.InnerExceptions);
+						}
+						else if (task.IsCanceled)
+						{
+							tcs.TrySetCanceled();
+						}
+						else
+						{
+							tcs.TrySetResult(task.Result);
+						}
 
 						callback?.Invoke(tcs.Task);
 					},
-					CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.Default);
+					CancellationToken.None,
+					TaskContinuationOptions.None,
+					TaskScheduler.Default);
 
 			return tcs.Task;
 		}
@@ -63,29 +78,44 @@ namespace PRI.ProductivityExtensions.TaskExtensions
 		/// {
 		/// 	return FooAsync().ToApm(callback, state);
 		/// }
-		/// 
-		/// static void EndFoo(IAsyncResult asyncResult) 
-		/// { 
-		///    ((Task)asyncResult).Result; 
+		///
+		/// static void EndFoo(IAsyncResult asyncResult)
+		/// {
+		///    ((Task)asyncResult).Result;
 		/// }
 		/// </example>
 		/// <returns>New task that can be cast to <see cref="IAsyncResult"/>.</returns>
 		public static Task ToApm(this Task task, AsyncCallback callback, object state)
 		{
-			if (task == null) throw new ArgumentNullException(nameof(task));
+			if (task == null)
+			{
+				throw new ArgumentNullException(nameof(task));
+			}
+
 			var tcs = new TaskCompletionSource<object>(state);
 
 			task.
 				ContinueWith(
 					_ =>
 					{
-						if (task.IsFaulted) tcs.TrySetException(task.Exception.InnerExceptions);
-						else if (task.IsCanceled) tcs.TrySetCanceled();
-						else tcs.TrySetResult(null);
+						if (task.IsFaulted)
+						{
+							tcs.TrySetException(task.Exception.InnerExceptions);
+						}
+						else if (task.IsCanceled)
+						{
+							tcs.TrySetCanceled();
+						}
+						else
+						{
+							tcs.TrySetResult(null);
+						}
 
 						callback?.Invoke(tcs.Task);
 					},
-					CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.Default);
+					CancellationToken.None,
+					TaskContinuationOptions.None,
+					TaskScheduler.Default);
 
 			return tcs.Task;
 		}

@@ -15,8 +15,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net45</TargetFrameworks>
-    <!--<TargetFrameworks>netcoreapp1.1;net45</TargetFrameworks>-->
+    <TargetFrameworks>net45;netcoreapp1.1</TargetFrameworks>
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
@@ -29,6 +28,14 @@
     <DocumentationFile>geschikt.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp11|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp11|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -37,15 +44,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="stylecop.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ProductivityExtensionsStandard" Version="2.1.0-beta10" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
 

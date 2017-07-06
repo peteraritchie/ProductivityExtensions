@@ -9,8 +9,8 @@ namespace PRI.ProductivityExtensions.StringExtensions
 	{
 		/// <summary>
 		/// Returns the last few characters of the string with a length
-		/// specified by the given parameter. If the string's length is less than the 
-		/// given length the complete string is returned. If length is zero or 
+		/// specified by the given parameter. If the string's length is less than the
+		/// given length the complete string is returned. If length is zero or
 		/// less an empty string is returned
 		/// </summary>
 		/// <param name="s">the string to process</param>
@@ -27,8 +27,8 @@ namespace PRI.ProductivityExtensions.StringExtensions
 
 		/// <summary>
 		/// Returns the first few characters of the string with a length
-		/// specified by the given parameter. If the string's length is less than the 
-		/// given length the complete string is returned. If length is zero or 
+		/// specified by the given parameter. If the string's length is less than the
+		/// given length the complete string is returned. If length is zero or
 		/// less an empty string is returned
 		/// </summary>
 		/// <param name="s">the string to process</param>
@@ -60,7 +60,8 @@ namespace PRI.ProductivityExtensions.StringExtensions
 #else
 		public static string ReplaceEach(this string text, IEnumerable<char> chars, char c)
 		{
-			return string.Join(c.ToString(),
+			return string.Join(
+				c.ToString(),
 				text.Split(chars.ToArray()));
 		}
 #endif
@@ -88,6 +89,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
 
@@ -126,9 +128,9 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
-
 
 		/// <summary>
 		/// Convert a string value to a long.
@@ -142,9 +144,9 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return default(long);
 			}
+
 			return results;
 		}
-
 
 		/// <summary>
 		/// Convert a string value to a DateTime.
@@ -158,6 +160,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
 
@@ -170,7 +173,10 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		{
 			TimeSpan time;
 			if (TimeSpan.TryParse(source, out time))
+			{
 				return time;
+			}
+
 			return null;
 		}
 
@@ -186,6 +192,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
 
@@ -201,6 +208,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return default(double);
 			}
+
 			return results;
 		}
 
@@ -216,6 +224,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
 
@@ -242,6 +251,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 			{
 				return null;
 			}
+
 			return results;
 		}
 
@@ -252,7 +262,11 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		/// <returns>GUID or null if non-GUID textual value.</returns>
 		public static Guid? ToGuidOrNull(this string source)
 		{
-			if (string.IsNullOrEmpty(source)) return null;
+			if (string.IsNullOrEmpty(source))
+			{
+				return null;
+			}
+
 			try
 			{
 				return new Guid(source);
@@ -262,6 +276,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 				return null;
 			}
 		}
+
 		/// <summary>
 		/// Get the first "Word" in a string--separated by space.
 		/// </summary>
@@ -269,7 +284,11 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		/// <returns></returns>
 		public static string FirstWord(this string value)
 		{
-			if (value == null) return null;
+			if (value == null)
+			{
+				return null;
+			}
+
 			var x = value.IndexOf(" ", StringComparison.Ordinal);
 			return x != -1 ? value.Substring(0, x) : value;
 		}
@@ -278,13 +297,18 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		public static string Initials(this string value)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Stringable.Initials(string)'
 		{
-			if (value == null) return null;
+			if (value == null)
+			{
+				return null;
+			}
+
 			var items = value.Split(' ');
 			var sb = new StringBuilder();
 			foreach (var e in items.Where(e => e.Length >= 1))
 			{
 				sb.Append(e[0]);
 			}
+
 			return sb.ToString();
 		}
 
@@ -292,7 +316,7 @@ namespace PRI.ProductivityExtensions.StringExtensions
 		public static bool IsEmpty(this string value)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Stringable.IsEmpty(string)'
 		{
-			return String.Empty.Equals(value);
+			return string.Empty.Equals(value);
 		}
 	}
 }

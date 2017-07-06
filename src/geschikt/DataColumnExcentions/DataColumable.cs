@@ -17,7 +17,11 @@ namespace PRI.ProductivityExtensions.DataColumnExcentions
 		/// <param name="columnName"></param>
 		public static void Add<T>(this DataColumnCollection dataColumnCollection, string columnName)
 		{
-			if (dataColumnCollection == null) throw new ArgumentNullException(nameof(dataColumnCollection));
+			if (dataColumnCollection == null)
+			{
+				throw new ArgumentNullException(nameof(dataColumnCollection));
+			}
+
 			dataColumnCollection.Add(columnName, typeof(T));
 		}
 	}

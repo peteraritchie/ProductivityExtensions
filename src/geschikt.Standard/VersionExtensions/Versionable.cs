@@ -7,7 +7,7 @@ namespace PRI.ProductivityExtensions.VersionExtensions
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Versionable'
 	{
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Versionable.WindowsVistaVersion'
-		public static Version WindowsVistaVersion = new Version(6,0,6000);
+		public static Version WindowsVistaVersion = new Version(6, 0, 6000);
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Versionable.WindowsVistaVersion'
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Versionable.WindowsVistaSP22Version'
 		public static Version WindowsVistaSP22Version = new Version(6, 0, 6002);
@@ -81,13 +81,13 @@ namespace PRI.ProductivityExtensions.VersionExtensions
 		{
 			return leftVersion <= rightVersion;
 		}
+
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Versionable.IsVersionOrEarlierThan(Version, Version)'
 		public static bool IsVersionOrEarlierThan(this Version leftVersion, Version rightVersion)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Versionable.IsVersionOrEarlierThan(Version, Version)'
 		{
 			return leftVersion <= rightVersion;
 		}
-
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Versionable.IsOlderThan(Version, Version)'
 		public static bool IsOlderThan(this Version leftVersion, Version rightVersion)
