@@ -50,7 +50,7 @@ artifacts:
   name: net40
 - path: src\geschikt\bin\Release\net45\geschikt.???
   name: net45
-- path: 'src\geschikt*\*.nupkg'
+- path: '**\bin\release\*.nupkg'
   name: nuget
 deploy:
 - provider: NuGet
