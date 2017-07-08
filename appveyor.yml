@@ -16,9 +16,9 @@ build_script:
 - ps: >-
     cd src
 
-    dotnet restore
+    dotnet restore geschikt.Standard\geschikt.Standard.csproj
 
-    nuget restore
+    #nuget restore
 
     #dotnet build Tests.net45\Tests.net45.csproj -c Release 
 
