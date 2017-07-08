@@ -1,51 +1,58 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>netstandard1.0;netstandard1.4;net40;net45</TargetFrameworks>
-		<RootNamespace>PRI.ProductivityExtensions</RootNamespace>
-		<PackageId>ProductivityExtensions</PackageId>
-		<Authors>Peter Ritchie</Authors>
-		<Company>Peter Ritchie</Company>
-		<Description>Productivity Extensions is a library of extension methods extending over 650 methods in 400 Framework classes</Description>
-		<PackageLicenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</PackageLicenseUrl>
-		<PackageProjectUrl>https://github.com/peteraritchie/ProductivityExtensions</PackageProjectUrl>
-		<PackageIconUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/dev/productivity.png</PackageIconUrl>
-		<PackageReleaseNotes>.NET Standard 1.4 support</PackageReleaseNotes>
-		<PackageTags>extension methods</PackageTags>
-		<Version>2.1.0-beta1</Version>
-	</PropertyGroup>
-	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|netstandard1.0|net40|net45|AnyCPU'">
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<DefineConstants>TRACE;RELEASE;UNSAFE</DefineConstants>
-	</PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
+    <PackageId>ProductivityExtensions</PackageId>
+    <Authors>Peter Ritchie</Authors>
+    <Company>Peter Ritchie</Company>
+    <Description>Productivity Extensions is a library of extension methods extending over 650 methods in 400 Framework classes</Description>
+    <PackageLicenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/peteraritchie/ProductivityExtensions</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/dev/productivity.png</PackageIconUrl>
+    <PackageReleaseNotes>.NET Standard 1.4 support</PackageReleaseNotes>
+    <PackageTags>extension methods</PackageTags>
+    <Version>2.1.0-beta8</Version>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.4|netstandard1.0|net40|net45|AnyCPU'">
-		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-		<DefineConstants>TRACE;DEBUG;UNSAFE</DefineConstants>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp1.1</TargetFrameworks>
+    <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net40|AnyCPU'">
-	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net40|AnyCPU'">
-	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp11|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
-	  <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-	</PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp11|AnyCPU'">
+    <DocumentationFile>geschikt.xml</DocumentationFile>
+  </PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
-		<Reference Include="System" />
-		<Reference Include="System.Core" />
-		<Reference Include="System.Windows.forms" />
-		<Reference Include="System.Data" />
-	</ItemGroup>
-	
+  <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.forms" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)'=='net45'">
+    <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\geschikt.Standard\geschikt.Standard.csproj" />
+  </ItemGroup>
+
 </Project>

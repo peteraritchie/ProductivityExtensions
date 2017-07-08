@@ -1,4 +1,3 @@
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 //////////////////////////////////////////////////////////////////////
 // BCLExtensions is (c) 2010 Solutions Design. All rights reserved.
 // http://www.sd.nl
@@ -33,41 +32,64 @@
 //
 //////////////////////////////////////////////////////////////////////
 // Contributers to the code:
-// 	- Frans Bouma [FB]
+// - Frans Bouma [FB]
 //////////////////////////////////////////////////////////////////////
 
-using System.Data;
+using System;
+using System.Collections.Generic;
 
-namespace PRI.ProductivityExtensions.IDbConnectionExtensions
+namespace PRI.ProductivityExtensions.IDictionaryExtensions
 {
 	/// <summary>
-	/// class that contains extension methods that extend <seealso cref="IDbConnection"/>
+	/// class that contains extension methods that extend <seealso cref="IDictionary{TKey,TValue}"/>
 	/// </summary>
-	public static class IDbConnectionable
+	// ReSharper disable once PartialTypeWithSinglePart
+	public static partial class IDictionaryable
 	{
 		/// <summary>
-		/// A safe close routine for a database connection, which can also dispose the connection, if required.
+		/// Adds the range specified to the dictionary specified, using the key producer func to produce the key values.
+		/// If the key already exists, the key's value is overwritten with the value to add.
 		/// </summary>
-		/// <param name="toClose">the connection to close</param>
-		/// <param name="dispose">if set to true, it will also dispose the connection.</param>
-		// PR: was an extension on DbConnection without a default on dispose
-		public static void SafeClose(this IDbConnection toClose, bool dispose = false)
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="container">The container.</param>
+		/// <param name="keyProducerFunc">The key producer func.</param>
+		/// <param name="rangeToAdd">The range to add.</param>
+		public static void AddRange<TKey, TValue>(this IDictionary<TKey, TValue> container, Func<TValue, TKey> keyProducerFunc, IEnumerable<TValue> rangeToAdd)
 		{
-			if (toClose == null)
+			if (keyProducerFunc == null)
+			{
+				throw new ArgumentNullException(nameof(keyProducerFunc));
+			}
+
+			if (container == null || rangeToAdd == null)
 			{
 				return;
 			}
 
-			if (toClose.State != ConnectionState.Closed)
+			foreach (TValue toAdd in rangeToAdd)
 			{
-				toClose.Close();
+				container[keyProducerFunc(toAdd)] = toAdd;
+			}
+		}
+
+		/// <summary>
+		/// Gets the value for the key from the dictionary specified, or null / default(TValue) if key not found or the key is null.
+		/// </summary>
+		/// <typeparam name="TKey">The type of the key.</typeparam>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="dictionary">The dictionary.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>the value for the key from the dictionary specified, or null / default(TValue) if key not found or the key is null.</returns>
+		public static TValue GetValue<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key)
+		{
+			TValue toReturn;
+			if (key == null || !dictionary.TryGetValue(key, out toReturn))
+			{
+				toReturn = default(TValue);
 			}
 
-			if (dispose)
-			{
-				toClose.Dispose();
-			}
+			return toReturn;
 		}
 	}
 }
-#endif

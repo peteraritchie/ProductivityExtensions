@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace PRI.ProductivityExtensions.StreamExtensions
 {
-	static partial class Streamable
+	public static partial class Streamable
 	{
 /// <summary>
 /// Asynchronously read to end of stream
 /// </summary>
 /// <example>
-///	byte[] buffer = new byte[1024];
-///	stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
-///	                                               {
-///	                                               	int bytesRead = stream.EndRead(ar);
-///	                                               	ProcessData(buffer, bytesRead);
-///	                                               }, null);
+/// byte[] buffer = new byte[1024];
+/// stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
+///                                                {
+///                                                	int bytesRead = stream.EndRead(ar);
+///                                                	ProcessData(buffer, bytesRead);
+///                                                }, null);
 /// </example>
 /// <param name="stream">The stream for which this extension method acts upon.</param>
 /// <param name="buffer">The buffer to read the data into. </param>
@@ -32,14 +32,20 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 /// <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
 /// <exception cref="T:System.NotSupportedException">The current Stream implementation does not support the read operation. </exception>
 /// <returns>An <see cref="T:System.IAsyncResult"/> that represents the asynchronous read, which could still be pending.</returns>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope",
+		[System.Diagnostics.CodeAnalysis.SuppressMessage(
+			"Microsoft.Reliability",
+			"CA2000:Dispose objects before losing scope",
 			Justification = "'result' is used asynchronously")]
 #if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
-		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
+		public static IAsyncResult BeginReadToEnd(this Stream stream, byte[] buffer, int offset, int count, AsyncCallback callback, object state)
 		{
-			if (stream == null) throw new ArgumentNullException(nameof(stream));
+			if (stream == null)
+			{
+				throw new ArgumentNullException(nameof(stream));
+			}
+
 			byte[] tempBuffer = new byte[count];
 			ByteArrayAsyncResult result = new ByteArrayAsyncResult(callback, state, buffer, offset, tempBuffer);
 			ByteArrayAsyncState asyncState = new ByteArrayAsyncState { Result = result, Stream = stream };
@@ -52,12 +58,12 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// This version does not use a state Object.
 		/// </summary>
 		/// <example>
-		///	byte[] buffer = new byte[1024];
-		///	stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
-		///	                                               {
-		///	                                               	int bytesRead = stream.EndRead(ar);
-		///	                                               	ProcessData(buffer, bytesRead);
-		///	                                               });
+		/// byte[] buffer = new byte[1024];
+		/// stream.BeginReadToEnd(buffer, 0, buffer.Length, ar =>
+		///                                                {
+		///                                                	int bytesRead = stream.EndRead(ar);
+		///                                                	ProcessData(buffer, bytesRead);
+		///                                                });
 		/// </example>
 		/// <param name="stream">The stream for which this extension method acts upon.</param>
 		/// <param name="buffer">The buffer to read the data into. </param>
@@ -81,12 +87,12 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// This version does not use a state Object.
 		/// </summary>
 		/// <example>
-		///	byte[] buffer = new byte[1024];
-		///	stream.BeginReadToEnd(buffer, ar =>
-		///	                                               {
-		///	                                               	int bytesRead = stream.EndRead(ar);
-		///	                                               	ProcessData(buffer, bytesRead);
-		///	                                               });
+		/// byte[] buffer = new byte[1024];
+		/// stream.BeginReadToEnd(buffer, ar =>
+		///                                                {
+		///                                                	int bytesRead = stream.EndRead(ar);
+		///                                                	ProcessData(buffer, bytesRead);
+		///                                                });
 		/// </example>
 		/// <param name="stream">The stream for which this extension method acts upon.</param>
 		/// <param name="buffer">The buffer to read the data into. </param>
@@ -104,8 +110,6 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			return stream.BeginReadToEnd(buffer, 0, buffer.Length, callback, null);
 		}
 
-#pragma warning disable CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
-#pragma warning disable CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
 		/// <summary>
 		/// The Asynchronous Programming Model matching End method to the corresponding BeginReadToEnd methods.
 		/// </summary>
@@ -115,32 +119,48 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// The number of bytes read from the stream, between zero (0) and the number of bytes you requested. Streams return zero (0) only at the end of the stream, otherwise, they should block until at least one byte is available.
 		/// </returns>
 		/// <exception cref="T:System.ArgumentException">One or more of the arguments is invalid. </exception>
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId =
-"stream", 
-#pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
-#pragma warning restore CS1734 // XML comment on 'Streamable.EndReadToEnd(Stream, IAsyncResult)' has a paramref tag for 'asyncResult', but there is no parameter by that name
+		[System.Diagnostics.CodeAnalysis.SuppressMessage(
+			"Microsoft.Usage",
+			"CA1801:ReviewUnusedParameters",
+			MessageId = "stream",
 			Justification = "'stream' is required for this to be an extension method")]
 #if (NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		[Obsolete("Prefer Stream.ReadAsync")]
 #endif
 		public static int EndReadToEnd(this Stream stream, IAsyncResult ar)
 		{
-			if (stream == null) throw new ArgumentNullException(nameof(stream));
+			if (stream == null)
+			{
+				throw new ArgumentNullException(nameof(stream));
+			}
+
 			ByteArrayAsyncResult state = ar as ByteArrayAsyncResult;
-			if (state == null) throw new InvalidOperationException();
-			if(!state.IsCompleted)
+			if (state == null)
+			{
+				throw new InvalidOperationException();
+			}
+
+			if (!state.IsCompleted)
+			{
 				state.AsyncWaitHandle.WaitOne(-1);
+			}
+
 			int endReadToEnd = state.Length;
 			using (state)
 			{
 			}
+
 			return endReadToEnd;
 		}
 
 		private static void OnRead(IAsyncResult ar)
 		{
 			ByteArrayAsyncState state = ar?.AsyncState as ByteArrayAsyncState;
-			if (state == null) return;
+			if (state == null)
+			{
+				return;
+			}
+
 			int bytesRead = state.Stream.EndRead(ar);
 			if (bytesRead != 0)
 			{
@@ -150,6 +170,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				state.Stream.BeginRead(state.Result.TempBuffer, 0, state.Result.Result.Length - state.Result.Length, OnRead, state);
 				return;
 			}
+
 			state.Result.Complete(false);
 		}
 
@@ -170,6 +191,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 				: this(cb, state, buffer, offset, tempBuffer, false)
 			{
 			}
+
 			private ByteArrayAsyncResult(AsyncCallback cb, object state, byte[] buffer, int offset, byte[] tempBuffer, bool completed)
 			{
 				callback = cb;
@@ -190,8 +212,11 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 			{
 				get
 				{
-					if(asyncWaitHandle != null)
+					if (asyncWaitHandle != null)
+					{
 						asyncWaitHandle = new ManualResetEvent(completed);
+					}
+
 					return asyncWaitHandle;
 				}
 			}
@@ -245,6 +270,7 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 
 				ThreadPool.QueueUserWorkItem(InvokeCallback);
 			}
+
 			private void InvokeCallback(object state)
 			{
 				callback?.Invoke(this);
@@ -261,7 +287,11 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// </summary>
 		public static Task WriteAsync(this Stream stream, byte[] buffer)
 		{
-			if (stream == null) throw new ArgumentNullException(nameof(stream));
+			if (stream == null)
+			{
+				throw new ArgumentNullException(nameof(stream));
+			}
+
 			return stream.WriteAsync(buffer, 0, buffer.Length);
 		}
 
@@ -273,7 +303,11 @@ namespace PRI.ProductivityExtensions.StreamExtensions
 		/// </summary>
 		public static Task<int> ReadAsync(this Stream stream, byte[] buffer)
 		{
-			if (stream == null) throw new ArgumentNullException(nameof(stream));
+			if (stream == null)
+			{
+				throw new ArgumentNullException(nameof(stream));
+			}
+
 			return stream.ReadAsync(buffer, 0, buffer.Length);
 		}
 #endif

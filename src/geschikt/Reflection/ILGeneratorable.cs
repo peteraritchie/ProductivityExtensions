@@ -4,9 +4,10 @@ using System.Reflection.Emit;
 
 namespace PRI.ProductivityExtensions.ReflectionExtensions
 {
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'ILGeneratorable'
+	/// <summary>
+	/// Extension methods for <seealso cref="ILGenerator"/>
+	/// </summary>
 	public static partial class ILGeneratorable
-#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'ILGeneratorable'
 	{
 		/// <summary>
 		/// Emit code that will get the value from <paramref name="field"/>

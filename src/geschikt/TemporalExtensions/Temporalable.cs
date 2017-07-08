@@ -71,7 +71,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2233:OperationsShouldNotOverflow", MessageId = "source*365")]
 		public static TimeSpan Years(this int source)
 		{
-			return new TimeSpan(source*DaysPerYear, 0, 0, 0);
+			return new TimeSpan(source * DaysPerYear, 0, 0, 0);
 		}
 
 		/// <summary>
@@ -83,7 +83,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2233:OperationsShouldNotOverflow", MessageId = "source*30")]
 		public static TimeSpan Months(this int source)
 		{
-			return new TimeSpan(source*DaysPerMonth, 0, 0, 0);
+			return new TimeSpan(source * DaysPerMonth, 0, 0, 0);
 		}
 
 		/// <summary>
@@ -135,7 +135,10 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		/// <returns></returns>
 		public static TimeSpan Second(this int source)
 		{
-			if (source != 1) throw new ArgumentOutOfRangeException(nameof(source), source, "'source' must have value of '1'.");
+			if (source != 1)
+			{
+				throw new ArgumentOutOfRangeException(nameof(source), source, "'source' must have value of '1'.");
+			}
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 			Contract.EndContractBlock();
 #endif
@@ -179,7 +182,11 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		/// <returns></returns>
 		public static DateTime Ago(this TimeSpan source, DateTime now = default(DateTime))
 		{
-			if (now == default(DateTime)) now = DateTime.Now;
+			if (now == default(DateTime))
+			{
+				now = DateTime.Now;
+			}
+
 			return now.Add(source.Negate());
 		}
 
@@ -205,6 +212,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 			{
 				rounded = rounded + 1.Hours();
 			}
+
 			return rounded;
 		}
 
@@ -220,6 +228,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 			{
 				rounded = rounded + 1.Minutes();
 			}
+
 			return rounded;
 		}
 
@@ -235,6 +244,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 			{
 				rounded = rounded + 1.Seconds();
 			}
+
 			return rounded;
 		}
 
@@ -246,7 +256,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2233:OperationsShouldNotOverflow", MessageId = "value*1000000")]
 		public static int Million(this int value)
 		{
-			return value*1000000;
+			return value * 1000000;
 		}
 
 		/// <summary>
@@ -257,7 +267,7 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2233:OperationsShouldNotOverflow", MessageId = "value*1000")]
 		public static int Thousand(this int value)
 		{
-			return value*1000;
+			return value * 1000;
 		}
 
 		/// <summary>
@@ -272,20 +282,24 @@ namespace PRI.ProductivityExtensions.TemporalExtensions
 				var round = timeSpan.RoundToHours();
 				return string.Format("{0} days and {1} hours", round.Days, round.Hours);
 			}
+
 			if (timeSpan.TotalHours > 1)
 			{
 				var round = timeSpan.RoundToMinutes();
 				return string.Format("{0} hours and {1} minutes", round.Hours, round.Minutes);
 			}
+
 			if (timeSpan.TotalMinutes > 1)
 			{
 				var round = timeSpan.RoundToSeconds();
 				return string.Format("{0} minutes and {1} seconds", round.Minutes, round.Seconds);
 			}
+
 			if (timeSpan.TotalSeconds > 1)
 			{
 				return string.Format("{0} seconds", timeSpan.TotalSeconds);
 			}
+
 			return string.Format("{0} milliseconds", timeSpan.Milliseconds);
 		}
 

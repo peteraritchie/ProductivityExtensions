@@ -1,5 +1,4 @@
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-//////////////////////////////////////////////////////////////////////
+﻿﻿//////////////////////////////////////////////////////////////////////
 // BCLExtensions is (c) 2010 Solutions Design. All rights reserved.
 // http://www.sd.nl
 //////////////////////////////////////////////////////////////////////
@@ -33,41 +32,53 @@
 //
 //////////////////////////////////////////////////////////////////////
 // Contributers to the code:
-// 	- Frans Bouma [FB]
+// - Frans Bouma [FB]
 //////////////////////////////////////////////////////////////////////
 
-using System.Data;
+using System;
+using System.Collections.Generic;
 
-namespace PRI.ProductivityExtensions.IDbConnectionExtensions
+namespace PRI.ProductivityExtensions.ICollectionableExtensions
 {
-	/// <summary>
-	/// class that contains extension methods that extend <seealso cref="IDbConnection"/>
-	/// </summary>
-	public static class IDbConnectionable
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'ICollectionable'
+	// ReSharper disable once PartialTypeWithSinglePart
+	public static partial class ICollectionable
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'ICollectionable'
 	{
 		/// <summary>
-		/// A safe close routine for a database connection, which can also dispose the connection, if required.
+		/// Determines whether the passed in list is null or empty.
 		/// </summary>
-		/// <param name="toClose">the connection to close</param>
-		/// <param name="dispose">if set to true, it will also dispose the connection.</param>
-		// PR: was an extension on DbConnection without a default on dispose
-		public static void SafeClose(this IDbConnection toClose, bool dispose = false)
+		/// <typeparam name="T">the type of the elements in the list to check</typeparam>
+		/// <param name="toCheck">the list to check.</param>
+		/// <returns>true if the passed in list is null or empty, false otherwise</returns>
+		// PR: was originally extension IList<T>
+		public static bool IsNullOrEmpty<T>(this ICollection<T> toCheck)
 		{
-			if (toClose == null)
+			return toCheck == null || toCheck.Count <= 0;
+		}
+
+		/// <summary>
+		/// Adds the range defined by source to the destination.
+		/// </summary>
+		/// <param name="destination">The destination.</param>
+		/// <param name="source">The source.</param>
+		// PR: was originally an extension on HashSet<T>
+		public static void AddRange<T>(this ICollection<T> destination, IEnumerable<T> source)
+		{
+			if (destination == null)
+			{
+				throw new ArgumentNullException(nameof(destination));
+			}
+
+			if (source == null)
 			{
 				return;
 			}
 
-			if (toClose.State != ConnectionState.Closed)
+			foreach (T element in source)
 			{
-				toClose.Close();
-			}
-
-			if (dispose)
-			{
-				toClose.Dispose();
+				destination.Add(element);
 			}
 		}
 	}
 }
-#endif

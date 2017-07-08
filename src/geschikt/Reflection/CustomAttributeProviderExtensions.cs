@@ -19,7 +19,10 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// false - <paramref name="t"/> does not have the attribute defined.</returns>
 		public static bool ContainsAttribute(this ICustomAttributeProvider t, string attr)
 		{
-			if (t == null) throw new ArgumentNullException(nameof(t));
+			if (t == null)
+			{
+				throw new ArgumentNullException(nameof(t));
+			}
 
 			return t.GetCustomAttributes(true).Any(i => i.GetType().Name == attr);
 		}

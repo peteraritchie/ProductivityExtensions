@@ -1,5 +1,4 @@
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-//////////////////////////////////////////////////////////////////////
+﻿//////////////////////////////////////////////////////////////////////
 // BCLExtensions is (c) 2010 Solutions Design. All rights reserved.
 // http://www.sd.nl
 //////////////////////////////////////////////////////////////////////
@@ -33,41 +32,47 @@
 //
 //////////////////////////////////////////////////////////////////////
 // Contributers to the code:
-// 	- Frans Bouma [FB]
+// - Frans Bouma [FB]
 //////////////////////////////////////////////////////////////////////
+using System;
+using System.ComponentModel;
 
-using System.Data;
-
-namespace PRI.ProductivityExtensions.IDbConnectionExtensions
+namespace PRI.ProductivityExtensions.EventHandlerExtensions
 {
-	/// <summary>
-	/// class that contains extension methods that extend <seealso cref="IDbConnection"/>
-	/// </summary>
-	public static class IDbConnectionable
+	public static partial class EventHandlerable
 	{
 		/// <summary>
-		/// A safe close routine for a database connection, which can also dispose the connection, if required.
+		/// Raises the event which is represented by the handler specified.
 		/// </summary>
-		/// <param name="toClose">the connection to close</param>
-		/// <param name="dispose">if set to true, it will also dispose the connection.</param>
-		// PR: was an extension on DbConnection without a default on dispose
-		public static void SafeClose(this IDbConnection toClose, bool dispose = false)
+		/// <typeparam name="T">type of the event args</typeparam>
+		/// <param name="handler">The handler of the event to raise.</param>
+		/// <param name="sender">The sender of the event.</param>
+		/// <param name="arguments">The arguments to pass to the handler.</param>
+		public static void RaiseEvent<T>(this EventHandler<T> handler, object sender, T arguments)
+			where T : EventArgs
 		{
-			if (toClose == null)
-			{
-				return;
-			}
+			handler?.Invoke(sender, arguments);
+		}
 
-			if (toClose.State != ConnectionState.Closed)
-			{
-				toClose.Close();
-			}
+		/// <summary>
+		/// Raises the PropertyChanged event, if the handler isn't null, otherwise a no-op
+		/// </summary>
+		/// <param name="handler">The handler.</param>
+		/// <param name="sender">The sender.</param>
+		/// <param name="propertyName">Name of the property.</param>
+		public static void RaiseEvent(this PropertyChangedEventHandler handler, object sender, string propertyName)
+		{
+			handler?.Invoke(sender, new PropertyChangedEventArgs(propertyName));
+		}
 
-			if (dispose)
-			{
-				toClose.Dispose();
-			}
+		/// <summary>
+		/// Raises the event on the handler passed in with default empty arguments
+		/// </summary>
+		/// <param name="handler">The handler.</param>
+		/// <param name="sender">The sender.</param>
+		public static void RaiseEvent(this EventHandler handler, object sender)
+		{
+			handler?.Invoke(sender, EventArgs.Empty);
 		}
 	}
 }
-#endif

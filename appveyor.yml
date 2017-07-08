@@ -18,11 +18,15 @@ build_script:
 
     dotnet restore
 
-    nuget restore
+    #nuget restore
 
-    dotnet build Tests.net45\Tests.net45.csproj -c Release 
+    #dotnet build Tests.net45\Tests.net45.csproj -c Release 
 
-    dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    #dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+
+    dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+
+    dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
 
@@ -30,23 +34,23 @@ build_script:
 
     }
 
-    nuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools
+    #nuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools
 
-    nuget install OpenCover -Version 4.6.519 -OutputDirectory Tools
+    #nuget install OpenCover -Version 4.6.519 -OutputDirectory Tools
 
-    Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:Tests.net45\bin\Release\
+    #Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:Tests.net45\bin\Release\
 
-    tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
+    #tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 artifacts:
-- path: src\geschikt\bin\Release\netstandard1.0\geschikt.dll
+- path: src\geschikt.Standard\bin\Release\netstandard1.0\geschikt.Standard.???
   name: netstandard1.0
-- path: src\geschikt\bin\Release\netstandard1.4\geschikt.dll
+- path: src\geschikt.Standard\bin\Release\netstandard1.4\geschikt.Standard.???
   name: netstandard1.4
-- path: src\geschikt\bin\Release\net40\geschikt.dll
+- path: src\geschikt\bin\Release\netcoreapp1.1\geschikt.???
   name: net40
-- path: src\geschikt\bin\Release\net45\geschikt.dll
+- path: src\geschikt\bin\Release\net45\geschikt.???
   name: net45
-- path: 'src\geschikt\bin\Release\*.nupkg'
+- path: '**\bin\release\*.nupkg'
   name: nuget
 deploy:
 - provider: NuGet

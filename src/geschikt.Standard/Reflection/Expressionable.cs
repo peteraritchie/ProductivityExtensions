@@ -21,7 +21,10 @@ namespace PRI.ProductivityExtensions.Reflection
 			var memberExpression = expression.Body as MemberExpression;
 			var propertyInfo = memberExpression?.Member as PropertyInfo;
 
-			if (propertyInfo == null) throw new ArgumentException(expression.ToString());
+			if (propertyInfo == null)
+			{
+				throw new ArgumentException(expression.ToString());
+			}
 
 			return propertyInfo;
 		}
@@ -36,10 +39,7 @@ namespace PRI.ProductivityExtensions.Reflection
 			var memberExpression = expression.Body as MemberExpression;
 			var propertyInfo = memberExpression?.Member as PropertyInfo;
 
-			if (propertyInfo == null)
-			{
-				throw new ArgumentException(expression.ToString());
-			}
+			if (propertyInfo == null) throw new ArgumentException(expression.ToString());
 
 			var type = propertyInfo.DeclaringType;
 			return TypeDescriptor.GetProperties(type)[propertyInfo.Name];

@@ -23,13 +23,17 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		public static Collection<T> ToCollection<T>(this IEnumerable<T> enumerable)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToCollection<T>(IEnumerable<T>)'
 		{
-			if (enumerable == null) throw new ArgumentNullException(nameof(enumerable));
+			if (enumerable == null)
+			{
+				throw new ArgumentNullException(nameof(enumerable));
+			}
 
 			var list = enumerable as IList<T>;
 			if (list != null)
 			{
 				return new Collection<T>(list);
 			}
+
 			var collection = new Collection<T>();
 			collection.AddRange(enumerable);
 
@@ -59,7 +63,6 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 					// ignore anything that can't be loaded
 					continue;
 				}
-
 				yield return loadFrom;
 			}
 		}
@@ -79,9 +82,13 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			{
 				return _ => { };
 			}
+
 			Action<T> result = coll.ElementAt(0);
 			foreach (var d in coll.Skip(1))
+			{
 				result += d;
+			}
+
 			return result;
 		}
 
@@ -98,9 +105,13 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			{
 				throw new ArgumentException("Collection should not be empty or null.", nameof(coll));
 			}
+
 			Func<T1, T2> result = coll.ElementAt(0);
 			foreach (var d in coll.Skip(1))
+			{
 				result += d;
+			}
+
 			return result;
 		}
 #endif
