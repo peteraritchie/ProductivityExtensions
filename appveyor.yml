@@ -16,7 +16,7 @@ build_script:
 - ps: >-
     cd src
 
-    dotnet restore geschikt.Standard\geschikt.Standard.csproj
+    dotnet restore
 
     #nuget restore
 
