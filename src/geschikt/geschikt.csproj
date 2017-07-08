@@ -47,10 +47,6 @@
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ProductivityExtensionsStandard" Version="2.1.0-beta10" />
-  </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework)'=='net45'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
