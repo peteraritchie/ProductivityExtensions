@@ -45,6 +45,7 @@ build_script:
     Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:Tests.net45\bin\Release\
 
     tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
+test: off
 artifacts:
 - path: src\geschikt.Standard\bin\Release\netstandard1.0\geschikt.Standard.???
   name: netstandard1.0
