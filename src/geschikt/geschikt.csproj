@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\geschikt.Standard\geschikt.Standard.csproj" />
+    <PackageReference Include="ProductivityExtensionsStandard" Version="2.1.1-beta6" />
   </ItemGroup>
 
 </Project>

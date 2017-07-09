@@ -22,11 +22,15 @@ build_script:
 
     #dotnet build Tests.net45\Tests.net45.csproj -c Release 
 
+    dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+
     #dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
-    dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+    dotnet pack -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols --no-build
 
-    dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    #dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+
+    #dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
 
