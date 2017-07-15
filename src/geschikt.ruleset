@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="geschikt" ToolsVersion="15.0">
+  <Include Path="liberal stylecop.ruleset" Action="Default" />
+  <Include Path="minimum.ruleset" Action="Default" />
+</RuleSet>

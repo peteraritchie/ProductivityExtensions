@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFrameworks>net45;netcoreapp1.1</TargetFrameworks>
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <PackageId>ProductivityExtensions</PackageId>
     <Authors>Peter Ritchie</Authors>
@@ -15,9 +16,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp1.1</TargetFrameworks>
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <CodeAnalysisRuleSet>..\geschikt.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
@@ -41,6 +42,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.forms" />
     <Reference Include="System.Data" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GlobalSuppressions.cs" />
   </ItemGroup>
 
   <ItemGroup>

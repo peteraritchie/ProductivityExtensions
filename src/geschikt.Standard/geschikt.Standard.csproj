@@ -15,8 +15,12 @@
 		<Version>2.1.0-beta10</Version>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	</PropertyGroup>
-	
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|netstandard1.0|net40|net45|AnyCPU'">
+
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>..\geschikt.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|netstandard1.0|net40|net45|AnyCPU'">
 		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 		<DefineConstants>TRACE;RELEASE;UNSAFE</DefineConstants>
 	</PropertyGroup>
@@ -64,6 +68,10 @@
 		<Reference Include="System.Windows.forms" />
 		<Reference Include="System.Data" />
 	</ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="GlobalSuppressions.cs" />
+  </ItemGroup>
 
 	<ItemGroup>
 	  <AdditionalFiles Include="stylecop.json" />

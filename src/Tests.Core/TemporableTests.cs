@@ -1,5 +1,5 @@
+﻿using System;
 using PRI.ProductivityExtensions.TemporalExtensions;
-using System;
 using Xunit;
 
 namespace Tests.Core
@@ -148,7 +148,7 @@ namespace Tests.Core
 		{
 			var actual = new TimeSpan(0, 13, 25, 17).RoundToMinutes();
 
-			Assert.Equal(13 * 60 + 25, actual.TotalMinutes);
+			Assert.Equal((13 * 60) + 25, actual.TotalMinutes);
 		}
 
 		[Fact]
@@ -156,7 +156,7 @@ namespace Tests.Core
 		{
 			var actual = new TimeSpan(0, 1, 1, 17, 333).RoundToSeconds();
 
-			Assert.Equal(60 * 60 + 60 + 17, actual.TotalSeconds);
+			Assert.Equal((60 * 60) + 60 + 17, actual.TotalSeconds);
 		}
 
 		[Fact]

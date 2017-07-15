@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geschikt.Standard", "geschikt.Standard\geschikt.Standard.csproj", "{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}"
 EndProject
@@ -11,9 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stats", "stats\stats.csproj", "{0199F739-2FAF-4A19-BA63-B96351E7B700}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "geschikt", "geschikt\geschikt.csproj", "{62539BAF-A499-4B77-B069-D93F7321D3B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geschikt", "geschikt\geschikt.csproj", "{62539BAF-A499-4B77-B069-D93F7321D3B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Core", "Tests.Core\Tests.Core.csproj", "{04B60773-4816-4B24-A1BC-E8909ABEB7BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Core", "Tests.Core\Tests.Core.csproj", "{04B60773-4816-4B24-A1BC-E8909ABEB7BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65B5767B-E5B2-4171-AAE8-DEAABF9F0FEA}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		CodeCoverage.runsettings = CodeCoverage.runsettings
+		FAQ.md = FAQ.md
+		geschikt.ruleset = geschikt.ruleset
+		Liberal StyleCop.ruleset = Liberal StyleCop.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

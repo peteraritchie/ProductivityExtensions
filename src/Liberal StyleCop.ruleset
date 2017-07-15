@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="Liberal StyleCop Rules" Description="Liberal StyleCop Rules" ToolsVersion="15.0">
+  <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
+    <Rule Id="SA1027" Action="None" />
+    <Rule Id="SA1101" Action="None" />
+    <Rule Id="SA1119" Action="None" />
+    <Rule Id="SA1124" Action="None" />
+    <Rule Id="SA1200" Action="None" />
+    <Rule Id="SA1201" Action="None" />
+    <Rule Id="SA1202" Action="None" />
+    <Rule Id="SA1214" Action="None" />
+    <Rule Id="SA1310" Action="None" />
+    <Rule Id="SA1401" Action="None" />
+    <Rule Id="SA1404" Action="None" />
+    <Rule Id="SA1600" Action="None" />
+    <Rule Id="SA1601" Action="None" />
+    <Rule Id="SA1611" Action="None" />
+    <Rule Id="SA1614" Action="None" />
+    <Rule Id="SA1615" Action="None" />
+    <Rule Id="SA1616" Action="None" />
+    <Rule Id="SA1617" Action="None" />
+    <Rule Id="SA1618" Action="None" />
+    <Rule Id="SA1622" Action="None" />
+    <Rule Id="SA1623" Action="None" />
+    <Rule Id="SA1633" Action="None" />
+    <Rule Id="SA1636" Action="None" />
+    <Rule Id="SA1642" Action="None" />
+    <Rule Id="SA1652" Action="None" />
+  </Rules>
+</RuleSet>
