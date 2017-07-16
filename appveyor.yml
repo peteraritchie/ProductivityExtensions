@@ -6,12 +6,13 @@ branches:
   - master
 skip_commits:
   files:
-    - util/**/
-    - docs/**/*
-    - README.md
-    - LICENSE
-    - TODO.txt
-    - *.png
+  - util/**/*
+  - docs/**/*
+  - README.md
+  - LICENSE
+  - TODO.txt
+  - *.png
+
 image: Visual Studio 2017
 configuration: Release
 environment:
