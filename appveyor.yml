@@ -18,14 +18,19 @@ build_script:
 
     dotnet restore
 
-    #nuget restore
+    nuget restore
 
     #dotnet build Tests.net45\Tests.net45.csproj -c Release 
 
+    dotnet build -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+
     #dotnet pack geschikt\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
-    dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+    #dotnet pack -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols --no-build
 
+    #dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
+
+    dotnet pack geschikt.Standard\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
     dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
@@ -34,13 +39,14 @@ build_script:
 
     }
 
-    #nuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools
+    nuget install coveralls.net -Version 0.7.0 -OutputDirectory Tools
 
-    #nuget install OpenCover -Version 4.6.519 -OutputDirectory Tools
+    nuget install OpenCover -Version 4.6.519 -OutputDirectory Tools
 
-    #Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:Tests.net45\bin\Release\
+    Tools\OpenCover.4.6.519\tools\OpenCover.Console.exe -register:user -oldStyle -target:"nunit3-console.exe" -targetargs:"Tests.net45.dll" -targetdir:Tests.net45\bin\Release\ -output:coverage.xml -filter:"+[*Tests*]*" -searchdirs:Tests.net45\bin\Release\
 
-    #tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
+    tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
+test: off
 artifacts:
 - path: src\geschikt.Standard\bin\Release\netstandard1.0\geschikt.Standard.???
   name: netstandard1.0
