@@ -4,6 +4,16 @@ pull_requests:
 branches:
   only:
   - master
+skip_commits:
+  files:
+    - util/**/*
+    - docs/**/*
+    - README.md
+    - LICENSE
+    - TODO.txt
+    - '*.png'
+
+
 image: Visual Studio 2017
 configuration: Release
 environment:
@@ -30,8 +40,8 @@ build_script:
 
     #dotnet build geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE"
 
-    dotnet pack geschikt.Standard\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
-    dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    #dotnet pack geschikt.Standard\geschikt.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
+    #dotnet pack geschikt.Standard\geschikt.Standard.csproj -c Release /p:Version=$env:APPVEYOR_BUILD_VERSION /p:PackageReleaseNotes="$env:APPVEYOR_PULL_REQUEST_TITLE" --include-symbols
 
     if(Test-Path .\Tools) {
 
@@ -48,12 +58,10 @@ build_script:
     tools\coveralls.net.0.7.0\tools\csmacnz.Coveralls.exe --opencover -i coverage.xml
 test: off
 artifacts:
-- path: src\geschikt.Standard\bin\Release\netstandard1.0\geschikt.Standard.???
+- path: src\geschikt\bin\Release\netstandard1.0\geschikt.???
   name: netstandard1.0
-- path: src\geschikt.Standard\bin\Release\netstandard1.4\geschikt.Standard.???
+- path: src\geschikt\bin\Release\netstandard1.4\geschikt.???
   name: netstandard1.4
-- path: src\geschikt\bin\Release\netcoreapp1.1\geschikt.???
-  name: net40
 - path: src\geschikt\bin\Release\net45\geschikt.???
   name: net45
 - path: '**\bin\release\*.nupkg'

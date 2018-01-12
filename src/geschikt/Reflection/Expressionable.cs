@@ -12,7 +12,7 @@ namespace PRI.ProductivityExtensions.Reflection
 	public static class Expressionable
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Expressionable'
 	{
-#if NETSTANDARD1_0
+//#if NETSTANDARD1_0
 		/// <summary>
 		/// Converts the body of the lambda expression into the <see cref="T:System.Reflection.PropertyInfo" /> referenced by it.
 		/// </summary>
@@ -25,7 +25,7 @@ namespace PRI.ProductivityExtensions.Reflection
 
 			return propertyInfo;
 		}
-#endif
+//#endif
 
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>

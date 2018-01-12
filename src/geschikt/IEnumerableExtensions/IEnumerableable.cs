@@ -65,8 +65,8 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		}
 #endif
 
-#if NETSTANDARD1_0
-#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6)
+//#if NETSTANDARD1_0
+//#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6)
 		/// <summary>
 		/// Create a single multicast delegate from a collection of delegates
 		/// </summary>
@@ -103,8 +103,8 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 				result += d;
 			return result;
 		}
-#endif
-#endif
+//#endif
+//#endif
 	}
 }
 #endif

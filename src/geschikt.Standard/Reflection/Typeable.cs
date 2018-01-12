@@ -172,22 +172,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
-#else
-		private static IEnumerable<TypeInfo> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<TypeInfo> predicate)
-#endif
-		{
-			return from assembly in assemblies
-#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
-				   from type in assembly.DefinedTypes
-#else
-				   from type in assembly.GetTypes()
-#endif
-				   where !type.IsAbstract && type.IsClass && predicate(type)
-				   select type;
-		}
-
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// Get a collection of types that implement interface <param name="interfaceType" />
 		/// </summary>
@@ -277,6 +261,22 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 #endif
+
+#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
+#else
+		private static IEnumerable<TypeInfo> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<TypeInfo> predicate)
+#endif
+		{
+			return from assembly in assemblies
+#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
+				   from type in assembly.DefinedTypes
+#else
+				   from type in assembly.GetTypes()
+#endif
+				   where !type.IsAbstract && type.IsClass && predicate(type)
+				   select type;
+		}
 	}
 }
 #endif

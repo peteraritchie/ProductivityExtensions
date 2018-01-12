@@ -1,7 +1,7 @@
 ProductivityExtensions
 ======================
 
-[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions) [![NuGet](https://img.shields.io/nuget/v/ProductivityExtensions.svg?maxAge=2592000)](https://www.nuget.org/packages/ProductivityExtensions) [![Coverage Status](https://coveralls.io/repos/github/peteraritchie/ProductivityExtensions/badge.svg?branch=master)](https://coveralls.io/github/peteraritchie/ProductivityExtensions?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/d7hnf2d25oull7jq?svg=true)](https://ci.appveyor.com/project/peteraritchie/productivityextensions) [![NuGet](https://img.shields.io/nuget/v/ProductivityExtensions.svg?maxAge=2592000)](https://www.nuget.org/packages/ProductivityExtensions) [![NuGet Pre Release](https://img.shields.io/nuget/vpre/ProductivityExtensions.svg)](https://www.nuget.org/packages/ProductivityExtensions/2.1.1-beta7) [![Coverage Status](https://coveralls.io/repos/github/peteraritchie/ProductivityExtensions/badge.svg?branch=master)](https://coveralls.io/github/peteraritchie/ProductivityExtensions?branch=master)
 
 [![Stories in Ready](https://badge.waffle.io/peteraritchie/ProductivityExtensions.png?label=ready&title=Tasks+to+work+on)](https://waffle.io/peteraritchie/ProductivityExtensions)
 

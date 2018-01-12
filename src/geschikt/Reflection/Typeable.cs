@@ -13,7 +13,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 	public static partial class Typeable
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable'
 	{
-#if NETSTANDARD1_0
+//#if NETSTANDARD1_0
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
 		public static bool IsStatic(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
@@ -26,7 +26,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
 		public static bool IsOpenGenericType(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
@@ -37,9 +37,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return type.GetGenericTypeArguments().Length == 0 && type.GetTypeInfo().IsGenericType;
 #endif
 		}
-#endif
+//#endif
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		public static Type[] GetGenericTypeArguments(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
@@ -63,9 +63,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 #endif
 		}
-#endif
+//#endif
 
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <typeparam name="TAttribute"/>
 		/// </summary>
@@ -77,10 +77,10 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			if (type == null) throw new ArgumentNullException(nameof(type));
 			return type.HasAttribute(typeof (TAttribute));
 		}
-#endif
-#endif
+//#endif
+//#endif
 
-#if NET40
+//#if NET40
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <param name="attributeType" />
 		/// </summary>
@@ -95,10 +95,11 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return type.GetTypeInfo().GetCustomAttributes(attributeType, false).Any();
 //#endif
 		}
-#endif
+//#endif
 
-#if NETSTANDARD1_0
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+//#if NETSTANDARD1_0
+//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+
 		/// <summary>
 		/// Test if <param name="type" /> implements interface <typeparamref name="TInterface"/>
 		/// </summary>
@@ -145,8 +146,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return interfacTypeInfo.IsAssignableFrom(typeInfo);
 #endif
 		}
-#endif
-#endif
+//#endif
+//#endif
 
 #if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
@@ -259,8 +260,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 
-#if NETSTANDARD1_0
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+//#if NETSTANDARD1_0
+//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
+
 		/// <summary>
 		/// Gets the default constructor for <paramref name="type"/>
 		/// </summary>
@@ -274,8 +276,9 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return type.GetTypeInfo().DeclaredConstructors.Single(e => !e.GetParameters().Any());
 #endif
 		}
-#endif
-#endif
+
+//#endif
+//#endif
 	}
 }
 #endif
