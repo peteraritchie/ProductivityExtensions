@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp1.1</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard1.0;netstandard1.4</TargetFrameworks>
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <PackageId>ProductivityExtensions</PackageId>
     <Authors>Peter Ritchie</Authors>
@@ -19,24 +19,15 @@
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <CodeAnalysisRuleSet>..\geschikt.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
-    <DocumentationFile>geschikt.xml</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net45|AnyCPU'">
-    <DocumentationFile>geschikt.xml</DocumentationFile>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp11|AnyCPU'">
-    <DocumentationFile>geschikt.xml</DocumentationFile>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netcoreapp11|AnyCPU'">
-    <DocumentationFile>geschikt.xml</DocumentationFile>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">
@@ -57,5 +48,9 @@
   <ItemGroup Condition="'$(TargetFramework)'=='net45'">
     <PackageReference Include="StyleCop.Analyzers" Version="1.0.2" />
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="REM $(OutDir)$(OutDir)" />
+  </Target>
 
 </Project>
