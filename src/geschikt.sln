@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "geschikt.Standard", "geschikt.Standard\geschikt.Standard.csproj", "{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.net45", "Tests.net45\Tests.net45.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{5DE33AA7-F517-4E45-A1FD-B689283060FD}"
@@ -18,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{65B5767B-E5B2-4171-AAE8-DEAABF9F0FEA}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		..\appveyor.yml = ..\appveyor.yml
 		CodeCoverage.runsettings = CodeCoverage.runsettings
 		FAQ.md = FAQ.md
 		geschikt.ruleset = geschikt.ruleset
@@ -32,14 +31,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Debug|x86.Build.0 = Debug|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Release|x86.ActiveCfg = Release|Any CPU
-		{8FEEBFCC-645A-4DE3-A072-8847F244AAE9}.Release|x86.Build.0 = Release|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|x86.ActiveCfg = Debug|Any CPU
@@ -81,5 +72,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52251585-CD43-4C6D-A24E-D3300A23A10B}
 	EndGlobalSection
 EndGlobal

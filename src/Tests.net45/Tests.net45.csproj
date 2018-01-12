@@ -64,10 +64,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\geschikt.Standard\geschikt.Standard.csproj">
-      <Project>{8feebfcc-645a-4de3-a072-8847f244aae9}</Project>
-      <Name>geschikt.Standard</Name>
-    </ProjectReference>
     <ProjectReference Include="..\geschikt\geschikt.csproj">
       <Project>{62539baf-a499-4b77-b069-d93f7321d3b3}</Project>
       <Name>geschikt</Name>
