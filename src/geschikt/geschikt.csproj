@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.0;netstandard1.4</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard1.0;netstandard1.3</TargetFrameworks>
     <RootNamespace>PRI.ProductivityExtensions</RootNamespace>
     <PackageId>ProductivityExtensions</PackageId>
     <Authors>Peter Ritchie</Authors>
@@ -10,7 +10,7 @@
     <PackageLicenseUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/peteraritchie/ProductivityExtensions</PackageProjectUrl>
     <PackageIconUrl>https://github.com/peteraritchie/ProductivityExtensions/raw/dev/productivity.png</PackageIconUrl>
-    <PackageReleaseNotes>.NET Standard 1.4 support</PackageReleaseNotes>
+    <PackageReleaseNotes>.NET Standard 1.3 support</PackageReleaseNotes>
     <PackageTags>extension methods</PackageTags>
     <Version>2.1.0-beta8</Version>
   </PropertyGroup>
@@ -21,13 +21,12 @@
     <CodeAnalysisRuleSet>..\geschikt.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>1701;1702;1705;SA1600;SA1601;SA1602;SA1603;SA1604;SA1605;SA1606;SA1607;SA1608;SA1609;SA1610;SA1611;SA1612;SA1613;SA1614;SA1615;SA1616;SA1617;SA1618;SA1619;SA1620;SA1621;SA1622;SA1623;SA1624;SA1625;SA1626;SA1627;SA1628;SA1629;SA1630;SA1631;SA1632;SA1633;SA1634;SA1635;SA1636;SA1637;SA1638;SA1639;SA1640;SA1641;SA1642;SA1643;SA1644;SA1645;SA1646;SA1647;SA1648;SA1649;SA1500;SA1501;SA1502;SA1503;SA1504;SA1505;SA1506;SA1507;SA1508;SA1509;SA1510;SA1511;SA1512;SA1513;SA1514;SA1515;SA1516;SA1517;SA1518;SA1519;SA1520;SA1521;SA1522;SA1523;SA1524;SA1525;SA1526;SA1527;SA1528;SA1529;SA1530;SA1531;SA1532;SA1533;SA1534;SA1535;SA1536;SA1537;SA1538;SA1539;SA1540;SA1541;SA1542;SA1543;SA1544;SA1545;SA1546;SA1547;SA1548;SA1549;SA1550;SA1551;SA1552;SA1553;SA1554;SA1555;SA1556;SA1557;SA1558;SA1559;SA1560;SA1561;SA1562;SA1563;SA1564;SA1565;SA1566;SA1567;SA1568;SA1569;SA1570;SA1571;SA1119;SA1120;SA1121;SA1122;SA1123;SA1124;SA1125;SA1126;SA1127;SA1128;SA1400;SA1401;SA1402;SA1403;SA1404;SA1405;SA1406;SA1407;SA1408;SA1409;SA1410;SA1411;SA1300;SA1301;SA1302;SA1303;SA1304;SA1305;SA1306;SA1307;SA1308;SA1309;SA1310;SA1200;SA1201;SA1202;SA1203;SA1204;SA1205;SA1206;SA1207;SA1208;SA1209;SA1210;SA1211;SA1212;SA1213;SA1214;SA1215;SA1100;SA1101;SA1102;SA1103;SA1104;SA1105;SA1106;SA1107;SA1108;SA1109;SA1110;SA1111;SA1112;SA1113;SA1114;SA1115;SA1116;SA1117;SA1118;SA1120;SA1121;SA1122;SA1123;SA1124;SA1125;SA1126;SA1127;SA1128;SA1129;SA1130;SA1000;SA1001;SA1002;SA1003;SA1004;SA1005;SA1006;SA1007;SA1008;SA1009;SA1010;SA1011;SA1012;SA1013;SA1014;SA1015;SA1016;SA1017;SA1018;SA1019;SA1020;SA1021;SA1022;SA1023;SA1024;SA1025;SA1026;SA1027;SA1028</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net45|AnyCPU'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-    <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net40' OR '$(TargetFramework)'=='net45' OR '$(TargetFramework)'=='net46'">

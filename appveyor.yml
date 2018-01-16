@@ -60,8 +60,8 @@ test: off
 artifacts:
 - path: src\geschikt\bin\Release\netstandard1.0\geschikt.???
   name: netstandard1.0
-- path: src\geschikt\bin\Release\netstandard1.4\geschikt.???
-  name: netstandard1.4
+- path: src\geschikt\bin\Release\netstandard1.3\geschikt.???
+  name: netstandard1.3
 - path: src\geschikt\bin\Release\net45\geschikt.???
   name: net45
 - path: '**\bin\release\*.nupkg'
