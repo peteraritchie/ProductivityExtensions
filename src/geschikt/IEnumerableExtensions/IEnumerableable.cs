@@ -37,7 +37,7 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETCOREAPP1_0 || NETCOREAPP1_1 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
 		public static IEnumerable<Assembly> ToAssemblies(this IEnumerable<string> filenames)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'IEnumerableable.ToAssemblies(IEnumerable<string>)'
@@ -45,9 +45,17 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 			foreach (var f in filenames)
 			{
 				Assembly loadFrom;
+#if (NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETCOREAPP1_0 || NETCOREAPP1_1)
+				var dir = Directory.GetCurrentDirectory();
+#endif
 				try
 				{
+#if (NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETCOREAPP1_0 || NETCOREAPP1_1)
+					Directory.SetCurrentDirectory(Path.GetDirectoryName(f));
+					loadFrom = Assembly.Load(new AssemblyName(Path.GetFileNameWithoutExtension(f)));
+#elif (!NETSTANDARD1_0 && ! NETSTANDARD1_1 && !NETSTANDARD1_2)
 					loadFrom = Assembly.LoadFrom(f);
+#endif
 				}
 				catch (BadImageFormatException)
 				{
@@ -59,21 +67,26 @@ namespace PRI.ProductivityExtensions.IEnumerableExtensions
 					// ignore anything that can't be loaded
 					continue;
 				}
-
+#if (NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6 || NETCOREAPP1_0 || NETCOREAPP1_1)
+				finally
+				{
+					Directory.SetCurrentDirectory(dir);
+				}
+#endif
 				yield return loadFrom;
 			}
 		}
 #endif
 
-//#if NETSTANDARD1_0
-//#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6)
-		/// <summary>
-		/// Create a single multicast delegate from a collection of delegates
-		/// </summary>
-		/// <typeparam name="T">Type of parameter to delegate</typeparam>
-		/// <param name="coll"></param>
-		/// <returns>The collection of delegates</returns>
-		public static Action<T> Sum<T>(this IEnumerable<Action<T>> coll)
+					//#if NETSTANDARD1_0
+					//#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4 || NETSTANDARD1_5 || NETSTANDARD1_6)
+					/// <summary>
+					/// Create a single multicast delegate from a collection of delegates
+					/// </summary>
+					/// <typeparam name="T">Type of parameter to delegate</typeparam>
+					/// <param name="coll"></param>
+					/// <returns>The collection of delegates</returns>
+					public static Action<T> Sum<T>(this IEnumerable<Action<T>> coll)
 		{
 			if (coll == null || !coll.Any())
 			{
