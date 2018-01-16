@@ -20,7 +20,7 @@ namespace Tests
 	{
 		private static string NugetPackageId = "ProductivityExtensions";
 		private static string NugetOrgPackageSourceText = "https://api.nuget.org/v3/index.json";
-
+#if FUTURE
 		[Test]
 		public async Task then_there_are_no_breaking_changes()
 		{
@@ -57,7 +57,7 @@ namespace Tests
 				}
 			}
 		}
-
+#endif
 		public sealed class EphemeralDirectory : IDisposable
 		{
 			private readonly Lazy<string> _lazy;
