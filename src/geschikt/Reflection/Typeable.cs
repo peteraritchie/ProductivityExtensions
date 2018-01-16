@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-#if (NET40 || NET45 || NET451 || NET452 || NET46 || NET461 || NET462)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 using PRI.ProductivityExtensions.IEnumerableExtensions;
 #endif
 
@@ -146,21 +146,34 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return interfacTypeInfo.IsAssignableFrom(typeInfo);
 #endif
 		}
+		public static bool ImplementsInterface(this TypeInfo type, Type interfaceType)
+		{
+			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
+			if (type == null) throw new ArgumentNullException(nameof(type));
+			var interfaceTypeInfo = interfaceType.GetTypeInfo();
+			if (interfaceTypeInfo.IsGenericType && interfaceTypeInfo.ContainsGenericParameters)
+			{
+				return interfaceTypeInfo.ImplementedInterfaces
+					.Select(t => t.GetTypeInfo())
+					.Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
+			}
+			return interfaceTypeInfo.IsAssignableFrom(type);
+		}
 //#endif
-//#endif
+		//#endif
 
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
-#else
+//#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+//		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
+//#else
 		private static IEnumerable<TypeInfo> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<TypeInfo> predicate)
-#endif
+//#endif
 		{
 			return from assembly in assemblies
-#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
+//#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
 				   from type in assembly.DefinedTypes
-#else
-				   from type in assembly.GetTypes()
-#endif
+//#else
+//				   from type in assembly.GetTypes()
+//#endif
 				   where !type.IsAbstract && type.IsClass && predicate(type)
 				   select type;
 		}
@@ -219,7 +232,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/>
 		/// </summary>
@@ -229,16 +242,18 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard)
 		{
-			if (!interfaceType.IsInterface)
+			if (!interfaceType.GetTypeInfo().IsInterface)
 			{
 				throw new ArgumentException("Type is not an interface", nameof(interfaceType));
 			}
 
-			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(), type => type.ImplementsInterface(interfaceType));
+			return ByPredicate(System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
+					type => type.ImplementsInterface(interfaceType))
+				.Select(t => t.AsType());
 		}
 #endif
 
-#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
+#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		/// <summary>
 		/// get a collection of types that implement <paramref name="interfaceType"/> for assemblies filenames matching <paramref name="wildcard"/> in directory <paramref name="directory"/> within namespace named <paramref name="namespaceName"/>
 		/// </summary>
@@ -249,14 +264,15 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns></returns>
 		public static IEnumerable<Type> ByImplementedInterfaceInDirectory(this Type interfaceType, string directory, string wildcard, string namespaceName)
 		{
-			if (!interfaceType.IsInterface)
+			if (!interfaceType.GetTypeInfo().IsInterface)
 			{
 				throw new ArgumentException("Type is not an interface", "TInterface");
 			}
 
 			return ByPredicate(
-				System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
-				type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType));
+					System.IO.Directory.GetFiles(directory, wildcard).ToAssemblies(),
+					type => (type.Namespace ?? string.Empty).StartsWith(namespaceName) && type.ImplementsInterface(interfaceType))
+				.Select(t => t.AsType());
 		}
 #endif
 
