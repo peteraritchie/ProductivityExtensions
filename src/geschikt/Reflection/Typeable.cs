@@ -13,7 +13,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 	public static partial class Typeable
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable'
 	{
-//#if NETSTANDARD1_0
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
 		public static bool IsStatic(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsStatic(Type)'
@@ -26,7 +25,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 
-//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
 		public static bool IsOpenGenericType(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.IsOpenGenericType(Type)'
@@ -37,10 +35,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			return type.GetGenericTypeArguments().Length == 0 && type.GetTypeInfo().IsGenericType;
 #endif
 		}
-//#endif
 
-//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
+		#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		public static Type[] GetGenericTypeArguments(this Type type)
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Typeable.GetGenericTypeArguments(Type)'
 		{
@@ -63,9 +59,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 #endif
 		}
-//#endif
 
-//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0)
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <typeparam name="TAttribute"/>
 		/// </summary>
@@ -77,10 +71,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 			if (type == null) throw new ArgumentNullException(nameof(type));
 			return type.HasAttribute(typeof (TAttribute));
 		}
-//#endif
-//#endif
 
-//#if NET40
 		/// <summary>
 		/// Tests if <param name="type" /> has attribute <param name="attributeType" />
 		/// </summary>
@@ -89,16 +80,8 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <returns>true if attributed with <paramref name="attributeType" />, false otherwise.</returns>
 		public static bool HasAttribute(this Type type, Type attributeType)
 		{
-//#if (NET40 || NET45)
-//			return type.GetCustomAttributes(attributeType, false).Length > 0;
-//#else
 			return type.GetTypeInfo().GetCustomAttributes(attributeType, false).Any();
-//#endif
 		}
-//#endif
-
-//#if NETSTANDARD1_0
-//#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 
 		/// <summary>
 		/// Test if <param name="type" /> implements interface <typeparamref name="TInterface"/>
@@ -109,11 +92,7 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		public static bool ImplementsInterface<TInterface>(this Type type)
 		{
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NET40 || NET45)
-			return typeof(TInterface).IsAssignableFrom(type);
-#else
-			return typeof(TInterface).GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
-#endif
+			return typeof(TInterface).ImplementsInterface(type);
 		}
 
 		/// <summary>
@@ -122,71 +101,46 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 		/// <param name="type"></param>
 		/// <param name="interfaceType"></param>
 		/// <returns></returns>
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NETSTANDARD1_4 || NETSTANDARD1_3 || NETSTANDARD1_2 || NETSTANDARD1_1 || NETSTANDARD1_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
 		public static bool ImplementsInterface(this Type type, Type interfaceType)
-#else
-		public static bool ImplementsInterface(this TypeInfo type, Type interfaceType)
-#endif
 		{
-			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
 			if (type == null) throw new ArgumentNullException(nameof(type));
-#if (NETSTANDARD2_0 || NETSTANDARD1_6 || NETSTANDARD1_5 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-			if (interfaceType.IsGenericType && interfaceType.ContainsGenericParameters)
-			{
-				return type.GetInterfaces().Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
-			}
-			return interfaceType.IsAssignableFrom(type);
-#else
-			var interfacTypeInfo = interfaceType.GetTypeInfo();
-			var typeInfo = type.GetTypeInfo();
-			if (interfacTypeInfo.IsGenericType && interfacTypeInfo.ContainsGenericParameters)
-			{
-				return typeInfo.ImplementedInterfaces.Any(t => t.GetTypeInfo().IsGenericType && t.GetTypeInfo().GetGenericTypeDefinition() == interfaceType);
-			}
-			return interfacTypeInfo.IsAssignableFrom(typeInfo);
-#endif
+			return type.GetTypeInfo().ImplementsInterface(interfaceType);
 		}
-		public static bool ImplementsInterface(this TypeInfo type, TypeInfo interfaceTypeInfo)
+
+		public static bool ImplementsInterface(this TypeInfo typeTypeInfo, TypeInfo interfaceTypeInfo)
 		{
 			if (interfaceTypeInfo == null) throw new ArgumentNullException(nameof(interfaceTypeInfo));
-			var interfaceType = interfaceTypeInfo.GetType();
-			if (type == null) throw new ArgumentNullException(nameof(type));
+			if (typeTypeInfo == null) throw new ArgumentNullException(nameof(typeTypeInfo));
+
 			if (interfaceTypeInfo.IsGenericType && interfaceTypeInfo.ContainsGenericParameters)
 			{
-				return interfaceTypeInfo.ImplementedInterfaces
+				var interfaceType = interfaceTypeInfo.AsType();
+				return typeTypeInfo.ImplementedInterfaces
 					.Select(t => t.GetTypeInfo())
 					.Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
 			}
-			return interfaceTypeInfo.IsAssignableFrom(type);
+			return interfaceTypeInfo.IsAssignableFrom(typeTypeInfo);
 		}
-		public static bool ImplementsInterface(this TypeInfo type, Type interfaceType)
+
+		public static bool ImplementsInterface(this TypeInfo typeTypeInfo, Type interfaceType)
 		{
 			if (interfaceType == null) throw new ArgumentNullException(nameof(interfaceType));
-			if (type == null) throw new ArgumentNullException(nameof(type));
+			if (typeTypeInfo == null) throw new ArgumentNullException(nameof(typeTypeInfo));
+
 			var interfaceTypeInfo = interfaceType.GetTypeInfo();
 			if (interfaceTypeInfo.IsGenericType && interfaceTypeInfo.ContainsGenericParameters)
 			{
-				return interfaceTypeInfo.ImplementedInterfaces
+				return typeTypeInfo.ImplementedInterfaces
 					.Select(t => t.GetTypeInfo())
 					.Any(t => t.IsGenericType && t.GetGenericTypeDefinition() == interfaceType);
 			}
-			return interfaceTypeInfo.IsAssignableFrom(type);
+			return interfaceTypeInfo.IsAssignableFrom(typeTypeInfo);
 		}
-//#endif
-		//#endif
 
-//#if (NETSTANDARD2_0 || NET45 || NET40 || NET451 || NET452 || NET46 || NET461 || NET462)
-//		private static IEnumerable<Type> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<Type> predicate)
-//#else
 		private static IEnumerable<TypeInfo> ByPredicate(IEnumerable<Assembly> assemblies, Predicate<TypeInfo> predicate)
-//#endif
 		{
 			return from assembly in assemblies
-//#if (NETSTANDARD1_0 || NETSTANDARD1_1 || NETSTANDARD1_2 || NETSTANDARD1_3 || NETSTANDARD1_4)
 				   from type in assembly.DefinedTypes
-//#else
-//				   from type in assembly.GetTypes()
-//#endif
 				   where !type.IsAbstract && type.IsClass && predicate(type)
 				   select type;
 		}
@@ -329,8 +283,6 @@ namespace PRI.ProductivityExtensions.ReflectionExtensions
 #endif
 		}
 
-//#endif
-//#endif
 	}
 }
 #endif
